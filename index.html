@@ -364,9 +364,13 @@ function sr(data,file,hex){
     '<button class="again" onclick="rst()">← Verify another file</button>'+
   '</div>';
 }
-window.addEventListener('DOMContentLoaded',function(){
-  var h=window.location.pathname.replace('/','').trim().replace(/^0x/,'');
-  if(h&&h.length===64){document.getElementById('verify').scrollIntoView();ph(h,null);}
+window.addEventListener('DOMContentLoaded', function(){
+  var hash = new URLSearchParams(window.location.search).get('hash') || 
+             window.location.pathname.replace('/','').trim().replace(/^0x/,'');
+  if(hash && hash.length===64){
+    document.getElementById('verify').scrollIntoView();
+    ph(hash, null);
+  }
 });
 </script>
 </body>
