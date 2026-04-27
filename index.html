@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VerdChain — Prove your evidence is real</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1a18;
+  --paper: #f7f4ef;
+  --gold: #9a7c2e;
+  --grey: #888480;
+  --border: #ddd9d0;
+  --green: #1a5c3a;
+  --red: #7a1a1a;
+  --serif: 'EB Garamond', Georgia, serif;
+  --mono: 'DM Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: var(--serif); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: var(--paper); border-bottom: 1px solid var(--border);
+  height: 52px; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 10;
+}
+.logo { font-size: 17px; font-weight: 500; text-decoration: none; color: var(--ink); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); text-decoration: none; }
+.nav-links a:hover { color: var(--ink); }
+
+/* SECTIONS */
+section { padding: 100px 32px 80px; border-bottom: 1px solid var(--border); }
+.wrap { max-width: 640px; margin: 0 auto; }
+
+/* HERO */
+#home { min-height: 100vh; display: flex; align-items: center; }
+h1 { font-size: clamp(38px, 6vw, 58px); font-weight: 400; line-height: 1.15; margin-bottom: 24px; }
+h1 em { font-style: italic; color: var(--gold); }
+.tagline { font-size: 19px; color: var(--grey); line-height: 1.6; max-width: 480px; margin-bottom: 40px; }
+
+/* DIVIDER */
+.rule { width: 40px; height: 1px; background: var(--gold); margin: 40px 0; }
+
+/* WHAT */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 32px 0; }
+.cell { background: var(--paper); padding: 24px; }
+.cell-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.cell h3 { font-size: 16px; font-weight: 500; margin-bottom: 8px; line-height: 1.3; }
+.cell p { font-size: 15px; color: var(--grey); line-height: 1.6; }
+
+.steps { border: 1px solid var(--border); }
+.step { display: flex; gap: 20px; padding: 20px 24px; border-bottom: 1px solid var(--border); }
+.step:last-child { border-bottom: none; }
+.step-n { font-family: var(--mono); font-size: 11px; color: var(--gold); flex-shrink: 0; width: 20px; padding-top: 3px; }
+.step h4 { font-size: 16px; font-weight: 500; margin-bottom: 3px; }
+.step p { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+.note { margin-top: 28px; padding: 18px 22px; border-left: 2px solid var(--gold); font-size: 15px; color: var(--grey); font-style: italic; line-height: 1.7; background: #f0ece3; }
+.note strong { color: var(--ink); font-style: normal; }
+
+/* INSTALL */
+#install { background: #f0ece3; }
+h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
+.sub { font-size: 16px; color: var(--grey); margin-bottom: 40px; }
+
+.isteps { display: flex; flex-direction: column; }
+.istep { display: grid; grid-template-columns: 44px 1fr; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--border); align-items: start; }
+.istep:last-child { border-bottom: none; }
+.inum { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 12px; color: var(--gold); background: var(--paper); flex-shrink: 0; }
+.istep h4 { font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.istep p { font-size: 14px; color: var(--grey); line-height: 1.6; }
+.code { font-family: var(--mono); font-size: 11px; background: var(--paper); border: 1px solid var(--border); padding: 10px 14px; line-height: 1.7; margin-top: 8px; word-break: break-all; color: var(--ink); }
+
+/* VERIFY */
+.tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+.tab { padding: 10px 20px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border: none; background: none; color: var(--grey); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; }
+.tab.on { color: var(--ink); border-bottom-color: var(--gold); }
+
+.dropzone { border: 1.5px dashed var(--border); padding: 52px 24px; text-align: center; cursor: pointer; position: relative; background: white; transition: all 0.15s; }
+.dropzone:hover, .dropzone.over { border-color: var(--gold); background: #fdfbf6; }
+.dropzone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.dropzone-icon { font-size: 28px; display: block; margin-bottom: 12px; }
+.dropzone h4 { font-size: 19px; font-weight: 500; margin-bottom: 6px; }
+.dropzone p { font-family: var(--mono); font-size: 11px; color: var(--grey); }
+
+.hashrow { display: flex; border: 1px solid var(--border); }
+.hashinput { flex: 1; padding: 13px 15px; font-family: var(--mono); font-size: 12px; border: none; outline: none; background: white; color: var(--ink); }
+.hashinput::placeholder { color: #ccc; }
+.gobtn { padding: 13px 24px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; }
+.gobtn:hover { background: #333; }
+
+.loader { text-align: center; padding: 40px 0; }
+.loader-bar { width: 120px; height: 1px; background: var(--border); margin: 0 auto 16px; overflow: hidden; }
+.loader-fill { height: 100%; background: var(--gold); animation: ld 1.4s ease-in-out infinite; }
+@keyframes ld { 0%{width:0;margin-left:0} 50%{width:100%;margin-left:0} 100%{width:0;margin-left:100%} }
+.loader-text { font-family: var(--mono); font-size: 11px; color: var(--grey); letter-spacing: 0.08em; text-transform: uppercase; }
+
+.result { animation: up 0.3s ease; }
+@keyframes up { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+.verdict { padding: 26px 28px; border: 1px solid; margin-bottom: 12px; display: flex; gap: 18px; align-items: center; }
+.verdict.ok { border-color: var(--green); background: #f2f8f4; }
+.verdict.fail { border-color: var(--red); background: #f8f2f2; }
+.verdict-icon { font-size: 32px; flex-shrink: 0; }
+.verdict h3 { font-size: 21px; font-weight: 500; margin-bottom: 3px; }
+.verdict.ok h3 { color: var(--green); }
+.verdict.fail h3 { color: var(--red); }
+.verdict p { font-size: 13px; color: var(--grey); line-height: 1.5; }
+
+.record { border: 1px solid var(--border); background: white; margin-bottom: 12px; }
+.record-head { padding: 8px 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); border-bottom: 1px solid var(--border); background: #f5f2eb; }
+.row { display: flex; padding: 8px 14px; border-bottom: 1px solid #eeebe3; gap: 14px; }
+.row:last-child { border-bottom: none; }
+.rk { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--grey); width: 100px; flex-shrink: 0; padding-top: 2px; }
+.rv { font-family: var(--mono); font-size: 11px; color: var(--ink); word-break: break-all; line-height: 1.5; }
+
+.again { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); background: none; border: 1px solid var(--border); padding: 10px 20px; cursor: pointer; margin-top: 12px; }
+.again:hover { color: var(--ink); border-color: var(--ink); }
+
+/* FOOTER */
+footer { padding: 28px 32px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--grey); border-top: 1px solid var(--border); }
+
+@media(max-width:600px) {
+  nav { padding: 0 16px; }
+  section { padding: 90px 16px 60px; }
+  .two-col { grid-template-columns: 1fr; }
+  .nav-links { gap: 14px; }
+  footer { flex-direction: column; gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="logo">VerdChain</a>
+  <ul class="nav-links">
+    <li><a href="#home">What</a></li>
+    <li><a href="#install">Install</a></li>
+    <li><a href="#verify">Verify</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <div class="wrap">
+    <h1>Prove your evidence<br>is <em>real.</em></h1>
+    <p class="tagline">VerdChain creates a cryptographic fingerprint of your files the moment they are captured — permanently recorded on a public blockchain, verifiable by anyone.</p>
+    <div class="rule"></div>
+
+    <div class="two-col">
+      <div class="cell">
+        <div class="cell-label">The problem</div>
+        <h3>Digital files can be altered without a trace</h3>
+        <p>A video, photo, or document can be modified invisibly. Deepfakes are already appearing in courtrooms.</p>
+      </div>
+      <div class="cell">
+        <div class="cell-label">The solution</div>
+        <h3>An immutable fingerprint, recorded at the source</h3>
+        <p>VerdChain anchors a mathematical signature of the original file to the blockchain. Any modification is instantly detectable.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">01</div>
+        <div>
+          <h4>Capture</h4>
+          <p>The moment you take a photo or video, VerdChain computes a SHA-256 hash — a unique mathematical signature of every byte in the file.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <div>
+          <h4>Anchor</h4>
+          <p>That hash is written to the Polygon blockchain — a public, decentralized ledger. The record is permanent, tamper-proof, and timestamped.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <div>
+          <h4>Verify</h4>
+          <p>Anyone can drop a file on this portal. If the fingerprint matches: the file is identical to the original. If not: it has been altered.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Your file never leaves your device.</strong> Only the 64-character hash is transmitted. VerdChain stores no content — only the cryptographic proof of its existence.
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section id="install">
+  <div class="wrap">
+    <h2>Install on iPhone.</h2>
+    <p class="sub">Set up the VerdChain Shortcut to anchor every photo to the blockchain in one tap.</p>
+
+    <div class="isteps">
+      <div class="istep">
+        <div class="inum">1</div>
+        <div>
+          <h4>Open Shortcuts</h4>
+          <p>Pre-installed on every iPhone. Tap <strong>+</strong> to create a new Shortcut. Name it <em>VerdChain Capture</em>.</p>
+        </div>
+      </div>
+      <div class="istep">
+        <div class="inum">2</div>
+        <div>
+          <h4>Take Photo</h4>
+          <p>Search <em>Take Photo</em> → add the action → Camera: Back.</p>
+        </div>
+      </div>
+      <div class="istep">
+        <div class="inum">3</div>
+        <div>
+          <h4>Send to VerdChain</h4>
+          <p>Search <em>Get Contents of URL</em> and configure:</p>
+          <div class="code">URL    : https://verdchain-api.onrender.com/api/anchor-file
+Method : POST
+Body   : File → Photo</div>
+        </div>
+      </div>
+      <div class="istep">
+        <div class="inum">4</div>
+        <div>
+          <h4>Get the verify URL</h4>
+          <p>Add <em>Get Dictionary</em> → then <em>Get Dictionary Value</em> → key: <code>verifyUrl</code>.</p>
+        </div>
+      </div>
+      <div class="istep">
+        <div class="inum">5</div>
+        <div>
+          <h4>Open the result</h4>
+          <p>Add <em>Open URLs</em> → select the Dictionary Value. The verification portal opens automatically after each capture.</p>
+        </div>
+      </div>
+      <div class="istep">
+        <div class="inum">6</div>
+        <div>
+          <h4>Add to home screen</h4>
+          <p>Tap the Shortcut name → <em>Add to Home Screen</em> → use ⛓ as the icon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFY -->
+<section id="verify">
+  <div class="wrap">
+    <h2>Verify a file.</h2>
+    <p class="sub">Drop any file to instantly check whether it matches its original blockchain record. Nothing is uploaded.</p>
+
+    <div class="tabs">
+      <button class="tab on" onclick="switchTab('file',this)">Drop a file</button>
+      <button class="tab" onclick="switchTab('hash',this)">Paste a hash</button>
+    </div>
+
+    <div id="v-in">
+      <div id="t-file">
+        <div class="dropzone" id="dz" ondragover="dov(event)" ondragleave="dol()" ondrop="ddr(event)">
+          <input type="file" onchange="dfs(event)">
+          <span class="dropzone-icon">🗂</span>
+          <h4>Drop your file here</h4>
+          <p>or click to browse · video · photo · document</p>
+        </div>
+      </div>
+      <div id="t-hash" style="display:none">
+        <div class="hashrow">
+          <input class="hashinput" id="hi" placeholder="SHA-256 hash (64 hex characters)...">
+          <button class="gobtn" onclick="vfi()">Verify</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="v-load" style="display:none">
+      <div class="loader">
+        <div class="loader-bar"><div class="loader-fill"></div></div>
+        <div class="loader-text" id="lt">Computing fingerprint...</div>
+      </div>
+    </div>
+
+    <div id="v-res" style="display:none"></div>
+  </div>
+</section>
+
+<footer>
+  <span>VerdChain · Polygon · EvidenceAnchor.sol</span>
+  <span>No files uploaded · Client-side hashing</span>
+</footer>
+
+<script>
+var API="https://verdchain-api.onrender.com";
+
+function switchTab(t,b){
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+  b.classList.add('on');
+  document.getElementById('t-file').style.display=t==='file'?'block':'none';
+  document.getElementById('t-hash').style.display=t==='hash'?'block':'none';
+}
+function dov(e){e.preventDefault();document.getElementById('dz').classList.add('over');}
+function dol(){document.getElementById('dz').classList.remove('over');}
+function ddr(e){e.preventDefault();dol();var f=e.dataTransfer.files[0];if(f)pf(f);}
+function dfs(e){var f=e.target.files[0];if(f)pf(f);}
+function vfi(){var h=document.getElementById('hi').value.trim().replace(/^0x/,'');if(h.length===64)ph(h,null);}
+
+async function sha256(file){
+  var d=await crypto.subtle.digest('SHA-256',await file.arrayBuffer());
+  return Array.from(new Uint8Array(d)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+}
+async function pf(file){
+  try{ld('Computing SHA-256 fingerprint...');var h=await sha256(file);await ph(h,file);}
+  catch(e){rst();alert('Error: '+e.message);}
+}
+async function ph(hex,file){
+  try{
+    ld('Querying blockchain...');
+    var r=await fetch(API+'/api/verify/'+hex+'?full=true');
+    var d=await r.json();
+    sr(d,file,hex);
+  }catch(e){rst();alert('Could not reach VerdChain API.');}
+}
+function ld(t){
+  document.getElementById('v-in').style.display='none';
+  document.getElementById('v-load').style.display='block';
+  document.getElementById('v-res').style.display='none';
+  document.getElementById('lt').textContent=t;
+}
+function rst(){
+  document.getElementById('v-in').style.display='block';
+  document.getElementById('v-load').style.display='none';
+  document.getElementById('v-res').style.display='none';
+}
+function sr(data,file,hex){
+  document.getElementById('v-load').style.display='none';
+  document.getElementById('v-res').style.display='block';
+  var el=document.getElementById('v-res');
+  var ok=data.exists;
+  var m=(data.record&&data.record.metadata)||{};
+  var rows=ok?[
+    ['Hash','0x'+hex],
+    m.filename?['Filename',m.filename]:null,
+    ['Signer',data.signer],
+    ['Anchored',data.anchoredAtISO||new Date(data.anchoredAt*1000).toLocaleString()],
+    data.record&&data.record.blockNumber?['Block','#'+Number(data.record.blockNumber).toLocaleString()]:null,
+  ].filter(Boolean):[['Hash','0x'+hex]];
+
+  el.innerHTML='<div class="result">'+
+    '<div class="verdict '+(ok?'ok':'fail')+'">'+
+      '<div class="verdict-icon">'+(ok?'✓':'✗')+'</div>'+
+      '<div><h3>'+(ok?'Verified':'Not found')+'</h3>'+
+      '<p>'+(ok?'This file is identical to the original anchored on the blockchain.':'No record found. This file may have been modified or was never anchored.')+'</p></div>'+
+    '</div>'+
+    '<div class="record"><div class="record-head">Blockchain record</div>'+
+    rows.map(function(r){return '<div class="row"><div class="rk">'+r[0]+'</div><div class="rv">'+r[1]+'</div></div>';}).join('')+
+    '</div>'+
+    '<button class="again" onclick="rst()">← Verify another file</button>'+
+  '</div>';
+}
+window.addEventListener('DOMContentLoaded',function(){
+  var h=window.location.pathname.replace('/','').trim().replace(/^0x/,'');
+  if(h&&h.length===64){document.getElementById('verify').scrollIntoView();ph(h,null);}
+});
+</script>
+</body>
+</html>
