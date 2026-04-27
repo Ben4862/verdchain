@@ -365,8 +365,9 @@ function sr(data,file,hex){
   '</div>';
 }
 window.addEventListener('DOMContentLoaded', function(){
-  var hash = new URLSearchParams(window.location.search).get('hash') || 
-             window.location.pathname.replace('/','').trim().replace(/^0x/,'');
+  var params = new URLSearchParams(window.location.search);
+  var hash = params.get('hash') || window.location.pathname.replace('/','').trim();
+  hash = hash.replace(/^0x/,'');
   if(hash && hash.length===64){
     document.getElementById('verify').scrollIntoView();
     ph(hash, null);
