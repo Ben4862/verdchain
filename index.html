@@ -4,643 +4,822 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VerdChain — Certification Professionnelle Santé</title>
+<meta name="description" content="Émettez des diplômes infalsifiables et vérifiez leur authenticité en 3 secondes. Ancré sur la blockchain.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --ink: #1a1a18; --paper: #f7f4ef; --gold: #9a7c2e; --grey: #888480;
-  --border: #ddd9d0; --green: #1a5c3a; --red: #7a1a1a;
-  --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1a18;--paper:#f7f4ef;--gold:#9a7c2e;--gold2:#c4a24a;
+  --grey:#888480;--border:#ddd9d0;--light:#edeae2;
+  --green:#1a5c3a;--red:#7a1a1a;--white:#fff;
+  --serif:'EB Garamond',Georgia,serif;
+  --mono:'DM Mono',monospace;
 }
-body { background: var(--paper); color: var(--ink); font-family: var(--serif); }
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  background: var(--paper); border-bottom: 1px solid var(--border);
-  height: 52px; padding: 0 32px;
-  display: flex; align-items: center; justify-content: space-between; z-index: 10;
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.7}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--paper);border-bottom:1px solid var(--border);
+  height:54px;padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;
 }
-.logo { font-size: 17px; font-weight: 500; cursor: pointer; color: var(--ink); text-decoration: none; }
-.nav-links { display: flex; gap: 28px; list-style: none; }
-.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); text-decoration: none; cursor: pointer; }
-.nav-links a:hover, .nav-links a.active { color: var(--ink); }
-.view { min-height: 100vh; padding: 88px 32px 80px; }
-.wrap { max-width: 640px; margin: 0 auto; }
-h1 { font-size: clamp(34px, 5vw, 50px); font-weight: 400; line-height: 1.15; margin-bottom: 18px; }
-h1 em { font-style: italic; color: var(--gold); }
-h2 { font-size: clamp(22px, 4vw, 34px); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
-.sub { font-size: 16px; color: var(--grey); line-height: 1.6; margin-bottom: 32px; }
-.rule { width: 40px; height: 1px; background: var(--gold); margin: 32px 0; }
-.section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
-.steps { border: 1px solid var(--border); margin-bottom: 8px; }
-.step { display: flex; gap: 20px; padding: 22px 24px; border-bottom: 1px solid var(--border); }
-.step:last-child { border-bottom: none; }
-.step-n { font-family: var(--mono); font-size: 11px; color: var(--gold); flex-shrink: 0; width: 20px; padding-top: 3px; }
-.step h4 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
-.step p { font-size: 14px; color: var(--grey); line-height: 1.6; }
-.portals { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 32px; }
-.portal-card { background: var(--paper); padding: 28px 22px; cursor: pointer; transition: background 0.15s; }
-.portal-card:hover { background: #f0ece3; }
-.portal-card-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
-.portal-card-icon { font-size: 22px; margin-bottom: 10px; display: block; }
-.portal-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
-.portal-card p { font-size: 13px; color: var(--grey); line-height: 1.6; }
-.portal-card-arrow { font-family: var(--mono); font-size: 11px; color: var(--gold); margin-top: 16px; }
-.portal-badge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 2px 8px; display: inline-block; }
-.portal-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
-.portal-header h2 { margin-bottom: 0; flex: 1; }
-.logout-btn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); background: none; border: 1px solid var(--border); padding: 6px 14px; cursor: pointer; white-space: nowrap; }
-.logout-btn:hover { border-color: var(--ink); color: var(--ink); }
-.tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
-.tab { padding: 10px 20px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border: none; background: none; color: var(--grey); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; }
-.tab.on { color: var(--ink); border-bottom-color: var(--gold); }
-.field-group { margin-bottom: 18px; }
-.field-label { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-bottom: 6px; }
-.field-input { width: 100%; padding: 12px 14px; font-family: var(--serif); font-size: 16px; border: 1px solid var(--border); background: white; color: var(--ink); outline: none; transition: border-color 0.15s; }
-.field-input:focus { border-color: var(--gold); }
-.field-input[type="date"] { font-family: var(--mono); font-size: 13px; }
-.field-static { padding: 12px 14px; background: #f0ece3; border: 1px solid var(--border); font-family: var(--mono); font-size: 12px; color: var(--ink); word-break: break-all; }
-.btn-primary { display: inline-block; padding: 13px 28px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; margin-right: 10px; margin-top: 8px; }
-.btn-primary:hover { background: #333; }
-.btn-ghost { display: inline-block; padding: 13px 28px; background: none; color: var(--grey); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); cursor: pointer; margin-top: 8px; }
-.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
-.msg { margin-top: 16px; padding: 12px 16px; font-family: var(--mono); font-size: 12px; line-height: 1.5; }
-.msg.ok { background: #f2f8f4; border-left: 2px solid var(--green); color: var(--green); }
-.msg.err { background: #f8f2f2; border-left: 2px solid var(--red); color: var(--red); }
-.msg.info { background: #f0ece3; border-left: 2px solid var(--gold); color: var(--ink); }
-.dropzone { border: 1.5px dashed var(--border); padding: 52px 24px; text-align: center; cursor: pointer; position: relative; background: white; transition: all 0.15s; margin-bottom: 20px; }
-.dropzone:hover, .dropzone.over { border-color: var(--gold); background: #fdfbf6; }
-.dropzone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-.dropzone-icon { font-size: 28px; display: block; margin-bottom: 12px; }
-.dropzone h4 { font-size: 19px; font-weight: 500; margin-bottom: 6px; }
-.dropzone p { font-family: var(--mono); font-size: 11px; color: var(--grey); }
-.doc-meta { border: 1px solid var(--border); padding: 24px; background: white; margin: 4px 0 20px; }
-.doc-meta-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-.loader { text-align: center; padding: 60px 0; }
-.loader-bar { width: 120px; height: 1px; background: var(--border); margin: 0 auto 16px; overflow: hidden; }
-.loader-fill { height: 100%; background: var(--gold); animation: ld 1.4s ease-in-out infinite; }
-@keyframes ld { 0%{width:0;margin-left:0} 50%{width:100%;margin-left:0} 100%{width:0;margin-left:100%} }
-.loader-text { font-family: var(--mono); font-size: 11px; color: var(--grey); letter-spacing: 0.08em; text-transform: uppercase; }
-.result { animation: up 0.3s ease; }
-@keyframes up { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-.verdict { padding: 26px 28px; border: 1px solid; margin-bottom: 12px; display: flex; gap: 18px; align-items: center; }
-.verdict.ok { border-color: var(--green); background: #f2f8f4; }
-.verdict.fail { border-color: var(--red); background: #f8f2f2; }
-.verdict-icon { font-size: 32px; flex-shrink: 0; }
-.verdict h3 { font-size: 21px; font-weight: 500; margin-bottom: 3px; }
-.verdict.ok h3 { color: var(--green); }
-.verdict.fail h3 { color: var(--red); }
-.verdict p { font-size: 13px; color: var(--grey); line-height: 1.5; }
-.record { border: 1px solid var(--border); background: white; margin-bottom: 12px; }
-.record-head { padding: 8px 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); border-bottom: 1px solid var(--border); background: #f5f2eb; }
-.row { display: flex; padding: 8px 14px; border-bottom: 1px solid #eeebe3; gap: 14px; }
-.row:last-child { border-bottom: none; }
-.rk { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--grey); width: 130px; flex-shrink: 0; padding-top: 2px; }
-.rv { font-family: var(--mono); font-size: 11px; color: var(--ink); word-break: break-all; line-height: 1.5; }
-.rv.hi { color: var(--green); font-size: 13px; }
-.anchor-success { border: 1px solid var(--green); background: #f2f8f4; padding: 28px; margin-bottom: 16px; }
-.anchor-success-icon { font-size: 36px; margin-bottom: 12px; display: block; }
-.anchor-success h3 { font-size: 22px; font-weight: 500; color: var(--green); margin-bottom: 8px; }
-.anchor-success p { font-size: 15px; color: var(--grey); line-height: 1.6; }
-.admin-empty { padding: 40px 0; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--grey); }
-.admin-item { border: 1px solid var(--border); background: white; margin-bottom: 10px; }
-.admin-item-head { padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-.admin-item-info h4 { font-size: 17px; font-weight: 500; margin-bottom: 3px; }
-.admin-item-info p { font-family: var(--mono); font-size: 11px; color: var(--grey); }
-.admin-item-actions { display: flex; gap: 8px; }
-.btn-approve { padding: 8px 16px; background: var(--green); color: white; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; }
-.btn-approve:hover { background: #154d30; }
-.btn-reject { padding: 8px 16px; background: none; color: var(--red); font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--red); cursor: pointer; }
-.btn-reject:hover { background: var(--red); color: white; }
-.admin-refresh { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); background: none; border: 1px solid var(--border); padding: 8px 16px; cursor: pointer; margin-top: 16px; }
-.admin-refresh:hover { color: var(--ink); border-color: var(--ink); }
-.note { margin-top: 28px; padding: 18px 22px; border-left: 2px solid var(--gold); font-size: 15px; color: var(--grey); font-style: italic; line-height: 1.7; background: #f0ece3; }
-.note strong { color: var(--ink); font-style: normal; }
-footer { padding: 28px 32px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--grey); border-top: 1px solid var(--border); }
-@media(max-width:700px) {
-  nav { padding: 0 16px; } .view { padding: 80px 16px 60px; }
-  .portals { grid-template-columns: 1fr; }
-  footer { flex-direction: column; gap: 6px; }
-  .portal-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .nav-links { gap: 14px; }
+.logo{font-size:18px;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;cursor:pointer;border:none;background:none}
+.nav-link:hover{color:var(--ink)}
+.nav-cta{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:8px 18px;background:var(--ink);color:var(--paper);text-decoration:none;cursor:pointer;border:none}
+.nav-cta:hover{background:#333}
+
+/* LAYOUT */
+.page{display:none}
+.page.active{display:block}
+
+/* MARKETING */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 40px 80px;border-bottom:1px solid var(--border)}
+.hero-wrap{max-width:780px;margin:0 auto;width:100%}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.eyebrow::after{content:'';flex:1;height:1px;background:var(--border);max-width:60px}
+h1{font-size:clamp(40px,6vw,62px);font-weight:400;line-height:1.1;letter-spacing:-.01em;margin-bottom:28px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:20px;color:var(--grey);line-height:1.6;max-width:520px;margin-bottom:44px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;background:var(--ink);color:var(--paper);border:none;cursor:pointer;text-decoration:none;transition:background .2s}
+.btn-primary:hover{background:#333}
+.btn-secondary{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;background:transparent;color:var(--ink);border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-secondary:hover{border-color:var(--ink)}
+
+/* SECTION */
+.section{padding:100px 40px 80px;border-bottom:1px solid var(--border)}
+.section-wrap{max-width:760px;margin:0 auto;width:100%}
+.section-label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);max-width:50px}
+h2{font-size:clamp(28px,4vw,42px);font-weight:400;line-height:1.2;margin-bottom:14px}
+.section-sub{font-size:17px;color:var(--grey);margin-bottom:48px;max-width:500px}
+
+/* Steps */
+.steps{border:1px solid var(--border)}
+.step{display:flex;gap:24px;padding:24px 28px;border-bottom:1px solid var(--border);align-items:flex-start}
+.step:last-child{border-bottom:none}
+.step-n{font-family:var(--mono);font-size:22px;color:var(--gold);flex-shrink:0;width:32px;line-height:1.3}
+.step h4{font-size:18px;font-weight:500;margin-bottom:4px}
+.step p{font-size:15px;color:var(--grey);line-height:1.6}
+
+/* Two col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin:36px 0}
+.col{background:var(--paper);padding:28px}
+.col-label{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.col h3{font-size:17px;font-weight:500;margin-bottom:8px;line-height:1.3}
+.col p{font-size:15px;color:var(--grey);line-height:1.6}
+
+/* Note */
+.note{padding:20px 24px;border-left:2px solid var(--gold);background:var(--light);font-size:15px;color:var(--grey);font-style:italic;line-height:1.7;margin-top:36px}
+.note strong{color:var(--ink);font-style:normal}
+
+/* Trust */
+.trust{display:flex;align-items:center;gap:32px;flex-wrap:wrap;margin-top:40px;padding-top:40px;border-top:1px solid var(--border)}
+.trust-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--border)}
+.trust-item{font-family:var(--mono);font-size:12px;color:var(--grey);letter-spacing:.04em}
+
+/* PORTAL */
+.portal{min-height:100vh;padding:100px 40px 80px}
+.portal-wrap{max-width:600px;margin:0 auto;width:100%}
+.portal-title{font-size:28px;font-weight:500;margin-bottom:6px}
+.portal-sub{font-size:16px;color:var(--grey);margin-bottom:32px}
+.card{background:var(--white);border:1px solid var(--border);padding:28px}
+.input-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:5px}
+.input-wrap{margin-bottom:16px}
+input[type=text],input[type=email],input[type=password],input[type=date]{width:100%;padding:11px 13px;border:1px solid var(--border);background:var(--white);font-size:14px;color:var(--ink);font-family:var(--serif);outline:none}
+input:focus{border-color:var(--gold)}
+.btn-full{width:100%;padding:13px;background:var(--ink);color:var(--paper);border:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;margin-top:4px}
+.btn-full:hover{background:#333}
+.btn-full:disabled{opacity:.4;cursor:default}
+.err{padding:10px 14px;border:1px solid var(--red);background:#f8f2f2;font-size:13px;color:var(--red);margin-bottom:14px;font-family:var(--mono)}
+.ok{padding:10px 14px;border:1px solid var(--green);background:#f2f8f4;font-size:13px;color:var(--green);margin-bottom:14px;font-family:var(--mono)}
+
+/* Dropzone */
+.dropzone{border:1.5px dashed var(--border);padding:44px 24px;text-align:center;cursor:pointer;position:relative;background:var(--white);transition:all .2s;margin-bottom:16px}
+.dropzone:hover,.dropzone.over{border-color:var(--gold);background:#fdfbf6}
+.dropzone input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.dz-icon{font-size:28px;display:block;margin-bottom:10px}
+.dz-title{font-size:17px;font-weight:500;margin-bottom:5px}
+.dz-sub{font-family:var(--mono);font-size:11px;color:var(--grey)}
+
+/* Result */
+.result-box{padding:28px;border:1px solid;margin-bottom:14px;display:flex;gap:18px;align-items:flex-start}
+.result-box.ok{border-color:var(--green);background:#f2f8f4}
+.result-box.fail{border-color:var(--red);background:#f8f2f2}
+.result-icon{font-size:38px;flex-shrink:0;line-height:1}
+.result-title{font-size:22px;font-weight:500;margin-bottom:4px}
+.result-box.ok .result-title{color:var(--green)}
+.result-box.fail .result-title{color:var(--red)}
+.result-desc{font-size:14px;color:var(--grey);line-height:1.5}
+.record{border:1px solid var(--border);background:var(--white);margin-bottom:12px}
+.record-head{padding:8px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);border-bottom:1px solid var(--border);background:var(--light)}
+.record-row{display:flex;padding:9px 14px;border-bottom:1px solid #f0ede6;gap:14px}
+.record-row:last-child{border-bottom:none}
+.rk{font-family:var(--mono);font-size:10px;text-transform:uppercase;color:var(--grey);width:130px;flex-shrink:0;padding-top:2px}
+.rv{font-family:var(--mono);font-size:12px;color:var(--ink);word-break:break-all;line-height:1.5}
+.rv.hi{color:var(--green);font-size:13px}
+.hash-display{font-family:var(--mono);font-size:10px;color:var(--border);word-break:break-all;margin-bottom:14px}
+.btn-again{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);background:none;border:1px solid var(--border);padding:10px 20px;cursor:pointer;margin-top:4px}
+.btn-again:hover{color:var(--ink);border-color:var(--ink)}
+
+/* Tabs */
+.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:24px}
+.tab{padding:10px 20px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;background:none;color:var(--grey);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab.on{color:var(--ink);border-bottom-color:var(--gold)}
+
+/* History */
+.cred-item{display:flex;gap:12px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border)}
+.cred-item:last-child{border-bottom:none}
+.cred-name{font-weight:500;font-size:15px;flex:1}
+.cred-meta{font-size:13px;color:var(--grey)}
+.cred-tag{font-family:var(--mono);font-size:10px;padding:2px 8px;background:#f2f8f4;color:var(--green);border:1px solid rgba(26,92,58,.27)}
+
+/* Spinner */
+.spin{display:inline-block;width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--ink);border-radius:50%;animation:rotate .7s linear infinite}
+@keyframes rotate{to{transform:rotate(360deg)}}
+
+/* Pending */
+.pending-item{padding:20px;border-bottom:1px solid var(--border)}
+.pending-item:last-child{border-bottom:none}
+.pending-name{font-weight:500;font-size:16px;margin-bottom:4px}
+.pending-email{font-size:13px;color:var(--grey);margin-bottom:10px;font-family:var(--mono)}
+.btn-approve{padding:8px 16px;background:var(--green);color:var(--white);border:none;font-family:var(--mono);font-size:11px;cursor:pointer;margin-right:8px}
+.btn-reject{padding:8px 16px;background:transparent;color:var(--red);border:1px solid rgba(122,26,26,.27);font-family:var(--mono);font-size:11px;cursor:pointer}
+
+/* Footer */
+footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--border);border-top:1px solid var(--border);flex-wrap:wrap;gap:8px}
+
+/* Mobile */
+@media(max-width:640px){
+  nav{padding:0 16px}
+  .hero{padding:90px 16px 60px}
+  .section{padding:80px 16px 60px}
+  .portal{padding:90px 16px 60px}
+  .two-col{grid-template-columns:1fr}
+  .hero-ctas{flex-direction:column}
+  .trust{gap:16px}
+  footer{padding:20px 16px;flex-direction:column;gap:4px}
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a class="logo" onclick="showView('home')">VerdChain</a>
-  <ul class="nav-links">
-    <li><a onclick="showView('uni')" data-nav="uni">IFAS / Formation</a></li>
-    <li><a onclick="showView('admin')" data-nav="admin">Administration</a></li>
-    <li><a onclick="showView('staffing')" data-nav="staffing">Recruteurs</a></li>
-  </ul>
+  <a class="logo" href="#" onclick="showPage('marketing');return false">VerdChain</a>
+  <div class="nav-right">
+    <button class="nav-link" onclick="showPage('verify')">V&#233;rifier</button>
+    <button class="nav-link" onclick="showPage('issuer')">Émettre</button>
+    <button class="nav-cta" onclick="showPage('verify')">V&#233;rifier un dipl&#244;me</button>
+  </div>
 </nav>
 
-<!-- ACCUEIL -->
-<div id="view-home" class="view">
-  <div class="wrap">
-    <h1>Les diplômes professionnels,<br><em>infalsifiables.</em></h1>
-    <p class="sub">Les IFAS et organismes certifiants ancrent chaque diplôme sur la blockchain au moment de la délivrance. Les employeurs vérifient en 3 secondes — sans appel téléphonique, sans intermédiaire, sans risque de fraude.</p>
-    <div class="rule"></div>
+<!-- PAGE MARKETING -->
+<div id="page-marketing" class="page active">
 
-    <div class="section-label">Comment ça fonctionne</div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-n">01</div>
-        <div>
-          <h4>Délivrance</h4>
-          <p>L’IFAS délivre le DEAS à l’aide-soignant et ancre simultanément son empreinte cryptographique sur la blockchain Polygon. Cette opération est permanente et infalsifiable.</p>
+  <div class="hero">
+    <div class="hero-wrap">
+      <div class="eyebrow">Authentification cryptographique de dipl&#244;mes</div>
+      <h1>N&#8217;importe quel dipl&#244;me.<br><em>Impossible &#224; falsifier.</em></h1>
+      <p class="hero-sub">Les IFAS et organismes certifiants ancrent chaque dipl&#244;me sur la blockchain au moment de la d&#233;livrance. Les employeurs v&#233;rifient en 3 secondes &#8212; sans appel t&#233;l&#233;phonique, sans interm&#233;diaire, sans risque de fraude.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="showPage('verify')">V&#233;rifier un dipl&#244;me</button>
+        <button class="btn-secondary" onclick="showPage('issuer')">Émettre des dipl&#244;mes</button>
+      </div>
+      <div class="trust">
+        <span class="trust-label">Propuls&#233; par</span>
+        <span class="trust-item">Polygon blockchain</span>
+        <span class="trust-item">SHA-256</span>
+        <span class="trust-item">secp256k1</span>
+        <span class="trust-item">Traitement local</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-wrap">
+      <div class="section-label">Comment &#231;a fonctionne</div>
+      <h2>Sceller une fois.<br>V&#233;rifier pour toujours.</h2>
+      <p class="section-sub">Le processus prend quelques secondes. La protection est permanente.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">01</div>
+          <div>
+            <h4>D&#233;livrance</h4>
+            <p>L&#8217;IFAS d&#233;livre le DEAS et ancre simultan&#233;ment son empreinte cryptographique sur la blockchain Polygon. Le fichier est trait&#233; localement &#8212; il ne quitte jamais votre syst&#232;me. L&#8217;empreinte est enregistr&#233;e de fa&#231;on permanente avec un horodatage.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">02</div>
+          <div>
+            <h4>Candidature</h4>
+            <p>L&#8217;aide-soignant pr&#233;sente son dipl&#244;me &#224; un EHPAD ou une agence de placement. Il peut partager le fichier accompagn&#233; d&#8217;une URL ou d&#8217;un QR code de v&#233;rification. Aucune application sp&#233;cifique n&#8217;est requise.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">03</div>
+          <div>
+            <h4>V&#233;rification</h4>
+            <p>L&#8217;employeur d&#233;pose le document sur VerdChain. L&#8217;empreinte est calcul&#233;e et compar&#233;e au registre blockchain en moins de 3 secondes. Dipl&#244;me authentique &#8212; ou falsifi&#233; et signal&#233;.</p>
+          </div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-n">02</div>
-        <div>
-          <h4>Candidature</h4>
-          <p>L’aide-soignant présente son diplôme à un EHPAD ou une agence de placement. Il peut également partager son URL de vérification directement.</p>
+      <div class="note">
+        <strong>Les documents ne quittent jamais votre appareil.</strong> Seule une empreinte cryptographique de 64 caract&#232;res est transmise. VerdChain ne stocke aucun contenu &#8212; uniquement la preuve math&#233;matique de son existence &#224; un instant pr&#233;cis.
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background:var(--light)">
+    <div class="section-wrap">
+      <div class="section-label">&#192; qui &#231;a s&#8217;adresse</div>
+      <h2>Deux acteurs.<br>Une seule v&#233;rit&#233;.</h2>
+      <div class="two-col">
+        <div class="col">
+          <div class="col-label">&#201;metteurs</div>
+          <h3>IFAS, ARS et organismes certifiants</h3>
+          <p>Instituts de formation, agences r&#233;gionales de sant&#233;, organismes habilit&#233;s &#224; d&#233;livrer le DEAS. &#201;mettez une fois &#8212; vos dipl&#244;mes sont prot&#233;g&#233;s pour toujours.</p>
+        </div>
+        <div class="col">
+          <div class="col-label">V&#233;rificateurs</div>
+          <h3>EHPAD, h&#244;pitaux et agences de placement</h3>
+          <p>Employeurs, RH, agences m&#233;dicales (Appel M&#233;dical, Adecco M&#233;dical). V&#233;rifiez en quelques secondes &#8212; sans base de donn&#233;es &#224; interroger, sans appel &#224; passer.</p>
         </div>
       </div>
-      <div class="step">
-        <div class="step-n">03</div>
-        <div>
-          <h4>Vérification</h4>
-          <p>L’employeur dépose le document sur VerdChain. En 3 secondes : diplôme authentique ✅ ou document falsifié ❌. Aucun appel téléphonique, aucune attente.</p>
+      <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap">
+        <button class="btn-primary" onclick="showPage('issuer')">Émettre des dipl&#244;mes</button>
+        <button class="btn-secondary" onclick="showPage('verify')">V&#233;rifier un dipl&#244;me</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-wrap">
+      <div class="section-label">Pourquoi la blockchain</div>
+      <h2>Pas une base de donn&#233;es.<br>Un registre permanent.</h2>
+      <p class="section-sub">Les syst&#232;mes de v&#233;rification traditionnels peuvent &#234;tre pirat&#233;s, mis hors ligne ou simplement contredits. La blockchain, non.</p>
+      <div class="two-col">
+        <div class="col">
+          <div class="col-label">V&#233;rification traditionnelle</div>
+          <h3>&#171;&#160;Appelez-nous, on confirmera&#160;&#187;</h3>
+          <p>D&#233;pend d&#8217;une autorit&#233; centrale joignable, honn&#234;te et tenant des registres &#224; jour. Lent, co&#251;teux, et point de d&#233;faillance unique.</p>
+        </div>
+        <div class="col">
+          <div class="col-label">VerdChain</div>
+          <h3>Les math&#233;matiques confirment</h3>
+          <p>L&#8217;empreinte sur la blockchain est la preuve. Aucune autorit&#233; &#224; appeler. Aucune base &#224; interroger. Aucune confiance requise &#8212; ni en VerdChain, ni en personne.</p>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="rule"></div>
+  <footer>
+    <span>VerdChain &middot; Polygon &middot; EvidenceAnchor.sol</span>
+    <span onclick="showPage('admin')" style="cursor:default;color:transparent">&middot;</span>
+    <span>Aucun fichier upload&#233; &middot; Traitement local uniquement</span>
+  </footer>
+</div>
 
-    <div class="portals">
-      <div class="portal-card" onclick="showView('uni')">
-        <span class="portal-card-icon">🎓</span>
-        <div class="portal-card-label">IFAS &amp; organismes</div>
-        <h3>Émettre un diplôme certifié</h3>
-        <p>Connectez-vous, uploadez le diplôme DEAS, renseignez le nom du candidat et la date de délivrance — ancré en quelques secondes.</p>
-        <div class="portal-card-arrow">Se connecter &rarr;</div>
-      </div>
-      <div class="portal-card" onclick="showView('admin')">
-        <span class="portal-card-icon">🔐</span>
-        <div class="portal-card-label">Administration</div>
-        <h3>Approuver les organismes</h3>
-        <p>Vérifiez et approuvez les demandes d’inscription des IFAS et organismes certifiants avant qu’ils puissent émettre des diplômes.</p>
-        <div class="portal-card-arrow">Panel admin &rarr;</div>
-      </div>
-      <div class="portal-card" onclick="showView('staffing')">
-        <span class="portal-card-icon">🏥</span>
-        <div class="portal-card-label">EHPAD &amp; recruteurs</div>
-        <h3>Vérifier un diplôme</h3>
-        <p>Déposez le diplôme d’un candidat pour vérifier instantanément s’il correspond à un enregistrement blockchain. Aucun fichier n’est uploadé.</p>
-        <div class="portal-card-arrow">Vérifier &rarr;</div>
-      </div>
-    </div>
+<!-- PAGE V&#201;RIFICATION -->
+<div id="page-verify" class="page">
+  <div class="portal">
+    <div class="portal-wrap">
+      <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px">&#8592; Retour</button>
+      <div class="portal-title">V&#233;rifier un dipl&#244;me</div>
+      <div class="portal-sub">D&#233;posez un document pour v&#233;rifier instantan&#233;ment s&#8217;il correspond &#224; son enregistrement blockchain. Aucun fichier n&#8217;est transmis.</div>
 
-    <div class="note">
-      <strong>Les fichiers sont traités dans votre navigateur.</strong> Le document ne quitte jamais votre appareil. Seule une empreinte cryptographique de 64 caractères est transmise.
+      <div class="tabs">
+        <button class="tab on" onclick="switchVTab('file',this)">D&#233;poser un fichier</button>
+        <button class="tab" onclick="switchVTab('hash',this)">Coller un hash</button>
+      </div>
+
+      <div id="v-input">
+        <div id="v-tab-file">
+          <div class="dropzone" id="v-dz" ondragover="vdov(event)" ondragleave="vdol()" ondrop="vddr(event)">
+            <input type="file" onchange="vdfs(event)">
+            <span class="dz-icon">&#128269;</span>
+            <div class="dz-title">D&#233;poser le dipl&#244;me ici</div>
+            <div class="dz-sub">ou cliquer pour parcourir &middot; tout format</div>
+          </div>
+        </div>
+        <div id="v-tab-hash" style="display:none">
+          <div style="display:flex;gap:0;border:1px solid var(--border)">
+            <input type="text" id="v-hash-input" placeholder="Hash SHA-256 (64 caract&#232;res hexad&#233;cimaux)..." style="flex:1;border:none;padding:13px 14px;font-family:var(--mono);font-size:12px;outline:none">
+            <button class="btn-primary" style="border-radius:0;padding:13px 24px;width:auto" onclick="vfh()">V&#233;rifier</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="v-loading" style="display:none;text-align:center;padding:40px 0">
+        <div class="spin"></div>
+        <div style="margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--grey)">Interrogation de la blockchain...</div>
+      </div>
+
+      <div id="v-result" style="display:none"></div>
     </div>
   </div>
 </div>
 
-<!-- PORTAIL IFAS -->
-<div id="view-uni" class="view" style="display:none">
-  <div id="uni-auth" class="wrap">
-    <span class="portal-badge">Portail IFAS</span>
-    <h2 style="margin-top:12px">Émettre un diplôme certifié.</h2>
-    <p class="sub">Connectez-vous à votre compte organisme approuvé pour ancrer des diplômes professionnels sur la blockchain.</p>
-    <div class="tabs">
-      <button class="tab on" onclick="uniTab('login',this)">Connexion</button>
-      <button class="tab" onclick="uniTab('register',this)">Inscription</button>
-    </div>
-    <div id="uni-login-form">
-      <div class="field-group">
-        <label class="field-label">Adresse e-mail</label>
-        <input type="email" id="uni-email" class="field-input" placeholder="formation@ifas-exemple.fr">
-      </div>
-      <div class="field-group">
-        <label class="field-label">Mot de passe</label>
-        <input type="password" id="uni-pass" class="field-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
-      </div>
-      <button class="btn-primary" onclick="uniLogin()">Se connecter</button>
-      <div id="uni-login-msg"></div>
-      <p style="margin-top:20px;font-size:13px;color:var(--grey);font-style:italic">Démo : formation@ifas-demo.fr / demo123</p>
-    </div>
-    <div id="uni-register-form" style="display:none">
-      <div class="field-group">
-        <label class="field-label">Nom de l’organisme</label>
-        <input type="text" id="uni-reg-name" class="field-input" placeholder="ex : IFAS Centre-Val de Loire">
-      </div>
-      <div class="field-group">
-        <label class="field-label">Adresse e-mail</label>
-        <input type="email" id="uni-reg-email" class="field-input" placeholder="formation@ifas-exemple.fr">
-      </div>
-      <div class="field-group">
-        <label class="field-label">Mot de passe</label>
-        <input type="password" id="uni-reg-pass" class="field-input" placeholder="Choisissez un mot de passe sécurisé">
-      </div>
-      <button class="btn-primary" onclick="uniRegister()">Demander l’accès</button>
-      <div id="uni-reg-msg"></div>
-    </div>
-  </div>
+<!-- PAGE &#201;METTEUR -->
+<div id="page-issuer" class="page">
+  <div class="portal">
+    <div class="portal-wrap">
+      <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px">&#8592; Retour</button>
 
-  <div id="uni-upload" class="wrap" style="display:none">
-    <div class="portal-header">
-      <span class="portal-badge">Portail IFAS</span>
-      <h2 id="uni-name-display"></h2>
-      <button class="logout-btn" onclick="uniLogout()">Déconnexion</button>
-    </div>
-    <p class="sub">Déposez le document DEAS et renseignez les informations du diplômé pour l’ancrer de façon permanente sur la blockchain.</p>
-    <div class="dropzone" id="uni-dz" ondragover="dov(event,'uni-dz')" ondragleave="dol('uni-dz')" ondrop="uniDrop(event)">
-      <input type="file" id="uni-file-input" onchange="uniFileSelected(event)">
-      <span class="dropzone-icon">📄</span>
-      <h4>Déposer le document DEAS ici</h4>
-      <p>ou cliquer pour parcourir &middot; PDF &middot; image &middot; tout format</p>
-    </div>
-    <div id="uni-form" style="display:none">
-      <div class="doc-meta">
-        <div class="doc-meta-title">Informations du diplôme</div>
-        <div class="field-group">
-          <label class="field-label">Fichier sélectionné</label>
-          <div class="field-static" id="uni-filename"></div>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Nom complet du diplômé</label>
-          <input type="text" id="uni-candidate" class="field-input" placeholder="ex : Marie Dupont">
-        </div>
-        <div class="field-group">
-          <label class="field-label">Date de délivrance</label>
-          <input type="date" id="uni-date" class="field-input">
+      <div id="i-login">
+        <div class="portal-title">&#201;mettre un dipl&#244;me certifi&#233;</div>
+        <div class="portal-sub">Connectez-vous &#224; votre compte approuv&#233; pour ancrer des dipl&#244;mes sur la blockchain.</div>
+        <div class="card">
+          <div id="i-err" style="display:none" class="err"></div>
+          <div class="input-wrap">
+            <div class="input-label">Adresse e-mail</div>
+            <input type="email" id="i-email" placeholder="formation@ifas-exemple.fr">
+          </div>
+          <div class="input-wrap">
+            <div class="input-label">Mot de passe</div>
+            <input type="password" id="i-pass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;">
+          </div>
+          <button class="btn-full" onclick="iLogin()">Se connecter</button>
+          <div style="margin-top:16px;text-align:center;font-size:14px;color:var(--grey)">
+            Pas de compte&#160;? <span onclick="showPage('register')" style="color:var(--gold);cursor:pointer">Demander l&#8217;acc&#232;s</span>
+          </div>
+          <div style="margin-top:12px;text-align:center;font-size:13px;color:var(--grey);font-style:italic">D&#233;mo&#160;: formation@ifas-demo.fr / demo123</div>
         </div>
       </div>
-      <button class="btn-primary" onclick="uniSubmit()">Ancrer sur la blockchain</button>
-      <button class="btn-ghost" onclick="uniReset()">Changer de fichier</button>
-      <div id="uni-form-msg"></div>
-    </div>
-    <div id="uni-anchoring" style="display:none">
-      <div class="loader">
-        <div class="loader-bar"><div class="loader-fill"></div></div>
-        <div class="loader-text" id="uni-loader-text">Calcul de l’empreinte&hellip;</div>
-      </div>
-    </div>
-  </div>
 
-  <div id="uni-result" class="wrap" style="display:none">
-    <div class="anchor-success">
-      <span class="anchor-success-icon">✓</span>
-      <h3>Diplôme ancré avec succès</h3>
-      <p>L’empreinte cryptographique a été enregistrée de façon permanente sur Polygon. Partagez l’URL de vérification avec le diplômé ou tout employeur souhaitant vérifier l’authenticité.</p>
+      <div id="i-dash" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+          <div>
+            <div class="portal-title" id="i-org-name">Tableau de bord</div>
+            <div class="portal-sub" style="margin-bottom:0" id="i-status-msg"></div>
+          </div>
+          <button class="btn-again" onclick="iLogout()">D&#233;connexion</button>
+        </div>
+
+        <div id="i-pending-msg" style="display:none" class="err">Votre compte est en attente de validation. Vous serez notifi&#233; une fois approuv&#233; par l&#8217;administration VerdChain.</div>
+
+        <div id="i-approved-content" style="display:none">
+          <div class="tabs">
+            <button class="tab on" onclick="switchITab('upload',this)">Nouveau dipl&#244;me</button>
+            <button class="tab" onclick="switchITab('history',this)">Historique</button>
+          </div>
+
+          <div id="i-tab-upload">
+            <div id="i-upload-err" style="display:none" class="err"></div>
+            <div id="i-upload-result" style="display:none"></div>
+            <div id="i-upload-form">
+              <div class="dropzone" id="i-dz" ondragover="idov(event)" ondragleave="idol()" ondrop="iddr(event)" onclick="document.getElementById('i-file-input').click()">
+                <input type="file" id="i-file-input" style="position:absolute;opacity:0;inset:0;cursor:pointer" onchange="iSelectFile(event)">
+                <span class="dz-icon" id="i-dz-icon">&#128196;</span>
+                <div class="dz-title" id="i-dz-title">D&#233;poser le document DEAS ici</div>
+                <div class="dz-sub" id="i-dz-sub">ou cliquer pour parcourir &middot; PDF &middot; image &middot; tout format</div>
+              </div>
+              <div class="card">
+                <div class="input-wrap">
+                  <div class="input-label">Nom complet du dipl&#244;m&#233; *</div>
+                  <input type="text" id="i-candidate" placeholder="Pr&#233;nom Nom">
+                </div>
+                <div class="input-wrap">
+                  <div class="input-label">Type de dipl&#244;me *</div>
+                  <input type="text" id="i-degree" placeholder="ex&#160;: DEAS, Titre professionnel, Brevet" value="DEAS">
+                </div>
+                <div class="input-wrap">
+                  <div class="input-label">Date de d&#233;livrance *</div>
+                  <input type="date" id="i-date">
+                </div>
+                <button class="btn-full" id="i-anchor-btn" onclick="iAnchor()" disabled>Ancrer sur la blockchain</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="i-tab-history" style="display:none">
+            <div class="card" style="padding:0">
+              <div id="i-history-list"><div style="padding:20px;text-align:center;color:var(--grey);font-size:14px">Chargement...</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="record">
-      <div class="record-head">Enregistrement blockchain</div>
-      <div id="uni-result-rows"></div>
-    </div>
-    <button class="btn-primary" onclick="uniAnchorAnother()">Ancrer un autre diplôme</button>
   </div>
 </div>
 
-<!-- PANEL ADMINISTRATION -->
-<div id="view-admin" class="view" style="display:none">
-  <div id="admin-login" class="wrap">
-    <span class="portal-badge">Administration VerdChain</span>
-    <h2 style="margin-top:12px">Approbation des organismes.</h2>
-    <p class="sub">Entrez le code secret administrateur pour examiner et approuver les demandes d’inscription des IFAS et organismes certifiants.</p>
-    <div class="field-group">
-      <label class="field-label">Code secret administrateur</label>
-      <input type="password" id="admin-secret-input" class="field-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+<!-- PAGE INSCRIPTION -->
+<div id="page-register" class="page">
+  <div class="portal">
+    <div class="portal-wrap">
+      <button class="btn-again" onclick="showPage('issuer')" style="margin-bottom:24px">&#8592; Retour</button>
+      <div class="portal-title">Demander l&#8217;acc&#232;s</div>
+      <div class="portal-sub">D&#233;crivez votre organisme. Nous examinerons et approuverons votre compte dans les 48 heures.</div>
+      <div class="card">
+        <div id="r-err" style="display:none" class="err"></div>
+        <div id="r-ok" style="display:none" class="ok"></div>
+        <div id="r-form">
+          <div class="input-wrap">
+            <div class="input-label">Votre nom *</div>
+            <input type="text" id="r-name" placeholder="Pr&#233;nom Nom">
+          </div>
+          <div class="input-wrap">
+            <div class="input-label">Nom de l&#8217;organisme *</div>
+            <input type="text" id="r-org" placeholder="ex&#160;: IFAS Centre-Val de Loire">
+          </div>
+          <div class="input-wrap">
+            <div class="input-label">R&#233;gion / D&#233;partement *</div>
+            <input type="text" id="r-country" placeholder="ex&#160;: Ile-de-France, 75">
+          </div>
+          <div class="input-wrap">
+            <div class="input-label">Site web</div>
+            <input type="text" id="r-website" placeholder="https://...">
+          </div>
+          <div class="input-wrap">
+            <div class="input-label">Adresse e-mail *</div>
+            <input type="email" id="r-email" placeholder="formation@ifas-exemple.fr">
+          </div>
+          <div class="input-wrap">
+            <div class="input-label">Mot de passe *</div>
+            <input type="password" id="r-pass" placeholder="Choisissez un mot de passe s&#233;curis&#233;">
+          </div>
+          <div class="input-wrap">
+            <div class="input-label">Code d&#8217;invitation</div>
+            <input type="text" id="r-invite" placeholder="Si vous en avez un">
+          </div>
+          <button class="btn-full" onclick="rSubmit()">Soumettre la demande</button>
+        </div>
+      </div>
     </div>
-    <button class="btn-primary" onclick="adminAccess()">Accéder au panel</button>
-    <div id="admin-login-msg"></div>
-  </div>
-  <div id="admin-panel" class="wrap" style="display:none">
-    <div class="portal-header">
-      <span class="portal-badge">Administration VerdChain</span>
-      <h2>Organismes en attente</h2>
-      <button class="logout-btn" onclick="adminLogout()">Déconnexion</button>
-    </div>
-    <p class="sub">Approuvez ou refusez les demandes d’inscription des IFAS et organismes certifiants. Les organismes approuvés peuvent immédiatement commencer à émettre des diplômes certifiés.</p>
-    <div id="admin-list"></div>
-    <button class="admin-refresh" onclick="adminLoadPending()">&circlearrowleft; Actualiser</button>
   </div>
 </div>
 
-<!-- PORTAIL RECRUTEURS -->
-<div id="view-staffing" class="view" style="display:none">
-  <div class="wrap">
-    <span class="portal-badge">Portail Recruteurs</span>
-    <h2 style="margin-top:12px">Vérifier un diplôme.</h2>
-    <p class="sub">Déposez le document présenté par un candidat pour vérifier instantanément son authenticité. Aucun fichier n’est transmis — seule l’empreinte est vérifiée.</p>
-    <div id="staff-input">
-      <div class="dropzone" id="staff-dz" ondragover="dov(event,'staff-dz')" ondragleave="dol('staff-dz')" ondrop="staffDrop(event)">
-        <input type="file" onchange="staffFileSelected(event)">
-        <span class="dropzone-icon">🔍</span>
-        <h4>Déposer le diplôme à vérifier</h4>
-        <p>ou cliquer pour parcourir &middot; PDF &middot; image &middot; tout format</p>
+<!-- PAGE ADMIN (cach&#233;e) -->
+<div id="page-admin" class="page">
+  <div class="portal">
+    <div class="portal-wrap">
+      <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px">&#8592; Retour</button>
+
+      <div id="a-login">
+        <div class="portal-title">Administration VerdChain</div>
+        <div class="portal-sub">Acc&#232;s restreint.</div>
+        <div class="card">
+          <div id="a-err" style="display:none" class="err"></div>
+          <div class="input-wrap">
+            <div class="input-label">E-mail</div>
+            <input type="email" id="a-email" placeholder="admin@verdchain.com">
+          </div>
+          <div class="input-wrap">
+            <div class="input-label">Mot de passe</div>
+            <input type="password" id="a-pass">
+          </div>
+          <button class="btn-full" onclick="aLogin()">Acc&#233;der</button>
+        </div>
+      </div>
+
+      <div id="a-dash" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+          <div class="portal-title">Approbations en attente</div>
+          <div style="display:flex;gap:10px">
+            <button class="btn-again" onclick="aGenInvite()">G&#233;n&#233;rer un code</button>
+            <button class="btn-again" onclick="aLogout()">D&#233;connexion</button>
+          </div>
+        </div>
+        <div id="a-invite-result" style="display:none;margin-bottom:16px" class="ok"></div>
+        <div class="card" style="padding:0">
+          <div id="a-list"><div style="padding:20px;text-align:center;color:var(--grey)">Chargement...</div></div>
+        </div>
       </div>
     </div>
-    <div id="staff-loading" style="display:none">
-      <div class="loader">
-        <div class="loader-bar"><div class="loader-fill"></div></div>
-        <div class="loader-text" id="staff-loader-text">Calcul de l’empreinte&hellip;</div>
-      </div>
-    </div>
-    <div id="staff-result" style="display:none"></div>
   </div>
 </div>
-
-<footer>
-  <span>VerdChain &middot; Polygon &middot; EvidenceAnchor.sol</span>
-  <span>Aucun fichier uploadé &middot; Traitement local uniquement</span>
-</footer>
 
 <script>
-var API = "https://verdchain-api.onrender.com";
-var uniSession = null;
-var adminSecret = null;
-var uniFile = null;
+const API = "https://verdchain-platform.onrender.com";
+let iToken = localStorage.getItem("vc_itoken") || "";
+let aToken = localStorage.getItem("vc_atoken") || "";
+let iFile  = null;
 
-function showView(v) {
-  document.querySelectorAll('.view').forEach(function(el){ el.style.display='none'; });
-  document.getElementById('view-'+v).style.display='block';
-  document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
-  var nav=document.querySelector('[data-nav="'+v+'"]');
-  if(nav) nav.classList.add('active');
-  if(v==='uni' && uniSession) showUniUpload();
-}
-
-function dov(e,id){ e.preventDefault(); document.getElementById(id).classList.add('over'); }
-function dol(id){ document.getElementById(id).classList.remove('over'); }
-
-function uniTab(t,btn){
-  document.querySelectorAll('#uni-auth .tab').forEach(function(b){ b.classList.remove('on'); });
-  btn.classList.add('on');
-  document.getElementById('uni-login-form').style.display=t==='login'?'block':'none';
-  document.getElementById('uni-register-form').style.display=t==='register'?'block':'none';
-}
-function showUniUpload(){
-  document.getElementById('uni-auth').style.display='none';
-  document.getElementById('uni-upload').style.display='block';
-  document.getElementById('uni-result').style.display='none';
-  document.getElementById('uni-name-display').textContent=uniSession.university.name;
-}
-function showUniAuth(){
-  document.getElementById('uni-auth').style.display='block';
-  document.getElementById('uni-upload').style.display='none';
-  document.getElementById('uni-result').style.display='none';
-}
-async function uniLogin(){
-  var email=document.getElementById('uni-email').value.trim();
-  var pass=document.getElementById('uni-pass').value;
-  var msg=document.getElementById('uni-login-msg');
-  if(!email||!pass){ setMsg(msg,'err','Veuillez remplir tous les champs.'); return; }
-  setMsg(msg,'info','Authentification en cours…');
-  try{
-    var r=await fetch(API+'/api/universities/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,password:pass})});
-    var d=await r.json();
-    if(!r.ok){
-      if(d.error==='pending_approval') setMsg(msg,'info','Votre demande d’inscription est en attente de validation par l’administration. Vous serez notifié une fois approuvé.');
-      else setMsg(msg,'err','Identifiants incorrects. Vérifiez votre adresse e-mail et votre mot de passe.');
-      return;
-    }
-    uniSession={token:d.token,university:d.university};
-    showUniUpload();
-  }catch(e){ setMsg(msg,'err','Impossible de contacter l’API. Veuillez réessayer.'); }
-}
-async function uniRegister(){
-  var name=document.getElementById('uni-reg-name').value.trim();
-  var email=document.getElementById('uni-reg-email').value.trim();
-  var pass=document.getElementById('uni-reg-pass').value;
-  var msg=document.getElementById('uni-reg-msg');
-  if(!name||!email||!pass){ setMsg(msg,'err','Veuillez remplir tous les champs.'); return; }
-  setMsg(msg,'info','Envoi de la demande…');
-  try{
-    var r=await fetch(API+'/api/universities/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email,password:pass})});
-    var d=await r.json();
-    if(!r.ok){
-      setMsg(msg,'err',d.error==='email_already_registered'?'Cette adresse e-mail est déjà enregistrée.':'Inscription échouée. Veuillez réessayer.');
-      return;
-    }
-    setMsg(msg,'ok','Demande envoyée. L’administration VerdChain va examiner votre dossier. Vous pourrez vous connecter une fois approuvé.');
-    document.getElementById('uni-reg-name').value='';
-    document.getElementById('uni-reg-email').value='';
-    document.getElementById('uni-reg-pass').value='';
-  }catch(e){ setMsg(msg,'err','Impossible de contacter l’API. Veuillez réessayer.'); }
-}
-function uniLogout(){ uniSession=null; uniFile=null; uniReset(); showUniAuth(); }
-
-function uniDrop(e){ e.preventDefault(); dol('uni-dz'); var f=e.dataTransfer.files[0]; if(f) uniSetFile(f); }
-function uniFileSelected(e){ var f=e.target.files[0]; if(f) uniSetFile(f); }
-function uniSetFile(f){
-  uniFile=f;
-  document.getElementById('uni-dz').style.display='none';
-  document.getElementById('uni-filename').textContent=f.name+' ('+fmtSize(f.size)+')';
-  document.getElementById('uni-date').value=new Date().toISOString().split('T')[0];
-  document.getElementById('uni-form').style.display='block';
-  document.getElementById('uni-form-msg').innerHTML='';
-}
-function uniReset(){
-  uniFile=null;
-  document.getElementById('uni-dz').style.display='block';
-  document.getElementById('uni-form').style.display='none';
-  document.getElementById('uni-anchoring').style.display='none';
-  document.getElementById('uni-candidate').value='';
-  document.getElementById('uni-date').value='';
-  document.getElementById('uni-form-msg').innerHTML='';
-  document.getElementById('uni-file-input').value='';
-}
-async function uniSubmit(){
-  if(!uniFile) return;
-  var candidate=document.getElementById('uni-candidate').value.trim();
-  var date=document.getElementById('uni-date').value;
-  var msg=document.getElementById('uni-form-msg');
-  if(!candidate){ setMsg(msg,'err','Veuillez saisir le nom complet du diplômé.'); return; }
-  if(!date){ setMsg(msg,'err','Veuillez sélectionner la date de délivrance.'); return; }
-  document.getElementById('uni-form').style.display='none';
-  document.getElementById('uni-anchoring').style.display='block';
-  try{
-    setLt('uni-loader-text','Calcul de l’empreinte SHA-256…');
-    var hash=await sha256(uniFile);
-    setLt('uni-loader-text','Ancrage sur la blockchain Polygon…');
-    var r=await fetch(API+'/api/anchor-doc',{method:'POST',headers:{'Content-Type':'application/json','X-University-Token':uniSession.token},body:JSON.stringify({hash:hash,candidateName:candidate,date:date})});
-    var d=await r.json();
-    if(!r.ok){
-      document.getElementById('uni-anchoring').style.display='none';
-      document.getElementById('uni-form').style.display='block';
-      if(d.error==='already_anchored') setMsg(msg,'info','Ce document a déjà été ancré. Chaque document ne peut être ancré qu’une seule fois.');
-      else setMsg(msg,'err','Erreur lors de l’ancrage : '+(d.error||'erreur inconnue'));
-      return;
-    }
-    document.getElementById('uni-anchoring').style.display='none';
-    document.getElementById('uni-upload').style.display='none';
-    var rows=[
-      ['Organisme émetteur', d.universityName],
-      ['Diplômé', d.candidateName],
-      ['Type de diplôme', 'DEAS'],
-      ['Date de délivrance', d.date],
-      ['Empreinte SHA-256', d.hash],
-      ['Hash de transaction', d.txHash]
-    ];
-    document.getElementById('uni-result-rows').innerHTML=rows.map(function(row){
-      return '<div class="row"><div class="rk">'+row[0]+'</div><div class="rv">'+esc(row[1])+'</div></div>';
-    }).join('');
-    document.getElementById('uni-result').style.display='block';
-  }catch(e){
-    document.getElementById('uni-anchoring').style.display='none';
-    document.getElementById('uni-form').style.display='block';
-    setMsg(msg,'err','Erreur : '+e.message);
-  }
-}
-function uniAnchorAnother(){
-  uniFile=null; uniReset();
-  document.getElementById('uni-result').style.display='none';
-  document.getElementById('uni-upload').style.display='block';
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById("page-" + id).classList.add("active");
+  window.scrollTo(0,0);
+  if (id === "issuer" && iToken) iShowDash();
+  if (id === "admin"  && aToken) aShowDash();
 }
 
-async function adminAccess(){
-  var secret=document.getElementById('admin-secret-input').value.trim();
-  var msg=document.getElementById('admin-login-msg');
-  if(!secret){ setMsg(msg,'err','Veuillez entrer le code secret administrateur.'); return; }
-  setMsg(msg,'info','Vérification…');
-  try{
-    var r=await fetch(API+'/api/universities/pending',{headers:{'X-Admin-Secret':secret}});
-    if(r.status===401){ setMsg(msg,'err','Code secret invalide.'); return; }
-    if(!r.ok){ setMsg(msg,'err','Erreur serveur. Veuillez réessayer.'); return; }
-    var d=await r.json();
-    adminSecret=secret;
-    document.getElementById('admin-login').style.display='none';
-    document.getElementById('admin-panel').style.display='block';
-    renderPending(d.universities);
-  }catch(e){ setMsg(msg,'err','Impossible de contacter l’API. Veuillez réessayer.'); }
-}
-function adminLogout(){
-  adminSecret=null;
-  document.getElementById('admin-login').style.display='block';
-  document.getElementById('admin-panel').style.display='none';
-  document.getElementById('admin-secret-input').value='';
-  document.getElementById('admin-login-msg').innerHTML='';
-}
-async function adminLoadPending(){
-  try{
-    var r=await fetch(API+'/api/universities/pending',{headers:{'X-Admin-Secret':adminSecret}});
-    var d=await r.json(); renderPending(d.universities);
-  }catch(e){}
-}
-function renderPending(list){
-  var el=document.getElementById('admin-list');
-  if(!list||list.length===0){ el.innerHTML='<div class="admin-empty">Aucune demande en attente.</div>'; return; }
-  el.innerHTML=list.map(function(u){
-    return '<div class="admin-item" id="ai-'+u.id+'">'+
-      '<div class="admin-item-head">'+
-        '<div class="admin-item-info"><h4>'+esc(u.name)+'</h4><p>'+esc(u.email)+' &middot; Inscription le '+new Date(u.createdAt).toLocaleDateString('fr-FR')+'</p></div>'+
-        '<div class="admin-item-actions">'+
-          '<button class="btn-approve" onclick="adminApprove(\''+u.id+'\')">&check; Approuver</button>'+
-          '<button class="btn-reject" onclick="adminReject(\''+u.id+'\')">&times; Refuser</button>'+
-        '</div>'+
-      '</div>'+
-    '</div>';
-  }).join('');
-}
-async function adminApprove(id){
-  try{
-    var r=await fetch(API+'/api/universities/'+id+'/approve',{method:'POST',headers:{'X-Admin-Secret':adminSecret}});
-    if(r.ok){ flash('ai-'+id,'&#10003; Approuvé','var(--green)'); }
-  }catch(e){}
-}
-async function adminReject(id){
-  try{
-    var r=await fetch(API+'/api/universities/'+id+'/reject',{method:'POST',headers:{'X-Admin-Secret':adminSecret}});
-    if(r.ok){ flash('ai-'+id,'&#10007; Refusé','var(--red)'); }
-  }catch(e){}
-}
-function flash(id,text,color){
-  var el=document.getElementById(id);
-  if(!el) return;
-  el.innerHTML='<div class="admin-item-head"><p style="font-family:var(--mono);font-size:11px;color:'+color+'">'+text+'</p></div>';
-  setTimeout(function(){ if(el) el.remove(); },2000);
-}
-
-function staffDrop(e){ e.preventDefault(); dol('staff-dz'); var f=e.dataTransfer.files[0]; if(f) staffVerify(f); }
-function staffFileSelected(e){ var f=e.target.files[0]; if(f) staffVerify(f); }
-async function staffVerify(file){
-  document.getElementById('staff-input').style.display='none';
-  document.getElementById('staff-loading').style.display='block';
-  document.getElementById('staff-result').style.display='none';
-  try{
-    setLt('staff-loader-text','Calcul de l’empreinte SHA-256…');
-    var hash=await sha256(file);
-    setLt('staff-loader-text','Interrogation de la blockchain…');
-    var r=await fetch(API+'/api/verify/'+hash+'?full=true');
-    var d=await r.json();
-    staffShowResult(d,hash);
-  }catch(e){
-    document.getElementById('staff-loading').style.display='none';
-    document.getElementById('staff-input').style.display='block';
-    alert('Erreur : '+e.message);
-  }
-}
-function staffShowResult(data,hash){
-  document.getElementById('staff-loading').style.display='none';
-  document.getElementById('staff-result').style.display='block';
-  var el=document.getElementById('staff-result');
-  var ok=data.exists;
-  var meta=(data.record&&data.record.metadata)||{};
-  var isAcademic=meta.type==='academic_credential';
-  var rows=[];
-  if(ok){
-    if(isAcademic){
-      rows.push(['Diplômé',meta.candidateName||'—',true]);
-      rows.push(['Type de diplôme','DEAS',true]);
-      rows.push(['Date de délivrance',meta.date||'—',true]);
-      rows.push(['Organisme émetteur',meta.universityName||'—',true]);
-    }
-    rows.push(['Empreinte','0x'+hash,false]);
-    rows.push(['Ancré le',data.anchoredAtISO?new Date(data.anchoredAtISO).toLocaleString('fr-FR'):'—',false]);
-    if(data.record&&data.record.blockNumber) rows.push(['Bloc Polygon','#'+Number(data.record.blockNumber).toLocaleString(),false]);
-  }else{
-    rows.push(['Empreinte','0x'+hash,false]);
-  }
-  el.innerHTML='<div class="result">'+
-    '<div class="verdict '+(ok?'ok':'fail')+'">'+
-      '<div class="verdict-icon">'+(ok?'&#10003;':'&#10007;')+'</div>'+
-      '<div><h3>'+(ok?'Diplôme authentique':'Diplôme non vérifié')+'</h3>'+
-      '<p>'+(ok
-        ?(isAcademic?'Délivré par <strong>'+esc(meta.universityName||'un organisme certifié')+'</strong> — enregistrement permanent sur la blockchain Polygon.':'Ce document est identique à l’original ancré sur la blockchain.')
-        :'Aucun enregistrement trouvé. Ce document n’a pas été ancré via VerdChain ou a été modifié depuis son émission.'
-      )+'</p></div>'+
-    '</div>'+
-    '<div class="record"><div class="record-head">Enregistrement blockchain</div>'+
-    rows.map(function(r){ return '<div class="row"><div class="rk">'+r[0]+'</div><div class="rv'+(r[2]?' hi':'')+'">'+esc(String(r[1]))+'</div></div>'; }).join('')+
-    '</div>'+
-    '<button class="btn-ghost" onclick="staffReset()" style="margin-top:12px">&larr; Vérifier un autre diplôme</button>'+
-  '</div>';
-}
-function staffReset(){
-  document.getElementById('staff-result').style.display='none';
-  document.getElementById('staff-input').style.display='block';
-}
-
-async function sha256(file){
-  var buf=await file.arrayBuffer();
-  var dig=await crypto.subtle.digest('SHA-256',buf);
-  return Array.from(new Uint8Array(dig)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-}
-function setMsg(el,type,text){ el.innerHTML='<div class="msg '+type+'">'+text+'</div>'; }
-function setLt(id,t){ var el=document.getElementById(id); if(el) el.textContent=t; }
-function fmtSize(b){ if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' Ko'; return (b/1048576).toFixed(1)+' Mo'; }
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-window.addEventListener('DOMContentLoaded',function(){
-  var params=new URLSearchParams(window.location.search);
-  var hash=params.get('hash')||window.location.pathname.replace('/','').trim();
-  hash=hash.replace(/^0x/,'');
-  if(hash&&hash.length===64){
-    showView('staffing');
-    document.getElementById('staff-input').style.display='none';
-    document.getElementById('staff-loading').style.display='block';
-    setLt('staff-loader-text','Interrogation de la blockchain…');
-    fetch(API+'/api/verify/'+hash+'?full=true')
-      .then(function(r){ return r.json(); })
-      .then(function(d){ staffShowResult(d,hash); })
-      .catch(function(){ document.getElementById('staff-loading').style.display='none'; document.getElementById('staff-input').style.display='block'; });
-  }
+window.addEventListener("DOMContentLoaded", () => {
+  const p = new URLSearchParams(window.location.search);
+  const h = p.get("hash") || window.location.pathname.replace("/verdchain/","").replace("/","").trim();
+  const hx = h.replace(/^0x/,"");
+  if (hx && hx.length === 64) { showPage("verify"); vVerify(hx); }
+  if (window.location.hash === "#admin") showPage("admin");
 });
+
+// V&#201;RIFICATION
+function switchVTab(t, btn) {
+  document.querySelectorAll(".tabs .tab").forEach(b => b.classList.remove("on"));
+  btn.classList.add("on");
+  document.getElementById("v-tab-file").style.display = t === "file" ? "block" : "none";
+  document.getElementById("v-tab-hash").style.display = t === "hash" ? "block" : "none";
+}
+function vdov(e){e.preventDefault();document.getElementById("v-dz").classList.add("over")}
+function vdol(){document.getElementById("v-dz").classList.remove("over")}
+function vddr(e){e.preventDefault();vdol();const f=e.dataTransfer.files[0];if(f)vHash(f)}
+function vdfs(e){const f=e.target.files[0];if(f)vHash(f)}
+function vfh(){const h=document.getElementById("v-hash-input").value.trim().replace(/^0x/,"");if(h.length===64)vVerify(h)}
+
+async function vHash(file) {
+  document.getElementById("v-input").style.display   = "none";
+  document.getElementById("v-loading").style.display  = "block";
+  document.getElementById("v-result").style.display   = "none";
+  const buf = await file.arrayBuffer();
+  const dig = await crypto.subtle.digest("SHA-256", buf);
+  const hex = Array.from(new Uint8Array(dig)).map(b=>b.toString(16).padStart(2,"0")).join("");
+  vVerify(hex);
+}
+
+async function vVerify(hex) {
+  document.getElementById("v-input").style.display   = "none";
+  document.getElementById("v-loading").style.display  = "block";
+  document.getElementById("v-result").style.display   = "none";
+  try {
+    const res  = await fetch(`${API}/api/credentials/verify/${hex}`);
+    const data = await res.json();
+    vShow(data, hex);
+  } catch(e) {
+    vShow(null, hex);
+  }
+}
+
+function vShow(data, hex) {
+  document.getElementById("v-loading").style.display = "none";
+  document.getElementById("v-result").style.display  = "block";
+  const el = document.getElementById("v-result");
+  const ok = data?.status === "verified";
+
+  const rows = ok ? [
+    data.credential?.candidate_name ? ["Dipl&#244;m&#233;",           data.credential.candidate_name]  : null,
+    data.credential?.degree_type    ? ["Type de dipl&#244;me",      data.credential.degree_type]     : null,
+    data.credential?.issued_date    ? ["Date de d&#233;livrance",  data.credential.issued_date]     : null,
+    data.issuer?.name               ? ["Organisme &#233;metteur",  data.issuer.name]                : null,
+    data.credential?.anchored_at    ? ["Ancr&#233; le",            new Date(data.credential.anchored_at).toLocaleString("fr-FR")] : null,
+  ].filter(Boolean) : [];
+
+  el.innerHTML = `
+    <div class="result-box ${ok?"ok":"fail"}">
+      <div class="result-icon">${ok?"&#10003;":"&#10007;"}</div>
+      <div>
+        <div class="result-title">${ok?"Dipl&#244;me authentique":"Dipl&#244;me non v&#233;rifi&#233;"}</div>
+        <div class="result-desc">${ok
+          ? "Ce document est authentique et correspond &#224; son enregistrement blockchain original."
+          : "Aucun enregistrement trouv&#233;. Ce document n&#8217;a pas &#233;t&#233; ancr&#233; via VerdChain ou a &#233;t&#233; modifi&#233; depuis son &#233;mission."}</div>
+      </div>
+    </div>
+    ${ok && rows.length ? `
+    <div class="record">
+      <div class="record-head">Enregistrement blockchain</div>
+      ${rows.map(r=>`<div class="record-row"><div class="rk">${r[0]}</div><div class="rv hi">${r[1]}</div></div>`).join("")}
+    </div>` : ""}
+    <div class="hash-display">0x${hex}</div>
+    <button class="btn-again" onclick="vReset()">&#8592; V&#233;rifier un autre dipl&#244;me</button>
+  `;
+}
+
+function vReset() {
+  document.getElementById("v-input").style.display   = "block";
+  document.getElementById("v-loading").style.display  = "none";
+  document.getElementById("v-result").style.display   = "none";
+}
+
+// AUTH &#201;METTEUR
+async function iLogin() {
+  const email = document.getElementById("i-email").value;
+  const pass  = document.getElementById("i-pass").value;
+  try {
+    const res  = await fetch(`${API}/api/auth/login`, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({email,password:pass}) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Connexion &#233;chou&#233;e");
+    iToken = data.token;
+    localStorage.setItem("vc_itoken", iToken);
+    iShowDash(data.issuer);
+  } catch(e) {
+    const el = document.getElementById("i-err");
+    el.textContent = e.message; el.style.display = "block";
+  }
+}
+
+function iShowDash(issuer) {
+  document.getElementById("i-login").style.display = "none";
+  document.getElementById("i-dash").style.display  = "block";
+  if (issuer?.status === "pending" || issuer?.status === "rejected") {
+    document.getElementById("i-pending-msg").style.display    = "block";
+    document.getElementById("i-approved-content").style.display = "none";
+  } else {
+    document.getElementById("i-pending-msg").style.display    = "none";
+    document.getElementById("i-approved-content").style.display = "block";
+  }
+  if (issuer?.org_name) document.getElementById("i-org-name").textContent = issuer.org_name;
+}
+
+function iLogout() {
+  iToken = ""; localStorage.removeItem("vc_itoken");
+  document.getElementById("i-login").style.display = "block";
+  document.getElementById("i-dash").style.display  = "none";
+}
+
+function switchITab(t, btn) {
+  document.querySelectorAll("#i-dash .tab").forEach(b => b.classList.remove("on"));
+  btn.classList.add("on");
+  document.getElementById("i-tab-upload").style.display  = t==="upload"  ? "block" : "none";
+  document.getElementById("i-tab-history").style.display = t==="history" ? "block" : "none";
+  if (t === "history") iLoadHistory();
+}
+
+function idov(e){e.preventDefault();document.getElementById("i-dz").classList.add("over")}
+function idol(){document.getElementById("i-dz").classList.remove("over")}
+function iddr(e){e.preventDefault();idol();const f=e.dataTransfer.files[0];if(f)iSetFile(f)}
+function iSelectFile(e){const f=e.target.files[0];if(f)iSetFile(f)}
+
+function iSetFile(f) {
+  iFile = f;
+  document.getElementById("i-dz-icon").textContent  = "&#128196;";
+  document.getElementById("i-dz-title").textContent = f.name;
+  document.getElementById("i-dz-sub").textContent   = `${(f.size/1024).toFixed(1)} Ko`;
+  document.getElementById("i-anchor-btn").disabled  = false;
+}
+
+async function iAnchor() {
+  const candidate = document.getElementById("i-candidate").value;
+  const degree    = document.getElementById("i-degree").value;
+  const date      = document.getElementById("i-date").value;
+  if (!iFile || !candidate || !degree || !date) {
+    const el = document.getElementById("i-upload-err");
+    el.textContent = "Tous les champs sont obligatoires."; el.style.display = "block"; return;
+  }
+  document.getElementById("i-anchor-btn").disabled    = true;
+  document.getElementById("i-anchor-btn").textContent = "Ancrage en cours...";
+  document.getElementById("i-upload-err").style.display = "none";
+
+  try {
+    const fd = new FormData();
+    fd.append("file", iFile);
+    fd.append("candidate_name", candidate);
+    fd.append("degree_type", degree);
+    fd.append("issued_date", date);
+
+    const res  = await fetch(`${API}/api/credentials/anchor`, { method:"POST", headers:{Authorization:`Bearer ${iToken}`}, body:fd });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || data.error);
+
+    document.getElementById("i-upload-form").style.display   = "none";
+    document.getElementById("i-upload-result").style.display = "block";
+    document.getElementById("i-upload-result").innerHTML = `
+      <div class="result-box ok" style="margin-bottom:14px">
+        <div class="result-icon">&#10003;</div>
+        <div>
+          <div class="result-title">Dipl&#244;me ancr&#233;</div>
+          <div class="result-desc">${data.credential?.candidate_name} &#8212; ${data.credential?.degree_type}</div>
+        </div>
+      </div>
+      <div class="hash-display" style="margin-bottom:14px">${data.hash}</div>
+      ${data.verifyUrl ? `<div style="font-size:13px;color:var(--grey);margin-bottom:14px">URL de v&#233;rification&#160;: <a href="${data.verifyUrl}" style="color:var(--gold)">${data.verifyUrl}</a></div>` : ""}
+      <button class="btn-again" onclick="iReset()">Ancrer un autre dipl&#244;me</button>
+    `;
+  } catch(e) {
+    const el = document.getElementById("i-upload-err");
+    el.textContent = e.message; el.style.display = "block";
+    document.getElementById("i-anchor-btn").disabled    = false;
+    document.getElementById("i-anchor-btn").textContent = "Ancrer sur la blockchain";
+  }
+}
+
+function iReset() {
+  iFile = null;
+  document.getElementById("i-upload-form").style.display   = "block";
+  document.getElementById("i-upload-result").style.display = "none";
+  document.getElementById("i-candidate").value = "";
+  document.getElementById("i-degree").value    = "DEAS";
+  document.getElementById("i-date").value      = "";
+  document.getElementById("i-dz-icon").textContent  = "&#128196;";
+  document.getElementById("i-dz-title").textContent = "D&#233;poser le document DEAS ici";
+  document.getElementById("i-dz-sub").textContent   = "ou cliquer pour parcourir &#183; PDF &#183; image &#183; tout format";
+  document.getElementById("i-anchor-btn").disabled    = true;
+  document.getElementById("i-anchor-btn").textContent = "Ancrer sur la blockchain";
+}
+
+async function iLoadHistory() {
+  const el = document.getElementById("i-history-list");
+  el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey)"><div class="spin"></div></div>`;
+  try {
+    const res  = await fetch(`${API}/api/credentials/history`, { headers:{Authorization:`Bearer ${iToken}`} });
+    const data = await res.json();
+    if (!data.credentials?.length) {
+      el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey);font-size:14px">Aucun dipl&#244;me ancr&#233; pour l&#8217;instant.</div>`;
+      return;
+    }
+    el.innerHTML = data.credentials.map(c => `
+      <div class="cred-item">
+        <div>
+          <div class="cred-name">${c.candidate_name}</div>
+          <div class="cred-meta">${c.degree_type} &middot; ${c.issued_date}</div>
+        </div>
+        <span class="cred-tag">Ancr&#233;</span>
+      </div>
+    `).join("");
+  } catch { el.innerHTML = `<div style="padding:20px;color:var(--red)">Erreur lors du chargement.</div>`; }
+}
+
+// INSCRIPTION
+async function rSubmit() {
+  const body = {
+    email:       document.getElementById("r-email").value,
+    password:    document.getElementById("r-pass").value,
+    name:        document.getElementById("r-name").value,
+    role:        "university",
+    org_name:    document.getElementById("r-org").value,
+    country:     document.getElementById("r-country").value,
+    website:     document.getElementById("r-website").value,
+    invite_code: document.getElementById("r-invite").value,
+  };
+  try {
+    const res  = await fetch(`${API}/api/auth/register`, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || data.error);
+    document.getElementById("r-form").style.display = "none";
+    document.getElementById("r-ok").textContent = "Demande re&#231;ue. Nous examinerons votre dossier sous 48 heures.";
+    document.getElementById("r-ok").style.display = "block";
+  } catch(e) {
+    const el = document.getElementById("r-err");
+    el.textContent = e.message; el.style.display = "block";
+  }
+}
+
+// ADMIN
+async function aLogin() {
+  const email = document.getElementById("a-email").value;
+  const pass  = document.getElementById("a-pass").value;
+  try {
+    const res  = await fetch(`${API}/api/auth/login`, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({email,password:pass}) });
+    const data = await res.json();
+    if (!res.ok || data.user?.role !== "admin") throw new Error("Acc&#232;s refus&#233;.");
+    aToken = data.token;
+    localStorage.setItem("vc_atoken", aToken);
+    aShowDash();
+  } catch(e) {
+    const el = document.getElementById("a-err");
+    el.textContent = e.message; el.style.display = "block";
+  }
+}
+
+function aShowDash() {
+  document.getElementById("a-login").style.display = "none";
+  document.getElementById("a-dash").style.display  = "block";
+  aLoadPending();
+}
+
+async function aLoadPending() {
+  const el = document.getElementById("a-list");
+  el.innerHTML = `<div style="padding:20px;text-align:center"><div class="spin"></div></div>`;
+  try {
+    const res  = await fetch(`${API}/api/admin/pending`, { headers:{Authorization:`Bearer ${aToken}`} });
+    const data = await res.json();
+    if (!data.issuers?.length) {
+      el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey)">Aucune demande en attente.</div>`;
+      return;
+    }
+    el.innerHTML = data.issuers.map(i => `
+      <div class="pending-item">
+        <div class="pending-name">${i.org_name} &#8212; ${i.country}</div>
+        <div class="pending-email">${i.email}</div>
+        <button class="btn-approve" onclick="aApprove('${i.id}')">&#10003; Approuver</button>
+        <button class="btn-reject"  onclick="aReject('${i.id}')">&#10007; Refuser</button>
+      </div>
+    `).join("");
+  } catch { el.innerHTML = `<div style="padding:20px;color:var(--red)">Erreur.</div>`; }
+}
+
+async function aApprove(id) {
+  await fetch(`${API}/api/admin/approve/${id}`, { method:"PUT", headers:{Authorization:`Bearer ${aToken}`} });
+  aLoadPending();
+}
+async function aReject(id) {
+  await fetch(`${API}/api/admin/reject/${id}`, { method:"PUT", headers:{Authorization:`Bearer ${aToken}`} });
+  aLoadPending();
+}
+async function aGenInvite() {
+  const res  = await fetch(`${API}/api/admin/invite`, { method:"POST", headers:{Authorization:`Bearer ${aToken}`} });
+  const data = await res.json();
+  const el   = document.getElementById("a-invite-result");
+  el.textContent = `Code&#160;: ${data.code} &#183; ${data.register_url}`;
+  el.style.display = "block";
+}
+function aLogout() {
+  aToken = ""; localStorage.removeItem("vc_atoken");
+  document.getElementById("a-login").style.display = "block";
+  document.getElementById("a-dash").style.display  = "none";
+}
 </script>
+
 </body>
 </html>
