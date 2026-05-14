@@ -3,107 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VerdChain — Prove your evidence is real</title>
+<title>VerdChain — Document Verification</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --ink: #1a1a18;
-  --paper: #f7f4ef;
-  --gold: #9a7c2e;
-  --grey: #888480;
-  --border: #ddd9d0;
-  --green: #1a5c3a;
-  --red: #7a1a1a;
-  --serif: 'EB Garamond', Georgia, serif;
-  --mono: 'DM Mono', monospace;
+  --ink: #1a1a18; --paper: #f7f4ef; --gold: #9a7c2e; --grey: #888480;
+  --border: #ddd9d0; --green: #1a5c3a; --red: #7a1a1a;
+  --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
 }
-html { scroll-behavior: smooth; }
 body { background: var(--paper); color: var(--ink); font-family: var(--serif); }
-
-/* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0;
   background: var(--paper); border-bottom: 1px solid var(--border);
   height: 52px; padding: 0 32px;
-  display: flex; align-items: center; justify-content: space-between;
-  z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; z-index: 10;
 }
-.logo { font-size: 17px; font-weight: 500; text-decoration: none; color: var(--ink); }
+.logo { font-size: 17px; font-weight: 500; cursor: pointer; color: var(--ink); text-decoration: none; }
 .nav-links { display: flex; gap: 28px; list-style: none; }
-.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); text-decoration: none; }
-.nav-links a:hover { color: var(--ink); }
-
-/* SECTIONS */
-section { padding: 100px 32px 80px; border-bottom: 1px solid var(--border); }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); text-decoration: none; cursor: pointer; }
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
+.view { min-height: 100vh; padding: 88px 32px 80px; }
 .wrap { max-width: 640px; margin: 0 auto; }
-
-/* HERO */
-#home { min-height: 100vh; display: flex; align-items: center; }
-h1 { font-size: clamp(38px, 6vw, 58px); font-weight: 400; line-height: 1.15; margin-bottom: 24px; }
+h1 { font-size: clamp(34px, 5vw, 50px); font-weight: 400; line-height: 1.15; margin-bottom: 18px; }
 h1 em { font-style: italic; color: var(--gold); }
-.tagline { font-size: 19px; color: var(--grey); line-height: 1.6; max-width: 480px; margin-bottom: 40px; }
-
-/* DIVIDER */
-.rule { width: 40px; height: 1px; background: var(--gold); margin: 40px 0; }
-
-/* WHAT */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 32px 0; }
-.cell { background: var(--paper); padding: 24px; }
-.cell-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
-.cell h3 { font-size: 16px; font-weight: 500; margin-bottom: 8px; line-height: 1.3; }
-.cell p { font-size: 15px; color: var(--grey); line-height: 1.6; }
-
-.steps { border: 1px solid var(--border); }
-.step { display: flex; gap: 20px; padding: 20px 24px; border-bottom: 1px solid var(--border); }
-.step:last-child { border-bottom: none; }
-.step-n { font-family: var(--mono); font-size: 11px; color: var(--gold); flex-shrink: 0; width: 20px; padding-top: 3px; }
-.step h4 { font-size: 16px; font-weight: 500; margin-bottom: 3px; }
-.step p { font-size: 14px; color: var(--grey); line-height: 1.6; }
-
-.note { margin-top: 28px; padding: 18px 22px; border-left: 2px solid var(--gold); font-size: 15px; color: var(--grey); font-style: italic; line-height: 1.7; background: #f0ece3; }
-.note strong { color: var(--ink); font-style: normal; }
-
-/* INSTALL */
-#install { background: #f0ece3; }
-h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
-.sub { font-size: 16px; color: var(--grey); margin-bottom: 40px; }
-
-.isteps { display: flex; flex-direction: column; }
-.istep { display: grid; grid-template-columns: 44px 1fr; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--border); align-items: start; }
-.istep:last-child { border-bottom: none; }
-.inum { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 12px; color: var(--gold); background: var(--paper); flex-shrink: 0; }
-.istep h4 { font-size: 17px; font-weight: 500; margin-bottom: 4px; }
-.istep p { font-size: 14px; color: var(--grey); line-height: 1.6; }
-.code { font-family: var(--mono); font-size: 11px; background: var(--paper); border: 1px solid var(--border); padding: 10px 14px; line-height: 1.7; margin-top: 8px; word-break: break-all; color: var(--ink); }
-
-/* VERIFY */
-.tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+h2 { font-size: clamp(22px, 4vw, 34px); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
+.sub { font-size: 16px; color: var(--grey); line-height: 1.6; margin-bottom: 32px; }
+.rule { width: 40px; height: 1px; background: var(--gold); margin: 32px 0; }
+.portals { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 32px; }
+.portal-card { background: var(--paper); padding: 28px 22px; cursor: pointer; transition: background 0.15s; }
+.portal-card:hover { background: #f0ece3; }
+.portal-card-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.portal-card h3 { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
+.portal-card p { font-size: 13px; color: var(--grey); line-height: 1.6; }
+.portal-card-arrow { font-family: var(--mono); font-size: 11px; color: var(--gold); margin-top: 16px; }
+.portal-badge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 2px 8px; display: inline-block; }
+.portal-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+.portal-header h2 { margin-bottom: 0; flex: 1; }
+.logout-btn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); background: none; border: 1px solid var(--border); padding: 6px 14px; cursor: pointer; white-space: nowrap; }
+.logout-btn:hover { border-color: var(--ink); color: var(--ink); }
+.tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
 .tab { padding: 10px 20px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border: none; background: none; color: var(--grey); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; }
 .tab.on { color: var(--ink); border-bottom-color: var(--gold); }
-
-.dropzone { border: 1.5px dashed var(--border); padding: 52px 24px; text-align: center; cursor: pointer; position: relative; background: white; transition: all 0.15s; }
+.field-group { margin-bottom: 18px; }
+.field-label { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-bottom: 6px; }
+.field-input { width: 100%; padding: 12px 14px; font-family: var(--serif); font-size: 16px; border: 1px solid var(--border); background: white; color: var(--ink); outline: none; transition: border-color 0.15s; }
+.field-input:focus { border-color: var(--gold); }
+.field-input[type="date"] { font-family: var(--mono); font-size: 13px; }
+.field-static { padding: 12px 14px; background: #f0ece3; border: 1px solid var(--border); font-family: var(--mono); font-size: 12px; color: var(--ink); word-break: break-all; }
+.btn-primary { display: inline-block; padding: 13px 28px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; margin-right: 10px; margin-top: 8px; }
+.btn-primary:hover { background: #333; }
+.btn-ghost { display: inline-block; padding: 13px 28px; background: none; color: var(--grey); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); cursor: pointer; margin-top: 8px; }
+.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+.msg { margin-top: 16px; padding: 12px 16px; font-family: var(--mono); font-size: 12px; line-height: 1.5; }
+.msg.ok { background: #f2f8f4; border-left: 2px solid var(--green); color: var(--green); }
+.msg.err { background: #f8f2f2; border-left: 2px solid var(--red); color: var(--red); }
+.msg.info { background: #f0ece3; border-left: 2px solid var(--gold); color: var(--ink); }
+.dropzone { border: 1.5px dashed var(--border); padding: 52px 24px; text-align: center; cursor: pointer; position: relative; background: white; transition: all 0.15s; margin-bottom: 20px; }
 .dropzone:hover, .dropzone.over { border-color: var(--gold); background: #fdfbf6; }
-.dropzone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.dropzone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
 .dropzone-icon { font-size: 28px; display: block; margin-bottom: 12px; }
 .dropzone h4 { font-size: 19px; font-weight: 500; margin-bottom: 6px; }
 .dropzone p { font-family: var(--mono); font-size: 11px; color: var(--grey); }
-
-.hashrow { display: flex; border: 1px solid var(--border); }
-.hashinput { flex: 1; padding: 13px 15px; font-family: var(--mono); font-size: 12px; border: none; outline: none; background: white; color: var(--ink); }
-.hashinput::placeholder { color: #ccc; }
-.gobtn { padding: 13px 24px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; }
-.gobtn:hover { background: #333; }
-
-.loader { text-align: center; padding: 40px 0; }
+.doc-meta { border: 1px solid var(--border); padding: 24px; background: white; margin: 4px 0 20px; }
+.doc-meta-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.loader { text-align: center; padding: 60px 0; }
 .loader-bar { width: 120px; height: 1px; background: var(--border); margin: 0 auto 16px; overflow: hidden; }
 .loader-fill { height: 100%; background: var(--gold); animation: ld 1.4s ease-in-out infinite; }
 @keyframes ld { 0%{width:0;margin-left:0} 50%{width:100%;margin-left:0} 100%{width:0;margin-left:100%} }
 .loader-text { font-family: var(--mono); font-size: 11px; color: var(--grey); letter-spacing: 0.08em; text-transform: uppercase; }
-
 .result { animation: up 0.3s ease; }
 @keyframes up { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-
 .verdict { padding: 26px 28px; border: 1px solid; margin-bottom: 12px; display: flex; gap: 18px; align-items: center; }
 .verdict.ok { border-color: var(--green); background: #f2f8f4; }
 .verdict.fail { border-color: var(--red); background: #f8f2f2; }
@@ -112,272 +82,508 @@ h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 400; line-height: 1.2; marg
 .verdict.ok h3 { color: var(--green); }
 .verdict.fail h3 { color: var(--red); }
 .verdict p { font-size: 13px; color: var(--grey); line-height: 1.5; }
-
 .record { border: 1px solid var(--border); background: white; margin-bottom: 12px; }
 .record-head { padding: 8px 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); border-bottom: 1px solid var(--border); background: #f5f2eb; }
 .row { display: flex; padding: 8px 14px; border-bottom: 1px solid #eeebe3; gap: 14px; }
 .row:last-child { border-bottom: none; }
-.rk { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--grey); width: 100px; flex-shrink: 0; padding-top: 2px; }
+.rk { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--grey); width: 110px; flex-shrink: 0; padding-top: 2px; }
 .rv { font-family: var(--mono); font-size: 11px; color: var(--ink); word-break: break-all; line-height: 1.5; }
-
-.again { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); background: none; border: 1px solid var(--border); padding: 10px 20px; cursor: pointer; margin-top: 12px; }
-.again:hover { color: var(--ink); border-color: var(--ink); }
-
-/* FOOTER */
+.rv.hi { color: var(--green); font-size: 13px; }
+.anchor-success { border: 1px solid var(--green); background: #f2f8f4; padding: 28px; margin-bottom: 16px; }
+.anchor-success-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+.anchor-success h3 { font-size: 22px; font-weight: 500; color: var(--green); margin-bottom: 8px; }
+.anchor-success p { font-size: 15px; color: var(--grey); line-height: 1.6; }
+.admin-empty { padding: 40px 0; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--grey); }
+.admin-item { border: 1px solid var(--border); background: white; margin-bottom: 10px; }
+.admin-item-head { padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.admin-item-info h4 { font-size: 17px; font-weight: 500; margin-bottom: 3px; }
+.admin-item-info p { font-family: var(--mono); font-size: 11px; color: var(--grey); }
+.admin-item-actions { display: flex; gap: 8px; }
+.btn-approve { padding: 8px 16px; background: var(--green); color: white; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; }
+.btn-approve:hover { background: #154d30; }
+.btn-reject { padding: 8px 16px; background: none; color: var(--red); font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--red); cursor: pointer; }
+.btn-reject:hover { background: var(--red); color: white; }
+.admin-refresh { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); background: none; border: 1px solid var(--border); padding: 8px 16px; cursor: pointer; margin-top: 16px; }
+.admin-refresh:hover { color: var(--ink); border-color: var(--ink); }
 footer { padding: 28px 32px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--grey); border-top: 1px solid var(--border); }
-
-@media(max-width:600px) {
-  nav { padding: 0 16px; }
-  section { padding: 90px 16px 60px; }
-  .two-col { grid-template-columns: 1fr; }
-  .nav-links { gap: 14px; }
+@media(max-width:700px) {
+  nav { padding: 0 16px; } .view { padding: 80px 16px 60px; }
+  .portals { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 6px; }
+  .portal-header { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#home" class="logo">VerdChain</a>
+  <a class="logo" onclick="showView('home')">VerdChain</a>
   <ul class="nav-links">
-    <li><a href="#home">What</a></li>
-    <li><a href="#install">Install</a></li>
-    <li><a href="#verify">Verify</a></li>
+    <li><a onclick="showView('uni')" data-nav="uni">University</a></li>
+    <li><a onclick="showView('admin')" data-nav="admin">Admin</a></li>
+    <li><a onclick="showView('staffing')" data-nav="staffing">Staffing</a></li>
   </ul>
 </nav>
 
 <!-- HOME -->
-<section id="home">
+<div id="view-home" class="view">
   <div class="wrap">
-    <h1>Prove your evidence<br>is <em>real.</em></h1>
-    <p class="tagline">VerdChain creates a cryptographic fingerprint of your files the moment they are captured — permanently recorded on a public blockchain, verifiable by anyone.</p>
+    <h1>Academic credentials,<br><em>verified on-chain.</em></h1>
+    <p class="sub">Universities anchor degree documents to the Polygon blockchain. Staffing agencies verify them instantly — no intermediary, no fraud.</p>
     <div class="rule"></div>
-
-    <div class="two-col">
-      <div class="cell">
-        <div class="cell-label">The problem</div>
-        <h3>Digital files can be altered without a trace</h3>
-        <p>A video, photo, or document can be modified invisibly. Deepfakes are already appearing in courtrooms.</p>
+    <div class="portals">
+      <div class="portal-card" onclick="showView('uni')">
+        <div class="portal-card-label">Universities</div>
+        <h3>Issue credentials</h3>
+        <p>Login, upload a degree or diploma, enter the candidate name and date — anchored in seconds.</p>
+        <div class="portal-card-arrow">Login &rarr;</div>
       </div>
-      <div class="cell">
-        <div class="cell-label">The solution</div>
-        <h3>An immutable fingerprint, recorded at the source</h3>
-        <p>VerdChain anchors a mathematical signature of the original file to the blockchain. Any modification is instantly detectable.</p>
+      <div class="portal-card" onclick="showView('admin')">
+        <div class="portal-card-label">Administrators</div>
+        <h3>Approve universities</h3>
+        <p>Review and approve university registration requests before they can issue credentials.</p>
+        <div class="portal-card-arrow">Admin panel &rarr;</div>
       </div>
-    </div>
-
-    <div class="steps">
-      <div class="step">
-        <div class="step-n">01</div>
-        <div>
-          <h4>Capture</h4>
-          <p>The moment you take a photo or video, VerdChain computes a SHA-256 hash — a unique mathematical signature of every byte in the file.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-n">02</div>
-        <div>
-          <h4>Anchor</h4>
-          <p>That hash is written to the Polygon blockchain — a public, decentralized ledger. The record is permanent, tamper-proof, and timestamped.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-n">03</div>
-        <div>
-          <h4>Verify</h4>
-          <p>Anyone can drop a file on this portal. If the fingerprint matches: the file is identical to the original. If not: it has been altered.</p>
-        </div>
+      <div class="portal-card" onclick="showView('staffing')">
+        <div class="portal-card-label">Staffing &amp; HR</div>
+        <h3>Verify a document</h3>
+        <p>Drop a candidate&rsquo;s credential to see whether it matches a blockchain record &mdash; instantly.</p>
+        <div class="portal-card-arrow">Verify &rarr;</div>
       </div>
     </div>
-
-    <div class="note">
-      <strong>Your file never leaves your device.</strong> Only the 64-character hash is transmitted. VerdChain stores no content — only the cryptographic proof of its existence.
-    </div>
+    <div class="rule"></div>
+    <p style="font-size:14px;color:var(--grey);font-style:italic;line-height:1.7">Files are hashed in your browser &mdash; the document never leaves your device. Only a 64-character cryptographic fingerprint is transmitted.</p>
   </div>
-</section>
+</div>
 
-<!-- INSTALL -->
-<section id="install">
-  <div class="wrap">
-    <h2>Install on iPhone.</h2>
-    <p class="sub">Set up the VerdChain Shortcut to anchor every photo to the blockchain in one tap.</p>
-
-    <a href="https://www.icloud.com/shortcuts/6bfbe8d2c98f4f2680a54be3781a8288" style="display:inline-flex;align-items:center;gap:12px;background:#1a1a18;color:#f7f4ef;padding:16px 28px;margin-bottom:12px;text-decoration:none;border:1px solid #333;font-family:var(--mono);font-size:13px;letter-spacing:0.06em;">
-      <span style="font-size:22px">⛓</span>
-      <span>Add to Shortcuts</span>
-      <span style="color:#9a7c2e;font-size:11px">→ iPhone only</span>
-    </a>
-    <p style="font-size:13px;color:#888;font-style:italic;margin-bottom:28px">Or set it up manually:</p>
-
-    <div class="isteps">
-      <div class="istep">
-        <div class="inum">1</div>
-        <div>
-          <h4>Open Shortcuts</h4>
-          <p>Pre-installed on every iPhone. Tap <strong>+</strong> to create a new Shortcut. Name it <em>VerdChain Capture</em>.</p>
-        </div>
-      </div>
-      <div class="istep">
-        <div class="inum">2</div>
-        <div>
-          <h4>Take Photo</h4>
-          <p>Search <em>Take Photo</em> → add the action → Camera: Back.</p>
-        </div>
-      </div>
-      <div class="istep">
-        <div class="inum">3</div>
-        <div>
-          <h4>Send to VerdChain</h4>
-          <p>Search <em>Get Contents of URL</em> and configure:</p>
-          <div class="code">URL    : https://verdchain-api.onrender.com/api/anchor-file
-Method : POST
-Body   : File → Photo</div>
-        </div>
-      </div>
-      <div class="istep">
-        <div class="inum">4</div>
-        <div>
-          <h4>Get the verify URL</h4>
-          <p>Add <em>Get Dictionary</em> → then <em>Get Dictionary Value</em> → key: <code>verifyUrl</code>.</p>
-        </div>
-      </div>
-      <div class="istep">
-        <div class="inum">5</div>
-        <div>
-          <h4>Open the result</h4>
-          <p>Add <em>Open URLs</em> → select the Dictionary Value. The verification portal opens automatically after each capture.</p>
-        </div>
-      </div>
-      <div class="istep">
-        <div class="inum">6</div>
-        <div>
-          <h4>Add to home screen</h4>
-          <p>Tap the Shortcut name → <em>Add to Home Screen</em> → use ⛓ as the icon.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VERIFY -->
-<section id="verify">
-  <div class="wrap">
-    <h2>Verify a file.</h2>
-    <p class="sub">Drop any file to instantly check whether it matches its original blockchain record. Nothing is uploaded.</p>
-
+<!-- UNIVERSITY PORTAL -->
+<div id="view-uni" class="view" style="display:none">
+  <div id="uni-auth" class="wrap">
+    <span class="portal-badge">University Portal</span>
+    <h2 style="margin-top:12px">Sign in to issue credentials.</h2>
+    <p class="sub">Login to your approved university account to anchor credential documents on the blockchain.</p>
     <div class="tabs">
-      <button class="tab on" onclick="switchTab('file',this)">Drop a file</button>
-      <button class="tab" onclick="switchTab('hash',this)">Paste a hash</button>
+      <button class="tab on" onclick="uniTab('login',this)">Login</button>
+      <button class="tab" onclick="uniTab('register',this)">Register</button>
     </div>
+    <div id="uni-login-form">
+      <div class="field-group">
+        <label class="field-label">Email</label>
+        <input type="email" id="uni-email" class="field-input" placeholder="registrar@university.edu">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Password</label>
+        <input type="password" id="uni-pass" class="field-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+      </div>
+      <button class="btn-primary" onclick="uniLogin()">Login</button>
+      <div id="uni-login-msg"></div>
+      <p style="margin-top:20px;font-size:13px;color:var(--grey);font-style:italic">Demo: registrar@oxford.edu / oxford123</p>
+    </div>
+    <div id="uni-register-form" style="display:none">
+      <div class="field-group">
+        <label class="field-label">University name</label>
+        <input type="text" id="uni-reg-name" class="field-input" placeholder="e.g. Harvard University">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Email</label>
+        <input type="email" id="uni-reg-email" class="field-input" placeholder="registrar@university.edu">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Password</label>
+        <input type="password" id="uni-reg-pass" class="field-input" placeholder="Choose a strong password">
+      </div>
+      <button class="btn-primary" onclick="uniRegister()">Request access</button>
+      <div id="uni-reg-msg"></div>
+    </div>
+  </div>
 
-    <div id="v-in">
-      <div id="t-file">
-        <div class="dropzone" id="dz" ondragover="dov(event)" ondragleave="dol()" ondrop="ddr(event)">
-          <input type="file" onchange="dfs(event)">
-          <span class="dropzone-icon">🗂</span>
-          <h4>Drop your file here</h4>
-          <p>or click to browse · video · photo · document</p>
+  <div id="uni-upload" class="wrap" style="display:none">
+    <div class="portal-header">
+      <span class="portal-badge">University Portal</span>
+      <h2 id="uni-name-display"></h2>
+      <button class="logout-btn" onclick="uniLogout()">Logout</button>
+    </div>
+    <p class="sub">Upload a credential document and fill in the candidate details to anchor it permanently.</p>
+    <div class="dropzone" id="uni-dz" ondragover="dov(event,'uni-dz')" ondragleave="dol('uni-dz')" ondrop="uniDrop(event)">
+      <input type="file" id="uni-file-input" onchange="uniFileSelected(event)">
+      <span class="dropzone-icon">&#128196;</span>
+      <h4>Drop the credential document here</h4>
+      <p>or click to browse &middot; PDF &middot; image &middot; any format</p>
+    </div>
+    <div id="uni-form" style="display:none">
+      <div class="doc-meta">
+        <div class="doc-meta-title">Document details</div>
+        <div class="field-group">
+          <label class="field-label">Selected file</label>
+          <div class="field-static" id="uni-filename"></div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Candidate full name</label>
+          <input type="text" id="uni-candidate" class="field-input" placeholder="e.g. Jane Smith">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Date of issue</label>
+          <input type="date" id="uni-date" class="field-input">
         </div>
       </div>
-      <div id="t-hash" style="display:none">
-        <div class="hashrow">
-          <input class="hashinput" id="hi" placeholder="SHA-256 hash (64 hex characters)...">
-          <button class="gobtn" onclick="vfi()">Verify</button>
-        </div>
-      </div>
+      <button class="btn-primary" onclick="uniSubmit()">Anchor on blockchain</button>
+      <button class="btn-ghost" onclick="uniReset()">Change file</button>
+      <div id="uni-form-msg"></div>
     </div>
-
-    <div id="v-load" style="display:none">
+    <div id="uni-anchoring" style="display:none">
       <div class="loader">
         <div class="loader-bar"><div class="loader-fill"></div></div>
-        <div class="loader-text" id="lt">Computing fingerprint...</div>
+        <div class="loader-text" id="uni-loader-text">Computing fingerprint&hellip;</div>
       </div>
     </div>
-
-    <div id="v-res" style="display:none"></div>
   </div>
-</section>
+
+  <div id="uni-result" class="wrap" style="display:none">
+    <div class="anchor-success">
+      <span class="anchor-success-icon">&#10003;</span>
+      <h3>Credential anchored</h3>
+      <p>The document fingerprint has been permanently recorded on the Polygon blockchain. Share the verify URL with anyone who needs to check this credential.</p>
+    </div>
+    <div class="record">
+      <div class="record-head">Blockchain record</div>
+      <div id="uni-result-rows"></div>
+    </div>
+    <button class="btn-primary" onclick="uniAnchorAnother()">Anchor another</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="view-admin" class="view" style="display:none">
+  <div id="admin-login" class="wrap">
+    <span class="portal-badge">Admin Panel</span>
+    <h2 style="margin-top:12px">University approval.</h2>
+    <p class="sub">Enter the admin secret to review and approve university registration requests.</p>
+    <div class="field-group">
+      <label class="field-label">Admin secret</label>
+      <input type="password" id="admin-secret-input" class="field-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+    </div>
+    <button class="btn-primary" onclick="adminAccess()">Access panel</button>
+    <div id="admin-login-msg"></div>
+  </div>
+  <div id="admin-panel" class="wrap" style="display:none">
+    <div class="portal-header">
+      <span class="portal-badge">Admin Panel</span>
+      <h2>Pending universities</h2>
+      <button class="logout-btn" onclick="adminLogout()">Logout</button>
+    </div>
+    <p class="sub">Approve or reject university registration requests. Approved universities can immediately start issuing credentials.</p>
+    <div id="admin-list"></div>
+    <button class="admin-refresh" onclick="adminLoadPending()">&circlearrowleft; Refresh</button>
+  </div>
+</div>
+
+<!-- STAFFING PORTAL -->
+<div id="view-staffing" class="view" style="display:none">
+  <div class="wrap">
+    <span class="portal-badge">Staffing Portal</span>
+    <h2 style="margin-top:12px">Verify a credential.</h2>
+    <p class="sub">Drop a candidate&rsquo;s document to instantly verify it against the blockchain. Nothing is uploaded &mdash; only the file&rsquo;s fingerprint is checked.</p>
+    <div id="staff-input">
+      <div class="dropzone" id="staff-dz" ondragover="dov(event,'staff-dz')" ondragleave="dol('staff-dz')" ondrop="staffDrop(event)">
+        <input type="file" onchange="staffFileSelected(event)">
+        <span class="dropzone-icon">&#128269;</span>
+        <h4>Drop the document to verify</h4>
+        <p>or click to browse &middot; any format</p>
+      </div>
+    </div>
+    <div id="staff-loading" style="display:none">
+      <div class="loader">
+        <div class="loader-bar"><div class="loader-fill"></div></div>
+        <div class="loader-text" id="staff-loader-text">Computing fingerprint&hellip;</div>
+      </div>
+    </div>
+    <div id="staff-result" style="display:none"></div>
+  </div>
+</div>
 
 <footer>
-  <span>VerdChain · Polygon · EvidenceAnchor.sol</span>
-  <span>No files uploaded · Client-side hashing</span>
+  <span>VerdChain &middot; Polygon &middot; EvidenceAnchor.sol</span>
+  <span>No files uploaded &middot; Client-side hashing</span>
 </footer>
 
 <script>
-var API="https://verdchain-api.onrender.com";
+var API = "https://verdchain-api.onrender.com";
+var uniSession = null;
+var adminSecret = null;
+var uniFile = null;
 
-function switchTab(t,b){
-  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
-  b.classList.add('on');
-  document.getElementById('t-file').style.display=t==='file'?'block':'none';
-  document.getElementById('t-hash').style.display=t==='hash'?'block':'none';
+function showView(v) {
+  document.querySelectorAll('.view').forEach(function(el){ el.style.display='none'; });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
+  var nav=document.querySelector('[data-nav="'+v+'"]');
+  if(nav) nav.classList.add('active');
+  if(v==='uni' && uniSession) showUniUpload();
 }
-function dov(e){e.preventDefault();document.getElementById('dz').classList.add('over');}
-function dol(){document.getElementById('dz').classList.remove('over');}
-function ddr(e){e.preventDefault();dol();var f=e.dataTransfer.files[0];if(f)pf(f);}
-function dfs(e){var f=e.target.files[0];if(f)pf(f);}
-function vfi(){var h=document.getElementById('hi').value.trim().replace(/^0x/,'');if(h.length===64)ph(h,null);}
 
-async function sha256(file){
-  var d=await crypto.subtle.digest('SHA-256',await file.arrayBuffer());
-  return Array.from(new Uint8Array(d)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+function dov(e,id){ e.preventDefault(); document.getElementById(id).classList.add('over'); }
+function dol(id){ document.getElementById(id).classList.remove('over'); }
+
+function uniTab(t,btn){
+  document.querySelectorAll('#uni-auth .tab').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+  document.getElementById('uni-login-form').style.display=t==='login'?'block':'none';
+  document.getElementById('uni-register-form').style.display=t==='register'?'block':'none';
 }
-async function pf(file){
-  try{ld('Computing SHA-256 fingerprint...');var h=await sha256(file);await ph(h,file);}
-  catch(e){rst();alert('Error: '+e.message);}
+function showUniUpload(){
+  document.getElementById('uni-auth').style.display='none';
+  document.getElementById('uni-upload').style.display='block';
+  document.getElementById('uni-result').style.display='none';
+  document.getElementById('uni-name-display').textContent=uniSession.university.name;
 }
-async function ph(hex,file){
+function showUniAuth(){
+  document.getElementById('uni-auth').style.display='block';
+  document.getElementById('uni-upload').style.display='none';
+  document.getElementById('uni-result').style.display='none';
+}
+async function uniLogin(){
+  var email=document.getElementById('uni-email').value.trim();
+  var pass=document.getElementById('uni-pass').value;
+  var msg=document.getElementById('uni-login-msg');
+  if(!email||!pass){ setMsg(msg,'err','Please fill in all fields.'); return; }
+  setMsg(msg,'info','Authenticating…');
   try{
-    ld('Querying blockchain...');
-    var r=await fetch(API+'/api/verify/'+hex+'?full=true');
+    var r=await fetch(API+'/api/universities/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,password:pass})});
     var d=await r.json();
-    sr(d,file,hex);
-  }catch(e){rst();alert('Could not reach VerdChain API.');}
+    if(!r.ok){
+      if(d.error==='pending_approval') setMsg(msg,'info','Your registration is pending admin approval. Try again once approved.');
+      else setMsg(msg,'err','Invalid credentials. Please check your email and password.');
+      return;
+    }
+    uniSession={token:d.token,university:d.university};
+    showUniUpload();
+  }catch(e){ setMsg(msg,'err','Could not reach API. Please try again.'); }
 }
-function ld(t){
-  document.getElementById('v-in').style.display='none';
-  document.getElementById('v-load').style.display='block';
-  document.getElementById('v-res').style.display='none';
-  document.getElementById('lt').textContent=t;
+async function uniRegister(){
+  var name=document.getElementById('uni-reg-name').value.trim();
+  var email=document.getElementById('uni-reg-email').value.trim();
+  var pass=document.getElementById('uni-reg-pass').value;
+  var msg=document.getElementById('uni-reg-msg');
+  if(!name||!email||!pass){ setMsg(msg,'err','Please fill in all fields.'); return; }
+  setMsg(msg,'info','Submitting registration…');
+  try{
+    var r=await fetch(API+'/api/universities/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email,password:pass})});
+    var d=await r.json();
+    if(!r.ok){
+      setMsg(msg,'err',d.error==='email_already_registered'?'This email is already registered.':'Registration failed. Please try again.');
+      return;
+    }
+    setMsg(msg,'ok','Registration submitted. An admin will review your request. Once approved, you can login.');
+    document.getElementById('uni-reg-name').value='';
+    document.getElementById('uni-reg-email').value='';
+    document.getElementById('uni-reg-pass').value='';
+  }catch(e){ setMsg(msg,'err','Could not reach API. Please try again.'); }
 }
-function rst(){
-  document.getElementById('v-in').style.display='block';
-  document.getElementById('v-load').style.display='none';
-  document.getElementById('v-res').style.display='none';
-}
-function sr(data,file,hex){
-  document.getElementById('v-load').style.display='none';
-  document.getElementById('v-res').style.display='block';
-  var el=document.getElementById('v-res');
-  var ok=data.exists;
-  var m=(data.record&&data.record.metadata)||{};
-  var rows=ok?[
-    ['Hash','0x'+hex],
-    m.filename?['Filename',m.filename]:null,
-    ['Signer',data.signer],
-    ['Anchored',data.anchoredAtISO||new Date(data.anchoredAt*1000).toLocaleString()],
-    data.record&&data.record.blockNumber?['Block','#'+Number(data.record.blockNumber).toLocaleString()]:null,
-  ].filter(Boolean):[['Hash','0x'+hex]];
+function uniLogout(){ uniSession=null; uniFile=null; uniReset(); showUniAuth(); }
 
+function uniDrop(e){ e.preventDefault(); dol('uni-dz'); var f=e.dataTransfer.files[0]; if(f) uniSetFile(f); }
+function uniFileSelected(e){ var f=e.target.files[0]; if(f) uniSetFile(f); }
+function uniSetFile(f){
+  uniFile=f;
+  document.getElementById('uni-dz').style.display='none';
+  document.getElementById('uni-filename').textContent=f.name+' ('+fmtSize(f.size)+')';
+  document.getElementById('uni-date').value=new Date().toISOString().split('T')[0];
+  document.getElementById('uni-form').style.display='block';
+  document.getElementById('uni-form-msg').innerHTML='';
+}
+function uniReset(){
+  uniFile=null;
+  document.getElementById('uni-dz').style.display='block';
+  document.getElementById('uni-form').style.display='none';
+  document.getElementById('uni-anchoring').style.display='none';
+  document.getElementById('uni-candidate').value='';
+  document.getElementById('uni-date').value='';
+  document.getElementById('uni-form-msg').innerHTML='';
+  document.getElementById('uni-file-input').value='';
+}
+async function uniSubmit(){
+  if(!uniFile) return;
+  var candidate=document.getElementById('uni-candidate').value.trim();
+  var date=document.getElementById('uni-date').value;
+  var msg=document.getElementById('uni-form-msg');
+  if(!candidate){ setMsg(msg,'err','Please enter the candidate name.'); return; }
+  if(!date){ setMsg(msg,'err','Please select a date.'); return; }
+  document.getElementById('uni-form').style.display='none';
+  document.getElementById('uni-anchoring').style.display='block';
+  try{
+    setLt('uni-loader-text','Computing SHA-256 fingerprint…');
+    var hash=await sha256(uniFile);
+    setLt('uni-loader-text','Anchoring on Polygon blockchain…');
+    var r=await fetch(API+'/api/anchor-doc',{method:'POST',headers:{'Content-Type':'application/json','X-University-Token':uniSession.token},body:JSON.stringify({hash:hash,candidateName:candidate,date:date})});
+    var d=await r.json();
+    if(!r.ok){
+      document.getElementById('uni-anchoring').style.display='none';
+      document.getElementById('uni-form').style.display='block';
+      if(d.error==='already_anchored') setMsg(msg,'info','This document has already been anchored. Each document can only be anchored once.');
+      else setMsg(msg,'err','Anchoring failed: '+(d.error||'unknown error'));
+      return;
+    }
+    document.getElementById('uni-anchoring').style.display='none';
+    document.getElementById('uni-upload').style.display='none';
+    var rows=[['University',d.universityName],['Candidate',d.candidateName],['Date',d.date],['Hash',d.hash],['Tx hash',d.txHash]];
+    document.getElementById('uni-result-rows').innerHTML=rows.map(function(row){
+      return '<div class="row"><div class="rk">'+row[0]+'</div><div class="rv">'+esc(row[1])+'</div></div>';
+    }).join('');
+    document.getElementById('uni-result').style.display='block';
+  }catch(e){
+    document.getElementById('uni-anchoring').style.display='none';
+    document.getElementById('uni-form').style.display='block';
+    setMsg(msg,'err','Error: '+e.message);
+  }
+}
+function uniAnchorAnother(){
+  uniFile=null; uniReset();
+  document.getElementById('uni-result').style.display='none';
+  document.getElementById('uni-upload').style.display='block';
+}
+
+async function adminAccess(){
+  var secret=document.getElementById('admin-secret-input').value.trim();
+  var msg=document.getElementById('admin-login-msg');
+  if(!secret){ setMsg(msg,'err','Please enter the admin secret.'); return; }
+  setMsg(msg,'info','Verifying…');
+  try{
+    var r=await fetch(API+'/api/universities/pending',{headers:{'X-Admin-Secret':secret}});
+    if(r.status===401){ setMsg(msg,'err','Invalid admin secret.'); return; }
+    if(!r.ok){ setMsg(msg,'err','Server error. Please try again.'); return; }
+    var d=await r.json();
+    adminSecret=secret;
+    document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-panel').style.display='block';
+    renderPending(d.universities);
+  }catch(e){ setMsg(msg,'err','Could not reach API. Please try again.'); }
+}
+function adminLogout(){
+  adminSecret=null;
+  document.getElementById('admin-login').style.display='block';
+  document.getElementById('admin-panel').style.display='none';
+  document.getElementById('admin-secret-input').value='';
+  document.getElementById('admin-login-msg').innerHTML='';
+}
+async function adminLoadPending(){
+  try{
+    var r=await fetch(API+'/api/universities/pending',{headers:{'X-Admin-Secret':adminSecret}});
+    var d=await r.json(); renderPending(d.universities);
+  }catch(e){}
+}
+function renderPending(list){
+  var el=document.getElementById('admin-list');
+  if(!list||list.length===0){ el.innerHTML='<div class="admin-empty">No pending registrations.</div>'; return; }
+  el.innerHTML=list.map(function(u){
+    return '<div class="admin-item" id="ai-'+u.id+'">'+
+      '<div class="admin-item-head">'+
+        '<div class="admin-item-info"><h4>'+esc(u.name)+'</h4><p>'+esc(u.email)+' &middot; Registered '+new Date(u.createdAt).toLocaleDateString()+'</p></div>'+
+        '<div class="admin-item-actions">'+
+          '<button class="btn-approve" onclick="adminApprove(\''+u.id+'\')">&check; Approve</button>'+
+          '<button class="btn-reject" onclick="adminReject(\''+u.id+'\')">&times; Reject</button>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+async function adminApprove(id){
+  try{
+    var r=await fetch(API+'/api/universities/'+id+'/approve',{method:'POST',headers:{'X-Admin-Secret':adminSecret}});
+    if(r.ok){ flash('ai-'+id,'&#10003; Approved','var(--green)'); }
+  }catch(e){}
+}
+async function adminReject(id){
+  try{
+    var r=await fetch(API+'/api/universities/'+id+'/reject',{method:'POST',headers:{'X-Admin-Secret':adminSecret}});
+    if(r.ok){ flash('ai-'+id,'&#10007; Rejected','var(--red)'); }
+  }catch(e){}
+}
+function flash(id,text,color){
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.innerHTML='<div class="admin-item-head"><p style="font-family:var(--mono);font-size:11px;color:'+color+'">'+text+'</p></div>';
+  setTimeout(function(){ if(el) el.remove(); },2000);
+}
+
+function staffDrop(e){ e.preventDefault(); dol('staff-dz'); var f=e.dataTransfer.files[0]; if(f) staffVerify(f); }
+function staffFileSelected(e){ var f=e.target.files[0]; if(f) staffVerify(f); }
+async function staffVerify(file){
+  document.getElementById('staff-input').style.display='none';
+  document.getElementById('staff-loading').style.display='block';
+  document.getElementById('staff-result').style.display='none';
+  try{
+    setLt('staff-loader-text','Computing SHA-256 fingerprint…');
+    var hash=await sha256(file);
+    setLt('staff-loader-text','Querying blockchain…');
+    var r=await fetch(API+'/api/verify/'+hash+'?full=true');
+    var d=await r.json();
+    staffShowResult(d,hash);
+  }catch(e){
+    document.getElementById('staff-loading').style.display='none';
+    document.getElementById('staff-input').style.display='block';
+    alert('Error: '+e.message);
+  }
+}
+function staffShowResult(data,hash){
+  document.getElementById('staff-loading').style.display='none';
+  document.getElementById('staff-result').style.display='block';
+  var el=document.getElementById('staff-result');
+  var ok=data.exists;
+  var meta=(data.record&&data.record.metadata)||{};
+  var isAcademic=meta.type==='academic_credential';
+  var rows=[];
+  if(ok){
+    if(isAcademic){
+      rows.push(['Issuer',meta.universityName||'Unknown',true]);
+      rows.push(['Candidate',meta.candidateName||'—',true]);
+      rows.push(['Date',meta.date||'—',true]);
+    }
+    rows.push(['Hash','0x'+hash,false]);
+    rows.push(['Anchored',data.anchoredAtISO?new Date(data.anchoredAtISO).toLocaleString():'—',false]);
+    if(data.record&&data.record.blockNumber) rows.push(['Block','#'+Number(data.record.blockNumber).toLocaleString(),false]);
+  }else{
+    rows.push(['Hash','0x'+hash,false]);
+  }
   el.innerHTML='<div class="result">'+
     '<div class="verdict '+(ok?'ok':'fail')+'">'+
-      '<div class="verdict-icon">'+(ok?'✓':'✗')+'</div>'+
+      '<div class="verdict-icon">'+(ok?'&#10003;':'&#10007;')+'</div>'+
       '<div><h3>'+(ok?'Verified':'Not found')+'</h3>'+
-      '<p>'+(ok?'This file is identical to the original anchored on the blockchain.':'No record found. This file may have been modified or was never anchored.')+'</p></div>'+
+      '<p>'+(ok?(isAcademic?'Credential issued by <strong>'+esc(meta.universityName||'a university')+'</strong> &mdash; recorded on the Polygon blockchain.':'This document is identical to the original anchored on the blockchain.'):'No blockchain record found. This document may have been altered or was never anchored.')+'</p></div>'+
     '</div>'+
     '<div class="record"><div class="record-head">Blockchain record</div>'+
-    rows.map(function(r){return '<div class="row"><div class="rk">'+r[0]+'</div><div class="rv">'+r[1]+'</div></div>';}).join('')+
+    rows.map(function(r){ return '<div class="row"><div class="rk">'+r[0]+'</div><div class="rv'+(r[2]?' hi':'')+'">'+esc(String(r[1]))+'</div></div>'; }).join('')+
     '</div>'+
-    '<button class="again" onclick="rst()">← Verify another file</button>'+
+    '<button class="btn-ghost" onclick="staffReset()" style="margin-top:12px">&larr; Verify another</button>'+
   '</div>';
 }
-window.addEventListener('DOMContentLoaded', function(){
-  var params = new URLSearchParams(window.location.search);
-  var hash = params.get('hash') || window.location.pathname.replace('/','').trim();
-  hash = hash.replace(/^0x/,'');
-  if(hash && hash.length===64){
-    document.getElementById('verify').scrollIntoView();
-    ph(hash, null);
+function staffReset(){
+  document.getElementById('staff-result').style.display='none';
+  document.getElementById('staff-input').style.display='block';
+}
+
+async function sha256(file){
+  var buf=await file.arrayBuffer();
+  var dig=await crypto.subtle.digest('SHA-256',buf);
+  return Array.from(new Uint8Array(dig)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+function setMsg(el,type,text){ el.innerHTML='<div class="msg '+type+'">'+text+'</div>'; }
+function setLt(id,t){ var el=document.getElementById(id); if(el) el.textContent=t; }
+function fmtSize(b){ if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(1)+' MB'; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+window.addEventListener('DOMContentLoaded',function(){
+  var params=new URLSearchParams(window.location.search);
+  var hash=params.get('hash')||window.location.pathname.replace('/','').trim();
+  hash=hash.replace(/^0x/,'');
+  if(hash&&hash.length===64){
+    showView('staffing');
+    document.getElementById('staff-input').style.display='none';
+    document.getElementById('staff-loading').style.display='block';
+    setLt('staff-loader-text','Querying blockchain…');
+    fetch(API+'/api/verify/'+hash+'?full=true')
+      .then(function(r){ return r.json(); })
+      .then(function(d){ staffShowResult(d,hash); })
+      .catch(function(){ document.getElementById('staff-loading').style.display='none'; document.getElementById('staff-input').style.display='block'; });
   }
 });
 </script>
