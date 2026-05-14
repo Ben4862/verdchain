@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VerdChain — Document Verification</title>
+<title>VerdChain — Certification Professionnelle Santé</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,11 +30,19 @@ h1 em { font-style: italic; color: var(--gold); }
 h2 { font-size: clamp(22px, 4vw, 34px); font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
 .sub { font-size: 16px; color: var(--grey); line-height: 1.6; margin-bottom: 32px; }
 .rule { width: 40px; height: 1px; background: var(--gold); margin: 32px 0; }
+.section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.steps { border: 1px solid var(--border); margin-bottom: 8px; }
+.step { display: flex; gap: 20px; padding: 22px 24px; border-bottom: 1px solid var(--border); }
+.step:last-child { border-bottom: none; }
+.step-n { font-family: var(--mono); font-size: 11px; color: var(--gold); flex-shrink: 0; width: 20px; padding-top: 3px; }
+.step h4 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+.step p { font-size: 14px; color: var(--grey); line-height: 1.6; }
 .portals { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 32px; }
 .portal-card { background: var(--paper); padding: 28px 22px; cursor: pointer; transition: background 0.15s; }
 .portal-card:hover { background: #f0ece3; }
 .portal-card-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
-.portal-card h3 { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
+.portal-card-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+.portal-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
 .portal-card p { font-size: 13px; color: var(--grey); line-height: 1.6; }
 .portal-card-arrow { font-family: var(--mono); font-size: 11px; color: var(--gold); margin-top: 16px; }
 .portal-badge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 2px 8px; display: inline-block; }
@@ -86,7 +94,7 @@ h2 { font-size: clamp(22px, 4vw, 34px); font-weight: 400; line-height: 1.2; marg
 .record-head { padding: 8px 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); border-bottom: 1px solid var(--border); background: #f5f2eb; }
 .row { display: flex; padding: 8px 14px; border-bottom: 1px solid #eeebe3; gap: 14px; }
 .row:last-child { border-bottom: none; }
-.rk { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--grey); width: 110px; flex-shrink: 0; padding-top: 2px; }
+.rk { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--grey); width: 130px; flex-shrink: 0; padding-top: 2px; }
 .rv { font-family: var(--mono); font-size: 11px; color: var(--ink); word-break: break-all; line-height: 1.5; }
 .rv.hi { color: var(--green); font-size: 13px; }
 .anchor-success { border: 1px solid var(--green); background: #f2f8f4; padding: 28px; margin-bottom: 16px; }
@@ -105,12 +113,15 @@ h2 { font-size: clamp(22px, 4vw, 34px); font-weight: 400; line-height: 1.2; marg
 .btn-reject:hover { background: var(--red); color: white; }
 .admin-refresh { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); background: none; border: 1px solid var(--border); padding: 8px 16px; cursor: pointer; margin-top: 16px; }
 .admin-refresh:hover { color: var(--ink); border-color: var(--ink); }
+.note { margin-top: 28px; padding: 18px 22px; border-left: 2px solid var(--gold); font-size: 15px; color: var(--grey); font-style: italic; line-height: 1.7; background: #f0ece3; }
+.note strong { color: var(--ink); font-style: normal; }
 footer { padding: 28px 32px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--grey); border-top: 1px solid var(--border); }
 @media(max-width:700px) {
   nav { padding: 0 16px; } .view { padding: 80px 16px 60px; }
   .portals { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 6px; }
   .portal-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .nav-links { gap: 14px; }
 }
 </style>
 </head>
@@ -119,182 +130,215 @@ footer { padding: 28px 32px; display: flex; justify-content: space-between; font
 <nav>
   <a class="logo" onclick="showView('home')">VerdChain</a>
   <ul class="nav-links">
-    <li><a onclick="showView('uni')" data-nav="uni">University</a></li>
-    <li><a onclick="showView('admin')" data-nav="admin">Admin</a></li>
-    <li><a onclick="showView('staffing')" data-nav="staffing">Staffing</a></li>
+    <li><a onclick="showView('uni')" data-nav="uni">IFAS / Formation</a></li>
+    <li><a onclick="showView('admin')" data-nav="admin">Administration</a></li>
+    <li><a onclick="showView('staffing')" data-nav="staffing">Recruteurs</a></li>
   </ul>
 </nav>
 
-<!-- HOME -->
+<!-- ACCUEIL -->
 <div id="view-home" class="view">
   <div class="wrap">
-    <h1>Academic credentials,<br><em>verified on-chain.</em></h1>
-    <p class="sub">Universities issue tamper-proof credentials with a permanent cryptographic seal. HR teams verify them in seconds — no phone calls, no intermediaries, no fraud.</p>
+    <h1>Les diplômes professionnels,<br><em>infalsifiables.</em></h1>
+    <p class="sub">Les IFAS et organismes certifiants ancrent chaque diplôme sur la blockchain au moment de la délivrance. Les employeurs vérifient en 3 secondes — sans appel téléphonique, sans intermédiaire, sans risque de fraude.</p>
     <div class="rule"></div>
-    <div class="portals">
-      <div class="portal-card" onclick="showView('uni')">
-        <div class="portal-card-label">Universities</div>
-        <h3>Issue credentials</h3>
-        <p>Login, upload a degree or diploma, enter the candidate name and date — anchored in seconds.</p>
-        <div class="portal-card-arrow">Login &rarr;</div>
+
+    <div class="section-label">Comment ça fonctionne</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">01</div>
+        <div>
+          <h4>Délivrance</h4>
+          <p>L’IFAS délivre le DEAS à l’aide-soignant et ancre simultanément son empreinte cryptographique sur la blockchain Polygon. Cette opération est permanente et infalsifiable.</p>
+        </div>
       </div>
-      <div class="portal-card" onclick="showView('admin')">
-        <div class="portal-card-label">Administrators</div>
-        <h3>Approve universities</h3>
-        <p>Review and approve university registration requests before they can issue credentials.</p>
-        <div class="portal-card-arrow">Admin panel &rarr;</div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <div>
+          <h4>Candidature</h4>
+          <p>L’aide-soignant présente son diplôme à un EHPAD ou une agence de placement. Il peut également partager son URL de vérification directement.</p>
+        </div>
       </div>
-      <div class="portal-card" onclick="showView('staffing')">
-        <div class="portal-card-label">Staffing &amp; HR</div>
-        <h3>Verify a document</h3>
-        <p>Drop a candidate&rsquo;s credential to see whether it matches a blockchain record &mdash; instantly.</p>
-        <div class="portal-card-arrow">Verify &rarr;</div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <div>
+          <h4>Vérification</h4>
+          <p>L’employeur dépose le document sur VerdChain. En 3 secondes : diplôme authentique ✅ ou document falsifié ❌. Aucun appel téléphonique, aucune attente.</p>
+        </div>
       </div>
     </div>
+
     <div class="rule"></div>
-    <p style="font-size:14px;color:var(--grey);font-style:italic;line-height:1.7">Files are hashed in your browser &mdash; the document never leaves your device. Only a 64-character cryptographic fingerprint is transmitted.</p>
+
+    <div class="portals">
+      <div class="portal-card" onclick="showView('uni')">
+        <span class="portal-card-icon">🎓</span>
+        <div class="portal-card-label">IFAS &amp; organismes</div>
+        <h3>Émettre un diplôme certifié</h3>
+        <p>Connectez-vous, uploadez le diplôme DEAS, renseignez le nom du candidat et la date de délivrance — ancré en quelques secondes.</p>
+        <div class="portal-card-arrow">Se connecter &rarr;</div>
+      </div>
+      <div class="portal-card" onclick="showView('admin')">
+        <span class="portal-card-icon">🔐</span>
+        <div class="portal-card-label">Administration</div>
+        <h3>Approuver les organismes</h3>
+        <p>Vérifiez et approuvez les demandes d’inscription des IFAS et organismes certifiants avant qu’ils puissent émettre des diplômes.</p>
+        <div class="portal-card-arrow">Panel admin &rarr;</div>
+      </div>
+      <div class="portal-card" onclick="showView('staffing')">
+        <span class="portal-card-icon">🏥</span>
+        <div class="portal-card-label">EHPAD &amp; recruteurs</div>
+        <h3>Vérifier un diplôme</h3>
+        <p>Déposez le diplôme d’un candidat pour vérifier instantanément s’il correspond à un enregistrement blockchain. Aucun fichier n’est uploadé.</p>
+        <div class="portal-card-arrow">Vérifier &rarr;</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Les fichiers sont traités dans votre navigateur.</strong> Le document ne quitte jamais votre appareil. Seule une empreinte cryptographique de 64 caractères est transmise.
+    </div>
   </div>
 </div>
 
-<!-- UNIVERSITY PORTAL -->
+<!-- PORTAIL IFAS -->
 <div id="view-uni" class="view" style="display:none">
   <div id="uni-auth" class="wrap">
-    <span class="portal-badge">University Portal</span>
-    <h2 style="margin-top:12px">Sign in to issue credentials.</h2>
-    <p class="sub">Login to your approved university account to anchor credential documents on the blockchain.</p>
+    <span class="portal-badge">Portail IFAS</span>
+    <h2 style="margin-top:12px">Émettre un diplôme certifié.</h2>
+    <p class="sub">Connectez-vous à votre compte organisme approuvé pour ancrer des diplômes professionnels sur la blockchain.</p>
     <div class="tabs">
-      <button class="tab on" onclick="uniTab('login',this)">Login</button>
-      <button class="tab" onclick="uniTab('register',this)">Register</button>
+      <button class="tab on" onclick="uniTab('login',this)">Connexion</button>
+      <button class="tab" onclick="uniTab('register',this)">Inscription</button>
     </div>
     <div id="uni-login-form">
       <div class="field-group">
-        <label class="field-label">Email</label>
-        <input type="email" id="uni-email" class="field-input" placeholder="registrar@university.edu">
+        <label class="field-label">Adresse e-mail</label>
+        <input type="email" id="uni-email" class="field-input" placeholder="formation@ifas-exemple.fr">
       </div>
       <div class="field-group">
-        <label class="field-label">Password</label>
+        <label class="field-label">Mot de passe</label>
         <input type="password" id="uni-pass" class="field-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
       </div>
-      <button class="btn-primary" onclick="uniLogin()">Login</button>
+      <button class="btn-primary" onclick="uniLogin()">Se connecter</button>
       <div id="uni-login-msg"></div>
-      <p style="margin-top:20px;font-size:13px;color:var(--grey);font-style:italic">Demo: registrar@oxford.edu / oxford123</p>
+      <p style="margin-top:20px;font-size:13px;color:var(--grey);font-style:italic">Démo : formation@ifas-demo.fr / demo123</p>
     </div>
     <div id="uni-register-form" style="display:none">
       <div class="field-group">
-        <label class="field-label">University name</label>
-        <input type="text" id="uni-reg-name" class="field-input" placeholder="e.g. Harvard University">
+        <label class="field-label">Nom de l’organisme</label>
+        <input type="text" id="uni-reg-name" class="field-input" placeholder="ex : IFAS Centre-Val de Loire">
       </div>
       <div class="field-group">
-        <label class="field-label">Email</label>
-        <input type="email" id="uni-reg-email" class="field-input" placeholder="registrar@university.edu">
+        <label class="field-label">Adresse e-mail</label>
+        <input type="email" id="uni-reg-email" class="field-input" placeholder="formation@ifas-exemple.fr">
       </div>
       <div class="field-group">
-        <label class="field-label">Password</label>
-        <input type="password" id="uni-reg-pass" class="field-input" placeholder="Choose a strong password">
+        <label class="field-label">Mot de passe</label>
+        <input type="password" id="uni-reg-pass" class="field-input" placeholder="Choisissez un mot de passe sécurisé">
       </div>
-      <button class="btn-primary" onclick="uniRegister()">Request access</button>
+      <button class="btn-primary" onclick="uniRegister()">Demander l’accès</button>
       <div id="uni-reg-msg"></div>
     </div>
   </div>
 
   <div id="uni-upload" class="wrap" style="display:none">
     <div class="portal-header">
-      <span class="portal-badge">University Portal</span>
+      <span class="portal-badge">Portail IFAS</span>
       <h2 id="uni-name-display"></h2>
-      <button class="logout-btn" onclick="uniLogout()">Logout</button>
+      <button class="logout-btn" onclick="uniLogout()">Déconnexion</button>
     </div>
-    <p class="sub">Upload a credential document and fill in the candidate details to anchor it permanently.</p>
+    <p class="sub">Déposez le document DEAS et renseignez les informations du diplômé pour l’ancrer de façon permanente sur la blockchain.</p>
     <div class="dropzone" id="uni-dz" ondragover="dov(event,'uni-dz')" ondragleave="dol('uni-dz')" ondrop="uniDrop(event)">
       <input type="file" id="uni-file-input" onchange="uniFileSelected(event)">
-      <span class="dropzone-icon">&#128196;</span>
-      <h4>Drop the credential document here</h4>
-      <p>or click to browse &middot; PDF &middot; image &middot; any format</p>
+      <span class="dropzone-icon">📄</span>
+      <h4>Déposer le document DEAS ici</h4>
+      <p>ou cliquer pour parcourir &middot; PDF &middot; image &middot; tout format</p>
     </div>
     <div id="uni-form" style="display:none">
       <div class="doc-meta">
-        <div class="doc-meta-title">Document details</div>
+        <div class="doc-meta-title">Informations du diplôme</div>
         <div class="field-group">
-          <label class="field-label">Selected file</label>
+          <label class="field-label">Fichier sélectionné</label>
           <div class="field-static" id="uni-filename"></div>
         </div>
         <div class="field-group">
-          <label class="field-label">Candidate full name</label>
-          <input type="text" id="uni-candidate" class="field-input" placeholder="e.g. Jane Smith">
+          <label class="field-label">Nom complet du diplômé</label>
+          <input type="text" id="uni-candidate" class="field-input" placeholder="ex : Marie Dupont">
         </div>
         <div class="field-group">
-          <label class="field-label">Date of issue</label>
+          <label class="field-label">Date de délivrance</label>
           <input type="date" id="uni-date" class="field-input">
         </div>
       </div>
-      <button class="btn-primary" onclick="uniSubmit()">Anchor on blockchain</button>
-      <button class="btn-ghost" onclick="uniReset()">Change file</button>
+      <button class="btn-primary" onclick="uniSubmit()">Ancrer sur la blockchain</button>
+      <button class="btn-ghost" onclick="uniReset()">Changer de fichier</button>
       <div id="uni-form-msg"></div>
     </div>
     <div id="uni-anchoring" style="display:none">
       <div class="loader">
         <div class="loader-bar"><div class="loader-fill"></div></div>
-        <div class="loader-text" id="uni-loader-text">Computing fingerprint&hellip;</div>
+        <div class="loader-text" id="uni-loader-text">Calcul de l’empreinte&hellip;</div>
       </div>
     </div>
   </div>
 
   <div id="uni-result" class="wrap" style="display:none">
     <div class="anchor-success">
-      <span class="anchor-success-icon">&#10003;</span>
-      <h3>Credential anchored</h3>
-      <p>The document fingerprint has been permanently recorded on the Polygon blockchain. Share the verify URL with anyone who needs to check this credential.</p>
+      <span class="anchor-success-icon">✓</span>
+      <h3>Diplôme ancré avec succès</h3>
+      <p>L’empreinte cryptographique a été enregistrée de façon permanente sur Polygon. Partagez l’URL de vérification avec le diplômé ou tout employeur souhaitant vérifier l’authenticité.</p>
     </div>
     <div class="record">
-      <div class="record-head">Blockchain record</div>
+      <div class="record-head">Enregistrement blockchain</div>
       <div id="uni-result-rows"></div>
     </div>
-    <button class="btn-primary" onclick="uniAnchorAnother()">Anchor another</button>
+    <button class="btn-primary" onclick="uniAnchorAnother()">Ancrer un autre diplôme</button>
   </div>
 </div>
 
-<!-- ADMIN PANEL -->
+<!-- PANEL ADMINISTRATION -->
 <div id="view-admin" class="view" style="display:none">
   <div id="admin-login" class="wrap">
-    <span class="portal-badge">Admin Panel</span>
-    <h2 style="margin-top:12px">University approval.</h2>
-    <p class="sub">Enter the admin secret to review and approve university registration requests.</p>
+    <span class="portal-badge">Administration VerdChain</span>
+    <h2 style="margin-top:12px">Approbation des organismes.</h2>
+    <p class="sub">Entrez le code secret administrateur pour examiner et approuver les demandes d’inscription des IFAS et organismes certifiants.</p>
     <div class="field-group">
-      <label class="field-label">Admin secret</label>
+      <label class="field-label">Code secret administrateur</label>
       <input type="password" id="admin-secret-input" class="field-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
     </div>
-    <button class="btn-primary" onclick="adminAccess()">Access panel</button>
+    <button class="btn-primary" onclick="adminAccess()">Accéder au panel</button>
     <div id="admin-login-msg"></div>
   </div>
   <div id="admin-panel" class="wrap" style="display:none">
     <div class="portal-header">
-      <span class="portal-badge">Admin Panel</span>
-      <h2>Pending universities</h2>
-      <button class="logout-btn" onclick="adminLogout()">Logout</button>
+      <span class="portal-badge">Administration VerdChain</span>
+      <h2>Organismes en attente</h2>
+      <button class="logout-btn" onclick="adminLogout()">Déconnexion</button>
     </div>
-    <p class="sub">Approve or reject university registration requests. Approved universities can immediately start issuing credentials.</p>
+    <p class="sub">Approuvez ou refusez les demandes d’inscription des IFAS et organismes certifiants. Les organismes approuvés peuvent immédiatement commencer à émettre des diplômes certifiés.</p>
     <div id="admin-list"></div>
-    <button class="admin-refresh" onclick="adminLoadPending()">&circlearrowleft; Refresh</button>
+    <button class="admin-refresh" onclick="adminLoadPending()">&circlearrowleft; Actualiser</button>
   </div>
 </div>
 
-<!-- STAFFING PORTAL -->
+<!-- PORTAIL RECRUTEURS -->
 <div id="view-staffing" class="view" style="display:none">
   <div class="wrap">
-    <span class="portal-badge">Staffing Portal</span>
-    <h2 style="margin-top:12px">Verify a credential.</h2>
-    <p class="sub">Drop a candidate&rsquo;s document to instantly verify it against the blockchain. Nothing is uploaded &mdash; only the file&rsquo;s fingerprint is checked.</p>
+    <span class="portal-badge">Portail Recruteurs</span>
+    <h2 style="margin-top:12px">Vérifier un diplôme.</h2>
+    <p class="sub">Déposez le document présenté par un candidat pour vérifier instantanément son authenticité. Aucun fichier n’est transmis — seule l’empreinte est vérifiée.</p>
     <div id="staff-input">
       <div class="dropzone" id="staff-dz" ondragover="dov(event,'staff-dz')" ondragleave="dol('staff-dz')" ondrop="staffDrop(event)">
         <input type="file" onchange="staffFileSelected(event)">
-        <span class="dropzone-icon">&#128269;</span>
-        <h4>Drop the document to verify</h4>
-        <p>or click to browse &middot; any format</p>
+        <span class="dropzone-icon">🔍</span>
+        <h4>Déposer le diplôme à vérifier</h4>
+        <p>ou cliquer pour parcourir &middot; PDF &middot; image &middot; tout format</p>
       </div>
     </div>
     <div id="staff-loading" style="display:none">
       <div class="loader">
         <div class="loader-bar"><div class="loader-fill"></div></div>
-        <div class="loader-text" id="staff-loader-text">Computing fingerprint&hellip;</div>
+        <div class="loader-text" id="staff-loader-text">Calcul de l’empreinte&hellip;</div>
       </div>
     </div>
     <div id="staff-result" style="display:none"></div>
@@ -303,7 +347,7 @@ footer { padding: 28px 32px; display: flex; justify-content: space-between; font
 
 <footer>
   <span>VerdChain &middot; Polygon &middot; EvidenceAnchor.sol</span>
-  <span>No files uploaded &middot; Client-side hashing</span>
+  <span>Aucun fichier uploadé &middot; Traitement local uniquement</span>
 </footer>
 
 <script>
@@ -345,39 +389,39 @@ async function uniLogin(){
   var email=document.getElementById('uni-email').value.trim();
   var pass=document.getElementById('uni-pass').value;
   var msg=document.getElementById('uni-login-msg');
-  if(!email||!pass){ setMsg(msg,'err','Please fill in all fields.'); return; }
-  setMsg(msg,'info','Authenticating…');
+  if(!email||!pass){ setMsg(msg,'err','Veuillez remplir tous les champs.'); return; }
+  setMsg(msg,'info','Authentification en cours…');
   try{
     var r=await fetch(API+'/api/universities/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,password:pass})});
     var d=await r.json();
     if(!r.ok){
-      if(d.error==='pending_approval') setMsg(msg,'info','Your registration is pending admin approval. Try again once approved.');
-      else setMsg(msg,'err','Invalid credentials. Please check your email and password.');
+      if(d.error==='pending_approval') setMsg(msg,'info','Votre demande d’inscription est en attente de validation par l’administration. Vous serez notifié une fois approuvé.');
+      else setMsg(msg,'err','Identifiants incorrects. Vérifiez votre adresse e-mail et votre mot de passe.');
       return;
     }
     uniSession={token:d.token,university:d.university};
     showUniUpload();
-  }catch(e){ setMsg(msg,'err','Could not reach API. Please try again.'); }
+  }catch(e){ setMsg(msg,'err','Impossible de contacter l’API. Veuillez réessayer.'); }
 }
 async function uniRegister(){
   var name=document.getElementById('uni-reg-name').value.trim();
   var email=document.getElementById('uni-reg-email').value.trim();
   var pass=document.getElementById('uni-reg-pass').value;
   var msg=document.getElementById('uni-reg-msg');
-  if(!name||!email||!pass){ setMsg(msg,'err','Please fill in all fields.'); return; }
-  setMsg(msg,'info','Submitting registration…');
+  if(!name||!email||!pass){ setMsg(msg,'err','Veuillez remplir tous les champs.'); return; }
+  setMsg(msg,'info','Envoi de la demande…');
   try{
     var r=await fetch(API+'/api/universities/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email,password:pass})});
     var d=await r.json();
     if(!r.ok){
-      setMsg(msg,'err',d.error==='email_already_registered'?'This email is already registered.':'Registration failed. Please try again.');
+      setMsg(msg,'err',d.error==='email_already_registered'?'Cette adresse e-mail est déjà enregistrée.':'Inscription échouée. Veuillez réessayer.');
       return;
     }
-    setMsg(msg,'ok','Registration submitted. An admin will review your request. Once approved, you can login.');
+    setMsg(msg,'ok','Demande envoyée. L’administration VerdChain va examiner votre dossier. Vous pourrez vous connecter une fois approuvé.');
     document.getElementById('uni-reg-name').value='';
     document.getElementById('uni-reg-email').value='';
     document.getElementById('uni-reg-pass').value='';
-  }catch(e){ setMsg(msg,'err','Could not reach API. Please try again.'); }
+  }catch(e){ setMsg(msg,'err','Impossible de contacter l’API. Veuillez réessayer.'); }
 }
 function uniLogout(){ uniSession=null; uniFile=null; uniReset(); showUniAuth(); }
 
@@ -406,26 +450,33 @@ async function uniSubmit(){
   var candidate=document.getElementById('uni-candidate').value.trim();
   var date=document.getElementById('uni-date').value;
   var msg=document.getElementById('uni-form-msg');
-  if(!candidate){ setMsg(msg,'err','Please enter the candidate name.'); return; }
-  if(!date){ setMsg(msg,'err','Please select a date.'); return; }
+  if(!candidate){ setMsg(msg,'err','Veuillez saisir le nom complet du diplômé.'); return; }
+  if(!date){ setMsg(msg,'err','Veuillez sélectionner la date de délivrance.'); return; }
   document.getElementById('uni-form').style.display='none';
   document.getElementById('uni-anchoring').style.display='block';
   try{
-    setLt('uni-loader-text','Computing SHA-256 fingerprint…');
+    setLt('uni-loader-text','Calcul de l’empreinte SHA-256…');
     var hash=await sha256(uniFile);
-    setLt('uni-loader-text','Anchoring on Polygon blockchain…');
+    setLt('uni-loader-text','Ancrage sur la blockchain Polygon…');
     var r=await fetch(API+'/api/anchor-doc',{method:'POST',headers:{'Content-Type':'application/json','X-University-Token':uniSession.token},body:JSON.stringify({hash:hash,candidateName:candidate,date:date})});
     var d=await r.json();
     if(!r.ok){
       document.getElementById('uni-anchoring').style.display='none';
       document.getElementById('uni-form').style.display='block';
-      if(d.error==='already_anchored') setMsg(msg,'info','This document has already been anchored. Each document can only be anchored once.');
-      else setMsg(msg,'err','Anchoring failed: '+(d.error||'unknown error'));
+      if(d.error==='already_anchored') setMsg(msg,'info','Ce document a déjà été ancré. Chaque document ne peut être ancré qu’une seule fois.');
+      else setMsg(msg,'err','Erreur lors de l’ancrage : '+(d.error||'erreur inconnue'));
       return;
     }
     document.getElementById('uni-anchoring').style.display='none';
     document.getElementById('uni-upload').style.display='none';
-    var rows=[['University',d.universityName],['Candidate',d.candidateName],['Date',d.date],['Hash',d.hash],['Tx hash',d.txHash]];
+    var rows=[
+      ['Organisme émetteur', d.universityName],
+      ['Diplômé', d.candidateName],
+      ['Type de diplôme', 'DEAS'],
+      ['Date de délivrance', d.date],
+      ['Empreinte SHA-256', d.hash],
+      ['Hash de transaction', d.txHash]
+    ];
     document.getElementById('uni-result-rows').innerHTML=rows.map(function(row){
       return '<div class="row"><div class="rk">'+row[0]+'</div><div class="rv">'+esc(row[1])+'</div></div>';
     }).join('');
@@ -433,7 +484,7 @@ async function uniSubmit(){
   }catch(e){
     document.getElementById('uni-anchoring').style.display='none';
     document.getElementById('uni-form').style.display='block';
-    setMsg(msg,'err','Error: '+e.message);
+    setMsg(msg,'err','Erreur : '+e.message);
   }
 }
 function uniAnchorAnother(){
@@ -445,18 +496,18 @@ function uniAnchorAnother(){
 async function adminAccess(){
   var secret=document.getElementById('admin-secret-input').value.trim();
   var msg=document.getElementById('admin-login-msg');
-  if(!secret){ setMsg(msg,'err','Please enter the admin secret.'); return; }
-  setMsg(msg,'info','Verifying…');
+  if(!secret){ setMsg(msg,'err','Veuillez entrer le code secret administrateur.'); return; }
+  setMsg(msg,'info','Vérification…');
   try{
     var r=await fetch(API+'/api/universities/pending',{headers:{'X-Admin-Secret':secret}});
-    if(r.status===401){ setMsg(msg,'err','Invalid admin secret.'); return; }
-    if(!r.ok){ setMsg(msg,'err','Server error. Please try again.'); return; }
+    if(r.status===401){ setMsg(msg,'err','Code secret invalide.'); return; }
+    if(!r.ok){ setMsg(msg,'err','Erreur serveur. Veuillez réessayer.'); return; }
     var d=await r.json();
     adminSecret=secret;
     document.getElementById('admin-login').style.display='none';
     document.getElementById('admin-panel').style.display='block';
     renderPending(d.universities);
-  }catch(e){ setMsg(msg,'err','Could not reach API. Please try again.'); }
+  }catch(e){ setMsg(msg,'err','Impossible de contacter l’API. Veuillez réessayer.'); }
 }
 function adminLogout(){
   adminSecret=null;
@@ -473,14 +524,14 @@ async function adminLoadPending(){
 }
 function renderPending(list){
   var el=document.getElementById('admin-list');
-  if(!list||list.length===0){ el.innerHTML='<div class="admin-empty">No pending registrations.</div>'; return; }
+  if(!list||list.length===0){ el.innerHTML='<div class="admin-empty">Aucune demande en attente.</div>'; return; }
   el.innerHTML=list.map(function(u){
     return '<div class="admin-item" id="ai-'+u.id+'">'+
       '<div class="admin-item-head">'+
-        '<div class="admin-item-info"><h4>'+esc(u.name)+'</h4><p>'+esc(u.email)+' &middot; Registered '+new Date(u.createdAt).toLocaleDateString()+'</p></div>'+
+        '<div class="admin-item-info"><h4>'+esc(u.name)+'</h4><p>'+esc(u.email)+' &middot; Inscription le '+new Date(u.createdAt).toLocaleDateString('fr-FR')+'</p></div>'+
         '<div class="admin-item-actions">'+
-          '<button class="btn-approve" onclick="adminApprove(\''+u.id+'\')">&check; Approve</button>'+
-          '<button class="btn-reject" onclick="adminReject(\''+u.id+'\')">&times; Reject</button>'+
+          '<button class="btn-approve" onclick="adminApprove(\''+u.id+'\')">&check; Approuver</button>'+
+          '<button class="btn-reject" onclick="adminReject(\''+u.id+'\')">&times; Refuser</button>'+
         '</div>'+
       '</div>'+
     '</div>';
@@ -489,13 +540,13 @@ function renderPending(list){
 async function adminApprove(id){
   try{
     var r=await fetch(API+'/api/universities/'+id+'/approve',{method:'POST',headers:{'X-Admin-Secret':adminSecret}});
-    if(r.ok){ flash('ai-'+id,'&#10003; Approved','var(--green)'); }
+    if(r.ok){ flash('ai-'+id,'&#10003; Approuvé','var(--green)'); }
   }catch(e){}
 }
 async function adminReject(id){
   try{
     var r=await fetch(API+'/api/universities/'+id+'/reject',{method:'POST',headers:{'X-Admin-Secret':adminSecret}});
-    if(r.ok){ flash('ai-'+id,'&#10007; Rejected','var(--red)'); }
+    if(r.ok){ flash('ai-'+id,'&#10007; Refusé','var(--red)'); }
   }catch(e){}
 }
 function flash(id,text,color){
@@ -512,16 +563,16 @@ async function staffVerify(file){
   document.getElementById('staff-loading').style.display='block';
   document.getElementById('staff-result').style.display='none';
   try{
-    setLt('staff-loader-text','Computing SHA-256 fingerprint…');
+    setLt('staff-loader-text','Calcul de l’empreinte SHA-256…');
     var hash=await sha256(file);
-    setLt('staff-loader-text','Querying blockchain…');
+    setLt('staff-loader-text','Interrogation de la blockchain…');
     var r=await fetch(API+'/api/verify/'+hash+'?full=true');
     var d=await r.json();
     staffShowResult(d,hash);
   }catch(e){
     document.getElementById('staff-loading').style.display='none';
     document.getElementById('staff-input').style.display='block';
-    alert('Error: '+e.message);
+    alert('Erreur : '+e.message);
   }
 }
 function staffShowResult(data,hash){
@@ -534,26 +585,30 @@ function staffShowResult(data,hash){
   var rows=[];
   if(ok){
     if(isAcademic){
-      rows.push(['Issuer',meta.universityName||'Unknown',true]);
-      rows.push(['Candidate',meta.candidateName||'—',true]);
-      rows.push(['Date',meta.date||'—',true]);
+      rows.push(['Diplômé',meta.candidateName||'—',true]);
+      rows.push(['Type de diplôme','DEAS',true]);
+      rows.push(['Date de délivrance',meta.date||'—',true]);
+      rows.push(['Organisme émetteur',meta.universityName||'—',true]);
     }
-    rows.push(['Hash','0x'+hash,false]);
-    rows.push(['Anchored',data.anchoredAtISO?new Date(data.anchoredAtISO).toLocaleString():'—',false]);
-    if(data.record&&data.record.blockNumber) rows.push(['Block','#'+Number(data.record.blockNumber).toLocaleString(),false]);
+    rows.push(['Empreinte','0x'+hash,false]);
+    rows.push(['Ancré le',data.anchoredAtISO?new Date(data.anchoredAtISO).toLocaleString('fr-FR'):'—',false]);
+    if(data.record&&data.record.blockNumber) rows.push(['Bloc Polygon','#'+Number(data.record.blockNumber).toLocaleString(),false]);
   }else{
-    rows.push(['Hash','0x'+hash,false]);
+    rows.push(['Empreinte','0x'+hash,false]);
   }
   el.innerHTML='<div class="result">'+
     '<div class="verdict '+(ok?'ok':'fail')+'">'+
       '<div class="verdict-icon">'+(ok?'&#10003;':'&#10007;')+'</div>'+
-      '<div><h3>'+(ok?'Verified':'Not found')+'</h3>'+
-      '<p>'+(ok?(isAcademic?'Credential issued by <strong>'+esc(meta.universityName||'a university')+'</strong> &mdash; recorded on the Polygon blockchain.':'This document is identical to the original anchored on the blockchain.'):'No blockchain record found. This document may have been altered or was never anchored.')+'</p></div>'+
+      '<div><h3>'+(ok?'Diplôme authentique':'Diplôme non vérifié')+'</h3>'+
+      '<p>'+(ok
+        ?(isAcademic?'Délivré par <strong>'+esc(meta.universityName||'un organisme certifié')+'</strong> — enregistrement permanent sur la blockchain Polygon.':'Ce document est identique à l’original ancré sur la blockchain.')
+        :'Aucun enregistrement trouvé. Ce document n’a pas été ancré via VerdChain ou a été modifié depuis son émission.'
+      )+'</p></div>'+
     '</div>'+
-    '<div class="record"><div class="record-head">Blockchain record</div>'+
+    '<div class="record"><div class="record-head">Enregistrement blockchain</div>'+
     rows.map(function(r){ return '<div class="row"><div class="rk">'+r[0]+'</div><div class="rv'+(r[2]?' hi':'')+'">'+esc(String(r[1]))+'</div></div>'; }).join('')+
     '</div>'+
-    '<button class="btn-ghost" onclick="staffReset()" style="margin-top:12px">&larr; Verify another</button>'+
+    '<button class="btn-ghost" onclick="staffReset()" style="margin-top:12px">&larr; Vérifier un autre diplôme</button>'+
   '</div>';
 }
 function staffReset(){
@@ -568,7 +623,7 @@ async function sha256(file){
 }
 function setMsg(el,type,text){ el.innerHTML='<div class="msg '+type+'">'+text+'</div>'; }
 function setLt(id,t){ var el=document.getElementById(id); if(el) el.textContent=t; }
-function fmtSize(b){ if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(1)+' MB'; }
+function fmtSize(b){ if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' Ko'; return (b/1048576).toFixed(1)+' Mo'; }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 window.addEventListener('DOMContentLoaded',function(){
@@ -579,7 +634,7 @@ window.addEventListener('DOMContentLoaded',function(){
     showView('staffing');
     document.getElementById('staff-input').style.display='none';
     document.getElementById('staff-loading').style.display='block';
-    setLt('staff-loader-text','Querying blockchain…');
+    setLt('staff-loader-text','Interrogation de la blockchain…');
     fetch(API+'/api/verify/'+hash+'?full=true')
       .then(function(r){ return r.json(); })
       .then(function(d){ staffShowResult(d,hash); })
