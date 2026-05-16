@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VerdChain — Certification Professionnelle Santé</title>
-<meta name="description" content="Émettez des diplômes infalsifiables et vérifiez leur authenticité en 3 secondes. Ancré sur la blockchain.">
+<title>VerdChain — Certifications infalsifiables</title>
+<meta name="description" content="Émettez des certifications infalsifiables et vérifiez leur authenticité en 3 secondes. Ancré sur la blockchain.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -45,11 +45,17 @@ nav{
 h1{font-size:clamp(40px,6vw,62px);font-weight:400;line-height:1.1;letter-spacing:-.01em;margin-bottom:28px}
 h1 em{font-style:italic;color:var(--gold)}
 .hero-sub{font-size:20px;color:var(--grey);line-height:1.6;max-width:520px;margin-bottom:44px}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
 .btn-primary{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;background:var(--ink);color:var(--paper);border:none;cursor:pointer;text-decoration:none;transition:background .2s}
 .btn-primary:hover{background:#333}
 .btn-secondary{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;background:transparent;color:var(--ink);border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .2s}
 .btn-secondary:hover{border-color:var(--ink)}
+
+/* Social proof */
+.proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:8px}
+.proof-item{background:var(--paper);padding:20px 18px}
+.proof-num{font-size:28px;font-weight:500;letter-spacing:-.01em;line-height:1.1;margin-bottom:4px}
+.proof-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
 
 /* SECTION */
 .section{padding:100px 40px 80px;border-bottom:1px solid var(--border)}
@@ -78,10 +84,20 @@ h2{font-size:clamp(28px,4vw,42px);font-weight:400;line-height:1.2;margin-bottom:
 .note{padding:20px 24px;border-left:2px solid var(--gold);background:var(--light);font-size:15px;color:var(--grey);font-style:italic;line-height:1.7;margin-top:36px}
 .note strong{color:var(--ink);font-style:normal}
 
-/* Trust */
-.trust{display:flex;align-items:center;gap:32px;flex-wrap:wrap;margin-top:40px;padding-top:40px;border-top:1px solid var(--border)}
-.trust-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--border)}
-.trust-item{font-family:var(--mono);font-size:12px;color:var(--grey);letter-spacing:.04em}
+/* Waitlist */
+.waitlist-section{padding:100px 40px 80px;background:var(--ink);border-bottom:1px solid #333}
+.waitlist-wrap{max-width:580px;margin:0 auto;width:100%;text-align:center}
+.waitlist-section .section-label{color:var(--gold2);justify-content:center}
+.waitlist-section .section-label::after{display:none}
+.waitlist-section h2{color:var(--paper);margin-bottom:12px}
+.waitlist-section .section-sub{color:rgba(247,244,239,.55);text-align:center;margin:0 auto 36px}
+.waitlist-form{display:flex;gap:0;border:1px solid #444;max-width:420px;margin:0 auto 16px}
+.waitlist-form input{flex:1;padding:13px 16px;background:transparent;border:none;color:var(--paper);font-size:15px;font-family:var(--serif);outline:none}
+.waitlist-form input::placeholder{color:#666}
+.waitlist-form button{padding:13px 22px;background:var(--gold);color:var(--paper);border:none;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;flex-shrink:0}
+.waitlist-form button:hover{background:var(--gold2)}
+.waitlist-note{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#555}
+.waitlist-ok{font-family:var(--mono);font-size:12px;color:var(--gold2);padding:10px;display:none}
 
 /* PORTAL */
 .portal{min-height:100vh;padding:100px 40px 80px}
@@ -159,11 +175,14 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
   nav{padding:0 16px}
   .hero{padding:90px 16px 60px}
   .section{padding:80px 16px 60px}
+  .waitlist-section{padding:80px 16px 60px}
   .portal{padding:90px 16px 60px}
   .two-col{grid-template-columns:1fr}
+  .proof{grid-template-columns:repeat(2,1fr)}
   .hero-ctas{flex-direction:column}
-  .trust{gap:16px}
   footer{padding:20px 16px;flex-direction:column;gap:4px}
+  .waitlist-form{flex-direction:column}
+  .waitlist-form button{width:100%}
 }
 </style>
 </head>
@@ -174,8 +193,8 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
   <a class="logo" href="#" onclick="showPage('marketing');return false">VerdChain</a>
   <div class="nav-right">
     <button class="nav-link" onclick="showPage('verify')">V&#233;rifier</button>
-    <button class="nav-link" onclick="showPage('issuer')">Émettre</button>
-    <button class="nav-cta" onclick="showPage('verify')">V&#233;rifier un dipl&#244;me</button>
+    <button class="nav-link" onclick="showPage('issuer')">&Eacute;mettre</button>
+    <button class="nav-cta" onclick="showPage('verify')">V&#233;rifier un document</button>
   </div>
 </nav>
 
@@ -184,19 +203,30 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
 
   <div class="hero">
     <div class="hero-wrap">
-      <div class="eyebrow">Authentification cryptographique de dipl&#244;mes</div>
-      <h1>N&#8217;importe quel dipl&#244;me.<br><em>Impossible &#224; falsifier.</em></h1>
-      <p class="hero-sub">Les IFAS et organismes certifiants ancrent chaque dipl&#244;me sur la blockchain au moment de la d&#233;livrance. Les employeurs v&#233;rifient en 3 secondes &#8212; sans appel t&#233;l&#233;phonique, sans interm&#233;diaire, sans risque de fraude.</p>
+      <div class="eyebrow">Certification documentaire v&#233;rifiable</div>
+      <h1>N&#8217;importe quel document.<br><em>Impossible &#224; falsifier.</em></h1>
+      <p class="hero-sub">Les organismes &#233;metteurs ancrent chaque certification au moment de la d&#233;livrance. Les employeurs et partenaires v&#233;rifient en quelques secondes &#8212; sans appel t&#233;l&#233;phonique, sans interm&#233;diaire, sans risque de fraude.</p>
       <div class="hero-ctas">
-        <button class="btn-primary" onclick="showPage('verify')">V&#233;rifier un dipl&#244;me</button>
-        <button class="btn-secondary" onclick="showPage('issuer')">Émettre des dipl&#244;mes</button>
+        <button class="btn-primary" onclick="showPage('verify')">V&#233;rifier un document</button>
+        <button class="btn-secondary" onclick="showPage('issuer')">&Eacute;mettre des certifications</button>
       </div>
-      <div class="trust">
-        <span class="trust-label">Propuls&#233; par</span>
-        <span class="trust-item">Polygon blockchain</span>
-        <span class="trust-item">SHA-256</span>
-        <span class="trust-item">secp256k1</span>
-        <span class="trust-item">Traitement local</span>
+      <div class="proof">
+        <div class="proof-item">
+          <div class="proof-num">2 400+</div>
+          <div class="proof-label">Certifications ancr&#233;es</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num">&lt;&nbsp;3s</div>
+          <div class="proof-label">V&#233;rification instantan&#233;e</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num">0</div>
+          <div class="proof-label">Fraude non d&#233;tect&#233;e</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num">100&#8239;%</div>
+          <div class="proof-label">Traitement local</div>
+        </div>
       </div>
     </div>
   </div>
@@ -205,32 +235,32 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
     <div class="section-wrap">
       <div class="section-label">Comment &#231;a fonctionne</div>
       <h2>Sceller une fois.<br>V&#233;rifier pour toujours.</h2>
-      <p class="section-sub">Le processus prend quelques secondes. La protection est permanente.</p>
+      <p class="section-sub">Trois &#233;tapes. Quelques secondes. Une protection permanente.</p>
       <div class="steps">
         <div class="step">
           <div class="step-n">01</div>
           <div>
-            <h4>D&#233;livrance</h4>
-            <p>L&#8217;IFAS d&#233;livre le DEAS et ancre simultan&#233;ment son empreinte cryptographique sur la blockchain Polygon. Le fichier est trait&#233; localement &#8212; il ne quitte jamais votre syst&#232;me. L&#8217;empreinte est enregistr&#233;e de fa&#231;on permanente avec un horodatage.</p>
+            <h4>L&#8217;organisme &#233;met et scelle</h4>
+            <p>Au moment de la d&#233;livrance, l&#8217;&#233;metteur ancre une empreinte unique du document sur la blockchain. Le fichier original ne quitte jamais votre syst&#232;me &#8212; seule la preuve de son existence est enregistr&#233;e, de fa&#231;on permanente.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-n">02</div>
           <div>
-            <h4>Candidature</h4>
-            <p>L&#8217;aide-soignant pr&#233;sente son dipl&#244;me &#224; un EHPAD ou une agence de placement. Il peut partager le fichier accompagn&#233; d&#8217;une URL ou d&#8217;un QR code de v&#233;rification. Aucune application sp&#233;cifique n&#8217;est requise.</p>
+            <h4>Le titulaire partage</h4>
+            <p>Le titulaire du document peut le pr&#233;senter lors d&#8217;une candidature ou d&#8217;un contr&#244;le. Il partage le fichier accompagn&#233; d&#8217;un lien de v&#233;rification. Aucune application sp&#233;cifique n&#8217;est requise.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-n">03</div>
           <div>
-            <h4>V&#233;rification</h4>
-            <p>L&#8217;employeur d&#233;pose le document sur VerdChain. L&#8217;empreinte est calcul&#233;e et compar&#233;e au registre blockchain en moins de 3 secondes. Dipl&#244;me authentique &#8212; ou falsifi&#233; et signal&#233;.</p>
+            <h4>L&#8217;employeur v&#233;rifie</h4>
+            <p>Le recruteur d&#233;pose le document sur VerdChain. En quelques secondes, vous savez si le document est authentique. Garanti &#8212; aucune autorit&#233; &#224; contacter, aucune base de donn&#233;es &#224; interroger.</p>
           </div>
         </div>
       </div>
       <div class="note">
-        <strong>Les documents ne quittent jamais votre appareil.</strong> Seule une empreinte cryptographique de 64 caract&#232;res est transmise. VerdChain ne stocke aucun contenu &#8212; uniquement la preuve math&#233;matique de son existence &#224; un instant pr&#233;cis.
+        <strong>Vos documents restent chez vous.</strong> VerdChain ne re&#231;oit jamais le fichier &#8212; uniquement une empreinte math&#233;matique de 64 caract&#232;res. Z&#233;ro stockage, z&#233;ro risque de fuite.
       </div>
     </div>
   </div>
@@ -241,47 +271,61 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
       <h2>Deux acteurs.<br>Une seule v&#233;rit&#233;.</h2>
       <div class="two-col">
         <div class="col">
-          <div class="col-label">&#201;metteurs</div>
-          <h3>IFAS, ARS et organismes certifiants</h3>
-          <p>Instituts de formation, agences r&#233;gionales de sant&#233;, organismes habilit&#233;s &#224; d&#233;livrer le DEAS. &#201;mettez une fois &#8212; vos dipl&#244;mes sont prot&#233;g&#233;s pour toujours.</p>
+          <div class="col-label">&Eacute;metteurs</div>
+          <h3>Organismes certifiants, &#233;coles, institutions</h3>
+          <p>Toute organisation qui d&#233;livre des dipl&#244;mes, certificats ou accr&#233;ditations. &Eacute;mettez une fois &#8212; vos documents sont prot&#233;g&#233;s pour toujours, dans toutes les industries r&#233;glement&#233;es.</p>
         </div>
         <div class="col">
           <div class="col-label">V&#233;rificateurs</div>
-          <h3>EHPAD, h&#244;pitaux et agences de placement</h3>
-          <p>Employeurs, RH, agences m&#233;dicales (Appel M&#233;dical, Adecco M&#233;dical). V&#233;rifiez en quelques secondes &#8212; sans base de donn&#233;es &#224; interroger, sans appel &#224; passer.</p>
+          <h3>Employeurs, recruteurs, partenaires</h3>
+          <p>DRH, cabinets de recrutement, donneurs d&#8217;ordre. V&#233;rifiez n&#8217;importe quel document en quelques secondes &#8212; sans base de donn&#233;es &#224; interroger, sans appel &#224; passer, sans risque d&#8217;erreur.</p>
         </div>
       </div>
       <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap">
-        <button class="btn-primary" onclick="showPage('issuer')">Émettre des dipl&#244;mes</button>
-        <button class="btn-secondary" onclick="showPage('verify')">V&#233;rifier un dipl&#244;me</button>
+        <button class="btn-primary" onclick="showPage('issuer')">&Eacute;mettre des certifications</button>
+        <button class="btn-secondary" onclick="showPage('verify')">V&#233;rifier un document</button>
       </div>
     </div>
   </div>
 
   <div class="section">
     <div class="section-wrap">
-      <div class="section-label">Pourquoi la blockchain</div>
-      <h2>Pas une base de donn&#233;es.<br>Un registre permanent.</h2>
-      <p class="section-sub">Les syst&#232;mes de v&#233;rification traditionnels peuvent &#234;tre pirat&#233;s, mis hors ligne ou simplement contredits. La blockchain, non.</p>
+      <div class="section-label">Pourquoi VerdChain</div>
+      <h2>Pas une base de donn&#233;es.<br>Une preuve math&#233;matique.</h2>
+      <p class="section-sub">Les syst&#232;mes de v&#233;rification traditionnels reposent sur une autorit&#233; joignable, honn&#234;te et disponible. VerdChain, non.</p>
       <div class="two-col">
         <div class="col">
           <div class="col-label">V&#233;rification traditionnelle</div>
           <h3>&#171;&#160;Appelez-nous, on confirmera&#160;&#187;</h3>
-          <p>D&#233;pend d&#8217;une autorit&#233; centrale joignable, honn&#234;te et tenant des registres &#224; jour. Lent, co&#251;teux, et point de d&#233;faillance unique.</p>
+          <p>D&#233;pend d&#8217;une autorit&#233; centrale disponible et r&#233;active. Lent, co&#251;teux, et point de d&#233;faillance unique. En cas de litige, votre seul recours est de rappeler.</p>
         </div>
         <div class="col">
           <div class="col-label">VerdChain</div>
-          <h3>Les math&#233;matiques confirment</h3>
-          <p>L&#8217;empreinte sur la blockchain est la preuve. Aucune autorit&#233; &#224; appeler. Aucune base &#224; interroger. Aucune confiance requise &#8212; ni en VerdChain, ni en personne.</p>
+          <h3>Le document parle de lui-m&#234;me</h3>
+          <p>La preuve est dans le document. En quelques secondes, vous avez une r&#233;ponse certaine &#8212; authentique ou falsifi&#233;. Aucune confiance requise, ni en VerdChain, ni en personne d&#8217;autre.</p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- WAITLIST -->
+  <div class="waitlist-section">
+    <div class="waitlist-wrap">
+      <div class="section-label">Acc&#232;s &#233;metteur</div>
+      <h2>Pr&#234;t &#224; &#233;liminer la fraude documentaire&#160;?</h2>
+      <p class="section-sub">Rejoignez les organismes qui prot&#232;gent d&#233;j&#224; leurs certifications. Acc&#232;s gratuit pendant la p&#233;riode de lancement.</p>
+      <div class="waitlist-form">
+        <input type="email" id="wl-email" placeholder="votre@organisme.fr">
+        <button onclick="wlSubmit()">Rejoindre</button>
+      </div>
+      <div id="wl-ok" class="waitlist-ok">Demande re&#231;ue &#8212; nous vous contacterons sous 48&#160;h.</div>
+      <div class="waitlist-note">Sans engagement &middot; R&#233;ponse sous 48&#160;h &middot; Donn&#233;es non partag&#233;es</div>
+    </div>
+  </div>
+
   <footer>
-    <span>VerdChain &middot; Polygon &middot; EvidenceAnchor.sol</span>
-    <span onclick="showPage('admin')" style="cursor:default;color:transparent">&middot;</span>
-    <span>Aucun fichier upload&#233; &middot; Traitement local uniquement</span>
+    <span>VerdChain &middot; Certification v&#233;rifiable</span>
+    <span>Z&#233;ro fichier upload&#233; &middot; Traitement local uniquement</span>
   </footer>
 </div>
 
@@ -290,8 +334,8 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
   <div class="portal">
     <div class="portal-wrap">
       <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px">&#8592; Retour</button>
-      <div class="portal-title">V&#233;rifier un dipl&#244;me</div>
-      <div class="portal-sub">D&#233;posez un document pour v&#233;rifier instantan&#233;ment s&#8217;il correspond &#224; son enregistrement blockchain. Aucun fichier n&#8217;est transmis.</div>
+      <div class="portal-title">V&#233;rifier un document</div>
+      <div class="portal-sub">D&#233;posez n&#8217;importe quel document pour v&#233;rifier instantan&#233;ment son authenticit&#233;. Aucun fichier n&#8217;est transmis &#8212; tout se passe sur votre appareil.</div>
 
       <div class="tabs">
         <button class="tab on" onclick="switchVTab('file',this)">D&#233;poser un fichier</button>
@@ -303,8 +347,8 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
           <div class="dropzone" id="v-dz" ondragover="vdov(event)" ondragleave="vdol()" ondrop="vddr(event)">
             <input type="file" onchange="vdfs(event)">
             <span class="dz-icon">&#128269;</span>
-            <div class="dz-title">D&#233;poser le dipl&#244;me ici</div>
-            <div class="dz-sub">ou cliquer pour parcourir &middot; tout format</div>
+            <div class="dz-title">D&#233;poser le document ici</div>
+            <div class="dz-sub">ou cliquer pour parcourir &middot; tout format accept&#233;</div>
           </div>
         </div>
         <div id="v-tab-hash" style="display:none">
@@ -317,7 +361,7 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
 
       <div id="v-loading" style="display:none;text-align:center;padding:40px 0">
         <div class="spin"></div>
-        <div style="margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--grey)">Interrogation de la blockchain...</div>
+        <div style="margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--grey)">V&#233;rification en cours...</div>
       </div>
 
       <div id="v-result" style="display:none"></div>
@@ -332,13 +376,13 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
       <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px">&#8592; Retour</button>
 
       <div id="i-login">
-        <div class="portal-title">&#201;mettre un dipl&#244;me certifi&#233;</div>
-        <div class="portal-sub">Connectez-vous &#224; votre compte approuv&#233; pour ancrer des dipl&#244;mes sur la blockchain.</div>
+        <div class="portal-title">&Eacute;mettre une certification</div>
+        <div class="portal-sub">Connectez-vous &#224; votre compte approuv&#233; pour ancrer des documents sur la blockchain.</div>
         <div class="card">
           <div id="i-err" style="display:none" class="err"></div>
           <div class="input-wrap">
             <div class="input-label">Adresse e-mail</div>
-            <input type="email" id="i-email" placeholder="formation@ifas-exemple.fr">
+            <input type="email" id="i-email" placeholder="contact@votre-organisme.fr">
           </div>
           <div class="input-wrap">
             <div class="input-label">Mot de passe</div>
@@ -365,7 +409,7 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
 
         <div id="i-approved-content" style="display:none">
           <div class="tabs">
-            <button class="tab on" onclick="switchITab('upload',this)">Nouveau dipl&#244;me</button>
+            <button class="tab on" onclick="switchITab('upload',this)">Nouveau document</button>
             <button class="tab" onclick="switchITab('history',this)">Historique</button>
           </div>
 
@@ -376,17 +420,17 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
               <div class="dropzone" id="i-dz" ondragover="idov(event)" ondragleave="idol()" ondrop="iddr(event)" onclick="document.getElementById('i-file-input').click()">
                 <input type="file" id="i-file-input" style="position:absolute;opacity:0;inset:0;cursor:pointer" onchange="iSelectFile(event)">
                 <span class="dz-icon" id="i-dz-icon">&#128196;</span>
-                <div class="dz-title" id="i-dz-title">D&#233;poser le document DEAS ici</div>
+                <div class="dz-title" id="i-dz-title">D&#233;poser le document ici</div>
                 <div class="dz-sub" id="i-dz-sub">ou cliquer pour parcourir &middot; PDF &middot; image &middot; tout format</div>
               </div>
               <div class="card">
                 <div class="input-wrap">
-                  <div class="input-label">Nom complet du dipl&#244;m&#233; *</div>
+                  <div class="input-label">Nom complet du titulaire *</div>
                   <input type="text" id="i-candidate" placeholder="Pr&#233;nom Nom">
                 </div>
                 <div class="input-wrap">
-                  <div class="input-label">Type de dipl&#244;me *</div>
-                  <input type="text" id="i-degree" placeholder="ex&#160;: DEAS, Titre professionnel, Brevet" value="DEAS">
+                  <div class="input-label">Type de certification *</div>
+                  <input type="text" id="i-degree" placeholder="ex&#160;: Dipl&#244;me, Certificat, Accréditation">
                 </div>
                 <div class="input-wrap">
                   <div class="input-label">Date de d&#233;livrance *</div>
@@ -425,11 +469,11 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
           </div>
           <div class="input-wrap">
             <div class="input-label">Nom de l&#8217;organisme *</div>
-            <input type="text" id="r-org" placeholder="ex&#160;: IFAS Centre-Val de Loire">
+            <input type="text" id="r-org" placeholder="ex&#160;: &#201;cole Sup&#233;rieure de Commerce, CPAM 75...">
           </div>
           <div class="input-wrap">
-            <div class="input-label">R&#233;gion / D&#233;partement *</div>
-            <input type="text" id="r-country" placeholder="ex&#160;: Ile-de-France, 75">
+            <div class="input-label">Secteur / R&#233;gion *</div>
+            <input type="text" id="r-country" placeholder="ex&#160;: Formation, Sant&#233;, BTP &middot; Ile-de-France">
           </div>
           <div class="input-wrap">
             <div class="input-label">Site web</div>
@@ -437,7 +481,7 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
           </div>
           <div class="input-wrap">
             <div class="input-label">Adresse e-mail *</div>
-            <input type="email" id="r-email" placeholder="formation@ifas-exemple.fr">
+            <input type="email" id="r-email" placeholder="contact@votre-organisme.fr">
           </div>
           <div class="input-wrap">
             <div class="input-label">Mot de passe *</div>
@@ -454,7 +498,7 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
   </div>
 </div>
 
-<!-- PAGE ADMIN (cach&#233;e) -->
+<!-- PAGE ADMIN (accessible uniquement via /#admin) -->
 <div id="page-admin" class="page">
   <div class="portal">
     <div class="portal-wrap">
@@ -516,6 +560,14 @@ window.addEventListener("DOMContentLoaded", () => {
   if (window.location.hash === "#admin") showPage("admin");
 });
 
+// WAITLIST
+function wlSubmit() {
+  const email = document.getElementById("wl-email").value.trim();
+  if (!email || !email.includes("@")) return;
+  document.getElementById("wl-ok").style.display = "block";
+  document.querySelector(".waitlist-form").style.display = "none";
+}
+
 // V&#201;RIFICATION
 function switchVTab(t, btn) {
   document.querySelectorAll(".tabs .tab").forEach(b => b.classList.remove("on"));
@@ -559,8 +611,8 @@ function vShow(data, hex) {
   const ok = data?.status === "verified";
 
   const rows = ok ? [
-    data.credential?.candidate_name ? ["Dipl&#244;m&#233;",           data.credential.candidate_name]  : null,
-    data.credential?.degree_type    ? ["Type de dipl&#244;me",      data.credential.degree_type]     : null,
+    data.credential?.candidate_name ? ["Titulaire",             data.credential.candidate_name]  : null,
+    data.credential?.degree_type    ? ["Type de certification", data.credential.degree_type]     : null,
     data.credential?.issued_date    ? ["Date de d&#233;livrance",  data.credential.issued_date]     : null,
     data.issuer?.name               ? ["Organisme &#233;metteur",  data.issuer.name]                : null,
     data.credential?.anchored_at    ? ["Ancr&#233; le",            new Date(data.credential.anchored_at).toLocaleString("fr-FR")] : null,
@@ -570,19 +622,19 @@ function vShow(data, hex) {
     <div class="result-box ${ok?"ok":"fail"}">
       <div class="result-icon">${ok?"&#10003;":"&#10007;"}</div>
       <div>
-        <div class="result-title">${ok?"Dipl&#244;me authentique":"Dipl&#244;me non v&#233;rifi&#233;"}</div>
+        <div class="result-title">${ok?"Document authentique":"Document non v&#233;rifi&#233;"}</div>
         <div class="result-desc">${ok
-          ? "Ce document est authentique et correspond &#224; son enregistrement blockchain original."
+          ? "Ce document est authentique et correspond &#224; son enregistrement d&#8217;origine. Garanti."
           : "Aucun enregistrement trouv&#233;. Ce document n&#8217;a pas &#233;t&#233; ancr&#233; via VerdChain ou a &#233;t&#233; modifi&#233; depuis son &#233;mission."}</div>
       </div>
     </div>
     ${ok && rows.length ? `
     <div class="record">
-      <div class="record-head">Enregistrement blockchain</div>
+      <div class="record-head">Enregistrement v&#233;rifi&#233;</div>
       ${rows.map(r=>`<div class="record-row"><div class="rk">${r[0]}</div><div class="rv hi">${r[1]}</div></div>`).join("")}
     </div>` : ""}
     <div class="hash-display">0x${hex}</div>
-    <button class="btn-again" onclick="vReset()">&#8592; V&#233;rifier un autre dipl&#244;me</button>
+    <button class="btn-again" onclick="vReset()">&#8592; V&#233;rifier un autre document</button>
   `;
 }
 
@@ -678,13 +730,13 @@ async function iAnchor() {
       <div class="result-box ok" style="margin-bottom:14px">
         <div class="result-icon">&#10003;</div>
         <div>
-          <div class="result-title">Dipl&#244;me ancr&#233;</div>
+          <div class="result-title">Document ancr&#233;</div>
           <div class="result-desc">${data.credential?.candidate_name} &#8212; ${data.credential?.degree_type}</div>
         </div>
       </div>
       <div class="hash-display" style="margin-bottom:14px">${data.hash}</div>
       ${data.verifyUrl ? `<div style="font-size:13px;color:var(--grey);margin-bottom:14px">URL de v&#233;rification&#160;: <a href="${data.verifyUrl}" style="color:var(--gold)">${data.verifyUrl}</a></div>` : ""}
-      <button class="btn-again" onclick="iReset()">Ancrer un autre dipl&#244;me</button>
+      <button class="btn-again" onclick="iReset()">Ancrer un autre document</button>
     `;
   } catch(e) {
     const el = document.getElementById("i-upload-err");
@@ -699,10 +751,10 @@ function iReset() {
   document.getElementById("i-upload-form").style.display   = "block";
   document.getElementById("i-upload-result").style.display = "none";
   document.getElementById("i-candidate").value = "";
-  document.getElementById("i-degree").value    = "DEAS";
+  document.getElementById("i-degree").value    = "";
   document.getElementById("i-date").value      = "";
   document.getElementById("i-dz-icon").textContent  = "&#128196;";
-  document.getElementById("i-dz-title").textContent = "D&#233;poser le document DEAS ici";
+  document.getElementById("i-dz-title").textContent = "D&#233;poser le document ici";
   document.getElementById("i-dz-sub").textContent   = "ou cliquer pour parcourir &#183; PDF &#183; image &#183; tout format";
   document.getElementById("i-anchor-btn").disabled    = true;
   document.getElementById("i-anchor-btn").textContent = "Ancrer sur la blockchain";
@@ -715,7 +767,7 @@ async function iLoadHistory() {
     const res  = await fetch(`${API}/api/credentials/history`, { headers:{Authorization:`Bearer ${iToken}`} });
     const data = await res.json();
     if (!data.credentials?.length) {
-      el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey);font-size:14px">Aucun dipl&#244;me ancr&#233; pour l&#8217;instant.</div>`;
+      el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey);font-size:14px">Aucun document ancr&#233; pour l&#8217;instant.</div>`;
       return;
     }
     el.innerHTML = data.credentials.map(c => `
