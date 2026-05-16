@@ -45,17 +45,11 @@ nav{
 h1{font-size:clamp(40px,6vw,62px);font-weight:400;line-height:1.1;letter-spacing:-.01em;margin-bottom:28px}
 h1 em{font-style:italic;color:var(--gold)}
 .hero-sub{font-size:20px;color:var(--grey);line-height:1.6;max-width:520px;margin-bottom:44px}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 .btn-primary{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;background:var(--ink);color:var(--paper);border:none;cursor:pointer;text-decoration:none;transition:background .2s}
 .btn-primary:hover{background:#333}
 .btn-secondary{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;background:transparent;color:var(--ink);border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .2s}
 .btn-secondary:hover{border-color:var(--ink)}
-
-/* Social proof */
-.proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:8px}
-.proof-item{background:var(--paper);padding:20px 18px}
-.proof-num{font-size:28px;font-weight:500;letter-spacing:-.01em;line-height:1.1;margin-bottom:4px}
-.proof-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
 
 /* SECTION */
 .section{padding:100px 40px 80px;border-bottom:1px solid var(--border)}
@@ -178,7 +172,6 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
   .waitlist-section{padding:80px 16px 60px}
   .portal{padding:90px 16px 60px}
   .two-col{grid-template-columns:1fr}
-  .proof{grid-template-columns:repeat(2,1fr)}
   .hero-ctas{flex-direction:column}
   footer{padding:20px 16px;flex-direction:column;gap:4px}
   .waitlist-form{flex-direction:column}
@@ -193,8 +186,7 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
   <a class="logo" href="#" onclick="showPage('marketing');return false">VerdChain</a>
   <div class="nav-right">
     <button class="nav-link" onclick="showPage('verify')">V&#233;rifier</button>
-    <button class="nav-link" onclick="showPage('issuer')">&Eacute;mettre</button>
-    <button class="nav-cta" onclick="showPage('verify')">V&#233;rifier un document</button>
+    <button class="nav-cta" onclick="showPage('issuer')">&Eacute;mettre</button>
   </div>
 </nav>
 
@@ -209,24 +201,6 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
       <div class="hero-ctas">
         <button class="btn-primary" onclick="showPage('verify')">V&#233;rifier un document</button>
         <button class="btn-secondary" onclick="showPage('issuer')">&Eacute;mettre des certifications</button>
-      </div>
-      <div class="proof">
-        <div class="proof-item">
-          <div class="proof-num">2 400+</div>
-          <div class="proof-label">Certifications ancr&#233;es</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-num">&lt;&nbsp;3s</div>
-          <div class="proof-label">V&#233;rification instantan&#233;e</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-num">0</div>
-          <div class="proof-label">Fraude non d&#233;tect&#233;e</div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-num">100&#8239;%</div>
-          <div class="proof-label">Traitement local</div>
-        </div>
       </div>
     </div>
   </div>
@@ -430,7 +404,7 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
                 </div>
                 <div class="input-wrap">
                   <div class="input-label">Type de certification *</div>
-                  <input type="text" id="i-degree" placeholder="ex&#160;: Dipl&#244;me, Certificat, Accréditation">
+                  <input type="text" id="i-degree" placeholder="ex&#160;: Dipl&#244;me, Certificat, Accr&#233;ditation">
                 </div>
                 <div class="input-wrap">
                   <div class="input-label">Date de d&#233;livrance *</div>
