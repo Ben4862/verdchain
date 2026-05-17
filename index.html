@@ -286,11 +286,12 @@ textarea:focus{border-color:var(--gold)}
           <div class="input-wrap"><div class="input-label">Mot de passe</div><input type="password" id="i-pass"></div>
           <button class="btn-full" onclick="iLogin()">Se connecter</button>
           <div style="margin-top:16px;text-align:center;font-size:14px;color:var(--grey)">Pas de compte&#160;? <span onclick="showPage('register')" style="color:var(--gold);cursor:pointer">Demander l&#8217;acc&#232;s</span></div>
-          <div style="margin-top:12px;text-align:center;font-size:13px;color:var(--grey);font-style:italic">D&#233;mo&#160;: formation@ifas-demo.fr / demo123</div>
+          <div style="margin-top:16px"><button class="btn-secondary" style="width:100%;padding:12px" onclick="iDemoLogin(event)">Voir une d&#233;mo</button></div>
         </div>
       </div>
 
       <div id="i-dash" style="display:none">
+        <div id="i-demo-banner" style="display:none;background:var(--gold);color:var(--paper);padding:8px 16px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;text-align:center;margin-bottom:20px">Mode d&#233;mo &#8212; aucune donn&#233;e r&#233;elle</div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
           <div>
             <div class="portal-title" id="i-org-name">Tableau de bord</div>
@@ -424,6 +425,7 @@ textarea:focus{border-color:var(--gold)}
 const API = "https://verdchain-api.onrender.com";
 let iToken = localStorage.getItem("vc_itoken") || "";
 let aToken = localStorage.getItem("vc_atoken") || "";
+let isDemoMode = false;
 let iFile  = null;
 let iOrgName = "";
 let lastAnchor = null;
@@ -505,7 +507,7 @@ function vShow(data, hex) {
       <div class="result-icon">${ok?"&#10003;":"&#10007;"}</div>
       <div>
         <div class="result-title">${ok?"Document authentique":rev?"Document révoqué":"Document non v&#233;rifi&#233;"}</div>
-        <div class="result-desc">${ok?"Ce document est authentique et correspond à son enregistrement d’origine. Garanti.":rev?"Ce document a été révoqué par l’émetteur. Il n’est plus valide.":"Aucun enregistrement trouvé. Ce document n’a pas été ancré via VerdChain ou a été modifié depuis son émission."}</div>
+        <div class="result-desc">${ok?"Ce document est authentique et correspond à son enregistrement d'origine. Garanti.":rev?"Ce document a été révoqué par l'émetteur. Il n'est plus valide.":"Aucun enregistrement trouvé. Ce document n'a pas été ancré via VerdChain ou a été modifié depuis son émission."}</div>
       </div>
     </div>
     ${ok&&rows.length?`<div class="record"><div class="record-head">Enregistrement v&#233;rifi&#233;</div>${rows.map(r=>`<div class="record-row"><div class="rk">${r[0]}</div><div class="rv hi">${r[1]}</div></div>`).join("")}</div>`:""}
@@ -546,10 +548,25 @@ function iShowDash(issuer) {
   if (issuer?.org_name) { document.getElementById("i-org-name").textContent = issuer.org_name; iOrgName = issuer.org_name; }
 }
 
+async function iDemoLogin(evt) {
+  const btn = evt.target;
+  btn.textContent = "Chargement..."; btn.disabled = true;
+  try {
+    const res  = await fetch(`${API}/api/auth/login`, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:"formation@ifas-demo.fr",password:"demo123"})});
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Connexion &#233;chou&#233;e");
+    iToken = data.token; localStorage.setItem("vc_itoken", iToken);
+    isDemoMode = true;
+    iShowDash(data.issuer);
+    document.getElementById("i-demo-banner").style.display = "block";
+  } catch { btn.textContent = "Voir une d&#233;mo"; btn.disabled = false; }
+}
+
 function iLogout() {
-  iToken = ""; localStorage.removeItem("vc_itoken"); lastAnchor = null;
+  iToken = ""; isDemoMode = false; localStorage.removeItem("vc_itoken"); lastAnchor = null;
   document.getElementById("i-login").style.display = "block";
   document.getElementById("i-dash").style.display  = "none";
+  document.getElementById("i-demo-banner").style.display = "none";
 }
 
 function switchITab(t, btn) {
@@ -650,7 +667,7 @@ async function iLoadHistory() {
           ${isRev?`<div style="font-family:var(--mono);font-size:10px;color:var(--red);margin-top:3px">R&#233;voqu&#233; le ${new Date(c.revokedAt).toLocaleDateString("fr-FR")}</div>`:""}
         </div>
         <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-          <span class="cred-tag${isRev?" revoked":""}">${isRev?"R&#233;voqu&#233;":"Ancr&#233;"}</span>
+          <span class="cred-tag${isRev?" revoked":""}"> ${isRev?"R&#233;voqu&#233;":"Ancr&#233;"}</span>
           ${!isRev?`<button class="btn-pdf" onclick="iDownloadPDF(${i})">PDF</button><button class="btn-rev" onclick="iRevoke('${c.hash}','${c.candidate_name.replace(/'/g,"\\'")}')">R&#233;voquer</button>`:""}
         </div>
       </div>`;
@@ -659,13 +676,13 @@ async function iLoadHistory() {
 }
 
 async function iRevoke(hash, name) {
-  if (!confirm(`R&#233;voquer le certificat de ${name} ? Cette action est irr&#233;versible.`)) return;
-  const reason = prompt("Motif de r&#233;vocation (optionnel) :") || "";
+  if (!confirm(`R&#233;voquer le certificat de ${name} ? Cette action est irr&#233;versible.`)) return;
+  const reason = prompt("Motif de r&#233;vocation (optionnel) :") || "";
   const res = await fetch(`${API}/api/credentials/${hash}/revoke`, {
     method: "PUT", headers: {Authorization:`Bearer ${iToken}`,"Content-Type":"application/json"}, body: JSON.stringify({reason})
   });
   if (res.ok) iLoadHistory();
-  else { const d = await res.json(); alert("Erreur : " + (d.error || "R&#233;vocation &#233;chou&#233;e")); }
+  else { const d = await res.json(); alert("Erreur : " + (d.error || "R&#233;vocation &#233;chou&#233;e")); }
 }
 
 // ===== AUDIT =====
@@ -711,7 +728,7 @@ function csvParse() {
 
 function renderCSVPreview() {
   const el = document.getElementById("csv-preview");
-  if (!csvRows.length) { el.innerHTML = `<div class="err">Aucune ligne valide. Format attendu : nom, type, date (YYYY-MM-DD).</div>`; return; }
+  if (!csvRows.length) { el.innerHTML = `<div class="err">Aucune ligne valide. Format attendu : nom, type, date (YYYY-MM-DD).</div>`; return; }
   el.innerHTML = `
     <div style="margin-bottom:10px;font-family:var(--mono);font-size:11px;color:var(--grey)">${csvRows.length} entr&#233;e(s) d&#233;tect&#233;e(s)</div>
     <div style="border:1px solid var(--border);overflow:auto;max-height:260px;margin-bottom:14px">
@@ -908,7 +925,7 @@ async function aGenInvite(){
   const res=await fetch(`${API}/api/admin/invite`,{method:"POST",headers:{Authorization:`Bearer ${aToken}`}});
   const data=await res.json();
   const el=document.getElementById("a-invite-result");
-  el.textContent=`Code : ${data.code} · ${data.register_url}`;
+  el.textContent=`Code : ${data.code} · ${data.register_url}`;
   el.style.display="block";
 }
 function aLogout(){aToken="";localStorage.removeItem("vc_atoken");document.getElementById("a-login").style.display="block";document.getElementById("a-dash").style.display="none";}
