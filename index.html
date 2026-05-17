@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VerdChain — Certifications infalsifiables</title>
-<meta name="description" content="Émettez des certifications infalsifiables et vérifiez leur authenticité en 3 secondes. Ancré sur la blockchain.">
+<meta name="description" content="Émettez des certifications infalsifiables et vérifiez leur authenticité en 3 secondes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -13,31 +13,18 @@
   --ink:#1a1a18;--paper:#f7f4ef;--gold:#9a7c2e;--gold2:#c4a24a;
   --grey:#888480;--border:#ddd9d0;--light:#edeae2;
   --green:#1a5c3a;--red:#7a1a1a;--white:#fff;
-  --serif:'EB Garamond',Georgia,serif;
-  --mono:'DM Mono',monospace;
+  --serif:'EB Garamond',Georgia,serif;--mono:'DM Mono',monospace;
 }
 html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.7}
-
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:var(--paper);border-bottom:1px solid var(--border);
-  height:54px;padding:0 40px;
-  display:flex;align-items:center;justify-content:space-between;
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--border);height:54px;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:18px;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:.01em}
 .nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;cursor:pointer;border:none;background:none}
+.nav-link{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);cursor:pointer;border:none;background:none;text-decoration:none}
 .nav-link:hover{color:var(--ink)}
-.nav-cta{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:8px 18px;background:var(--ink);color:var(--paper);text-decoration:none;cursor:pointer;border:none}
+.nav-cta{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:8px 18px;background:var(--ink);color:var(--paper);cursor:pointer;border:none}
 .nav-cta:hover{background:#333}
-
-/* LAYOUT */
-.page{display:none}
-.page.active{display:block}
-
-/* MARKETING */
+.page{display:none}.page.active{display:block}
 .hero{min-height:100vh;display:flex;align-items:center;padding:120px 40px 80px;border-bottom:1px solid var(--border)}
 .hero-wrap{max-width:780px;margin:0 auto;width:100%}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px}
@@ -46,54 +33,42 @@ h1{font-size:clamp(40px,6vw,62px);font-weight:400;line-height:1.1;letter-spacing
 h1 em{font-style:italic;color:var(--gold)}
 .hero-sub{font-size:20px;color:var(--grey);line-height:1.6;max-width:520px;margin-bottom:44px}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
-.btn-primary{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;background:var(--ink);color:var(--paper);border:none;cursor:pointer;text-decoration:none;transition:background .2s}
+.btn-primary{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;background:var(--ink);color:var(--paper);border:none;cursor:pointer;transition:background .2s}
 .btn-primary:hover{background:#333}
-.btn-secondary{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;background:transparent;color:var(--ink);border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-secondary{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;background:transparent;color:var(--ink);border:1px solid var(--border);cursor:pointer;transition:all .2s}
 .btn-secondary:hover{border-color:var(--ink)}
-
-/* SECTION */
 .section{padding:100px 40px 80px;border-bottom:1px solid var(--border)}
 .section-wrap{max-width:760px;margin:0 auto;width:100%}
 .section-label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px}
 .section-label::after{content:'';flex:1;height:1px;background:var(--border);max-width:50px}
 h2{font-size:clamp(28px,4vw,42px);font-weight:400;line-height:1.2;margin-bottom:14px}
 .section-sub{font-size:17px;color:var(--grey);margin-bottom:48px;max-width:500px}
-
-/* Steps */
 .steps{border:1px solid var(--border)}
 .step{display:flex;gap:24px;padding:24px 28px;border-bottom:1px solid var(--border);align-items:flex-start}
 .step:last-child{border-bottom:none}
 .step-n{font-family:var(--mono);font-size:22px;color:var(--gold);flex-shrink:0;width:32px;line-height:1.3}
 .step h4{font-size:18px;font-weight:500;margin-bottom:4px}
 .step p{font-size:15px;color:var(--grey);line-height:1.6}
-
-/* Two col */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin:36px 0}
 .col{background:var(--paper);padding:28px}
 .col-label{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 .col h3{font-size:17px;font-weight:500;margin-bottom:8px;line-height:1.3}
 .col p{font-size:15px;color:var(--grey);line-height:1.6}
-
-/* Note */
 .note{padding:20px 24px;border-left:2px solid var(--gold);background:var(--light);font-size:15px;color:var(--grey);font-style:italic;line-height:1.7;margin-top:36px}
 .note strong{color:var(--ink);font-style:normal}
-
-/* Waitlist */
-.waitlist-section{padding:100px 40px 80px;background:var(--ink);border-bottom:1px solid #333}
+.waitlist-section{padding:100px 40px 80px;background:var(--ink)}
 .waitlist-wrap{max-width:580px;margin:0 auto;width:100%;text-align:center}
 .waitlist-section .section-label{color:var(--gold2);justify-content:center}
 .waitlist-section .section-label::after{display:none}
 .waitlist-section h2{color:var(--paper);margin-bottom:12px}
 .waitlist-section .section-sub{color:rgba(247,244,239,.55);text-align:center;margin:0 auto 36px}
-.waitlist-form{display:flex;gap:0;border:1px solid #444;max-width:420px;margin:0 auto 16px}
+.waitlist-form{display:flex;border:1px solid #444;max-width:420px;margin:0 auto 16px}
 .waitlist-form input{flex:1;padding:13px 16px;background:transparent;border:none;color:var(--paper);font-size:15px;font-family:var(--serif);outline:none}
-.waitlist-form input::placeholder{color:#666}
+.waitlist-form input::placeholder{color:#555}
 .waitlist-form button{padding:13px 22px;background:var(--gold);color:var(--paper);border:none;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;flex-shrink:0}
 .waitlist-form button:hover{background:var(--gold2)}
 .waitlist-note{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#555}
 .waitlist-ok{font-family:var(--mono);font-size:12px;color:var(--gold2);padding:10px;display:none}
-
-/* PORTAL */
 .portal{min-height:100vh;padding:100px 40px 80px}
 .portal-wrap{max-width:600px;margin:0 auto;width:100%}
 .portal-title{font-size:28px;font-weight:500;margin-bottom:6px}
@@ -108,16 +83,12 @@ input:focus{border-color:var(--gold)}
 .btn-full:disabled{opacity:.4;cursor:default}
 .err{padding:10px 14px;border:1px solid var(--red);background:#f8f2f2;font-size:13px;color:var(--red);margin-bottom:14px;font-family:var(--mono)}
 .ok{padding:10px 14px;border:1px solid var(--green);background:#f2f8f4;font-size:13px;color:var(--green);margin-bottom:14px;font-family:var(--mono)}
-
-/* Dropzone */
 .dropzone{border:1.5px dashed var(--border);padding:44px 24px;text-align:center;cursor:pointer;position:relative;background:var(--white);transition:all .2s;margin-bottom:16px}
 .dropzone:hover,.dropzone.over{border-color:var(--gold);background:#fdfbf6}
 .dropzone input{position:absolute;inset:0;opacity:0;cursor:pointer}
 .dz-icon{font-size:28px;display:block;margin-bottom:10px}
 .dz-title{font-size:17px;font-weight:500;margin-bottom:5px}
 .dz-sub{font-family:var(--mono);font-size:11px;color:var(--grey)}
-
-/* Result */
 .result-box{padding:28px;border:1px solid;margin-bottom:14px;display:flex;gap:18px;align-items:flex-start}
 .result-box.ok{border-color:var(--green);background:#f2f8f4}
 .result-box.fail{border-color:var(--red);background:#f8f2f2}
@@ -130,50 +101,50 @@ input:focus{border-color:var(--gold)}
 .record-head{padding:8px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);border-bottom:1px solid var(--border);background:var(--light)}
 .record-row{display:flex;padding:9px 14px;border-bottom:1px solid #f0ede6;gap:14px}
 .record-row:last-child{border-bottom:none}
-.rk{font-family:var(--mono);font-size:10px;text-transform:uppercase;color:var(--grey);width:130px;flex-shrink:0;padding-top:2px}
+.rk{font-family:var(--mono);font-size:10px;text-transform:uppercase;color:var(--grey);width:140px;flex-shrink:0;padding-top:2px}
 .rv{font-family:var(--mono);font-size:12px;color:var(--ink);word-break:break-all;line-height:1.5}
 .rv.hi{color:var(--green);font-size:13px}
 .hash-display{font-family:var(--mono);font-size:10px;color:var(--border);word-break:break-all;margin-bottom:14px}
 .btn-again{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);background:none;border:1px solid var(--border);padding:10px 20px;cursor:pointer;margin-top:4px}
 .btn-again:hover{color:var(--ink);border-color:var(--ink)}
-
-/* Tabs */
-.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:24px}
-.tab{padding:10px 20px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;background:none;color:var(--grey);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:24px;overflow-x:auto}
+.tab{padding:10px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;background:none;color:var(--grey);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;flex-shrink:0}
 .tab.on{color:var(--ink);border-bottom-color:var(--gold)}
-
-/* History */
 .cred-item{display:flex;gap:12px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border)}
 .cred-item:last-child{border-bottom:none}
-.cred-name{font-weight:500;font-size:15px;flex:1}
+.cred-name{font-weight:500;font-size:15px}
 .cred-meta{font-size:13px;color:var(--grey)}
 .cred-tag{font-family:var(--mono);font-size:10px;padding:2px 8px;background:#f2f8f4;color:var(--green);border:1px solid rgba(26,92,58,.27)}
-
-/* Spinner */
+.cred-tag.revoked{background:#f8f2f2;color:var(--red);border-color:rgba(122,26,26,.27)}
+.btn-rev{padding:5px 10px;font-family:var(--mono);font-size:10px;cursor:pointer;background:transparent;color:var(--red);border:1px solid rgba(122,26,26,.27);margin-left:4px}
+.btn-rev:hover{background:#f8f2f2}
+.btn-pdf{padding:5px 10px;font-family:var(--mono);font-size:10px;cursor:pointer;background:transparent;color:var(--grey);border:1px solid var(--border);margin-left:4px}
+.btn-pdf:hover{color:var(--ink);border-color:var(--ink)}
+.audit-item{display:flex;gap:14px;align-items:flex-start;padding:10px 14px;border-bottom:1px solid var(--border);font-size:13px}
+.audit-item:last-child{border-bottom:none}
+.audit-time{font-family:var(--mono);font-size:10px;color:var(--grey);width:130px;flex-shrink:0;padding-top:1px}
+.audit-badge{font-family:var(--mono);font-size:10px;padding:2px 8px;flex-shrink:0;white-space:nowrap}
+.audit-badge.anchor{color:var(--green);background:#f2f8f4;border:1px solid rgba(26,92,58,.27)}
+.audit-badge.revoke{color:var(--red);background:#f8f2f2;border:1px solid rgba(122,26,26,.27)}
+.audit-badge.login{color:var(--grey);background:var(--light);border:1px solid var(--border)}
+.audit-detail{flex:1;color:var(--ink)}
 .spin{display:inline-block;width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--ink);border-radius:50%;animation:rotate .7s linear infinite}
 @keyframes rotate{to{transform:rotate(360deg)}}
-
-/* Pending */
 .pending-item{padding:20px;border-bottom:1px solid var(--border)}
 .pending-item:last-child{border-bottom:none}
 .pending-name{font-weight:500;font-size:16px;margin-bottom:4px}
 .pending-email{font-size:13px;color:var(--grey);margin-bottom:10px;font-family:var(--mono)}
 .btn-approve{padding:8px 16px;background:var(--green);color:var(--white);border:none;font-family:var(--mono);font-size:11px;cursor:pointer;margin-right:8px}
 .btn-reject{padding:8px 16px;background:transparent;color:var(--red);border:1px solid rgba(122,26,26,.27);font-family:var(--mono);font-size:11px;cursor:pointer}
-
-/* Footer */
 footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--border);border-top:1px solid var(--border);flex-wrap:wrap;gap:8px}
-
-/* Mobile */
+textarea{font-family:var(--mono);font-size:12px;padding:12px;border:1px solid var(--border);outline:none;resize:vertical;width:100%;background:var(--white)}
+textarea:focus{border-color:var(--gold)}
 @media(max-width:640px){
   nav{padding:0 16px}
-  .hero{padding:90px 16px 60px}
-  .section{padding:80px 16px 60px}
-  .waitlist-section{padding:80px 16px 60px}
-  .portal{padding:90px 16px 60px}
+  .hero,.section,.waitlist-section,.portal{padding-left:16px;padding-right:16px}
   .two-col{grid-template-columns:1fr}
   .hero-ctas{flex-direction:column}
-  footer{padding:20px 16px;flex-direction:column;gap:4px}
+  footer{padding:20px 16px;flex-direction:column}
   .waitlist-form{flex-direction:column}
   .waitlist-form button{width:100%}
 }
@@ -181,7 +152,6 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="logo" href="#" onclick="showPage('marketing');return false">VerdChain</a>
   <div class="nav-right">
@@ -190,14 +160,13 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
   </div>
 </nav>
 
-<!-- PAGE MARKETING -->
+<!-- MARKETING -->
 <div id="page-marketing" class="page active">
-
   <div class="hero">
     <div class="hero-wrap">
       <div class="eyebrow">Certification documentaire v&#233;rifiable</div>
       <h1>N&#8217;importe quel document.<br><em>Impossible &#224; falsifier.</em></h1>
-      <p class="hero-sub">Les organismes &#233;metteurs ancrent chaque certification au moment de la d&#233;livrance. Les employeurs et partenaires v&#233;rifient en quelques secondes &#8212; sans appel t&#233;l&#233;phonique, sans interm&#233;diaire, sans risque de fraude.</p>
+      <p class="hero-sub">Les organismes &#233;metteurs ancrent chaque certification au moment de la d&#233;livrance. Les employeurs v&#233;rifient en quelques secondes &#8212; sans appel t&#233;l&#233;phonique, sans interm&#233;diaire, sans risque de fraude.</p>
       <div class="hero-ctas">
         <button class="btn-primary" onclick="showPage('verify')">V&#233;rifier un document</button>
         <button class="btn-secondary" onclick="showPage('issuer')">&Eacute;mettre des certifications</button>
@@ -211,49 +180,21 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
       <h2>Sceller une fois.<br>V&#233;rifier pour toujours.</h2>
       <p class="section-sub">Trois &#233;tapes. Quelques secondes. Une protection permanente.</p>
       <div class="steps">
-        <div class="step">
-          <div class="step-n">01</div>
-          <div>
-            <h4>L&#8217;organisme &#233;met et scelle</h4>
-            <p>Au moment de la d&#233;livrance, l&#8217;&#233;metteur ancre une empreinte unique du document sur la blockchain. Le fichier original ne quitte jamais votre syst&#232;me &#8212; seule la preuve de son existence est enregistr&#233;e, de fa&#231;on permanente.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-n">02</div>
-          <div>
-            <h4>Le titulaire partage</h4>
-            <p>Le titulaire du document peut le pr&#233;senter lors d&#8217;une candidature ou d&#8217;un contr&#244;le. Il partage le fichier accompagn&#233; d&#8217;un lien de v&#233;rification. Aucune application sp&#233;cifique n&#8217;est requise.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-n">03</div>
-          <div>
-            <h4>L&#8217;employeur v&#233;rifie</h4>
-            <p>Le recruteur d&#233;pose le document sur VerdChain. En quelques secondes, vous savez si le document est authentique. Garanti &#8212; aucune autorit&#233; &#224; contacter, aucune base de donn&#233;es &#224; interroger.</p>
-          </div>
-        </div>
+        <div class="step"><div class="step-n">01</div><div><h4>L&#8217;organisme &#233;met et scelle</h4><p>Au moment de la d&#233;livrance, l&#8217;&#233;metteur ancre une empreinte unique du document sur la blockchain. Le fichier ne quitte jamais votre syst&#232;me.</p></div></div>
+        <div class="step"><div class="step-n">02</div><div><h4>Le titulaire partage</h4><p>Le titulaire pr&#233;sente son document lors d&#8217;une candidature. Il peut partager le fichier avec un lien ou QR de v&#233;rification int&#233;gr&#233;.</p></div></div>
+        <div class="step"><div class="step-n">03</div><div><h4>L&#8217;employeur v&#233;rifie</h4><p>Le recruteur d&#233;pose le document. En quelques secondes, vous savez si le document est authentique. Garanti.</p></div></div>
       </div>
-      <div class="note">
-        <strong>Vos documents restent chez vous.</strong> VerdChain ne re&#231;oit jamais le fichier &#8212; uniquement une empreinte math&#233;matique de 64 caract&#232;res. Z&#233;ro stockage, z&#233;ro risque de fuite.
-      </div>
+      <div class="note"><strong>Vos documents restent chez vous.</strong> VerdChain ne re&#231;oit jamais le fichier &#8212; uniquement son empreinte math&#233;matique. Z&#233;ro stockage, z&#233;ro risque de fuite.</div>
     </div>
   </div>
 
   <div class="section" style="background:var(--light)">
     <div class="section-wrap">
       <div class="section-label">&#192; qui &#231;a s&#8217;adresse</div>
-      <h2>Deux acteurs.</h2>
+      <h2>Deux acteurs.<br>Une seule v&#233;rit&#233;.</h2>
       <div class="two-col">
-        <div class="col">
-          <div class="col-label">&Eacute;metteurs</div>
-          <h3>Organismes certifiants, &#233;coles, institutions</h3>
-          <p>Toute organisation qui d&#233;livre des dipl&#244;mes, certificats ou accr&#233;ditations. &Eacute;mettez une fois &#8212; vos documents sont prot&#233;g&#233;s pour toujours, dans toutes les industries r&#233;glement&#233;es.</p>
-        </div>
-        <div class="col">
-          <div class="col-label">V&#233;rificateurs</div>
-          <h3>Employeurs, recruteurs, partenaires</h3>
-          <p>DRH, cabinets de recrutement, donneurs d&#8217;ordre. V&#233;rifiez n&#8217;importe quel document en quelques secondes &#8212; sans base de donn&#233;es &#224; interroger, sans appel &#224; passer, sans risque d&#8217;erreur.</p>
-        </div>
+        <div class="col"><div class="col-label">&Eacute;metteurs</div><h3>Organismes certifiants, &#233;coles, institutions</h3><p>Toute organisation qui d&#233;livre des dipl&#244;mes ou certifications. &Eacute;mettez en masse ou un par un &#8212; vos documents sont prot&#233;g&#233;s pour toujours.</p></div>
+        <div class="col"><div class="col-label">V&#233;rificateurs</div><h3>Employeurs, recruteurs, partenaires</h3><p>DRH, cabinets de recrutement, donneurs d&#8217;ordre. V&#233;rifiez n&#8217;importe quel document en quelques secondes &#8212; sans appel, sans interm&#233;diaire.</p></div>
       </div>
       <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap">
         <button class="btn-primary" onclick="showPage('issuer')">&Eacute;mettre des certifications</button>
@@ -266,28 +207,19 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
     <div class="section-wrap">
       <div class="section-label">Pourquoi VerdChain</div>
       <h2>Pas une base de donn&#233;es.<br>Une preuve math&#233;matique.</h2>
-      <p class="section-sub">Les syst&#232;mes de v&#233;rification traditionnels reposent sur une autorit&#233; joignable, honn&#234;te et disponible. VerdChain, non.</p>
+      <p class="section-sub">Les syst&#232;mes de v&#233;rification traditionnels reposent sur une autorit&#233; joignable. VerdChain, non.</p>
       <div class="two-col">
-        <div class="col">
-          <div class="col-label">V&#233;rification traditionnelle</div>
-          <h3>&#171;&#160;Appelez-nous, on confirmera&#160;&#187;</h3>
-          <p>D&#233;pend d&#8217;une autorit&#233; centrale disponible et r&#233;active. Lent, co&#251;teux, et point de d&#233;faillance unique. En cas de litige, votre seul recours est de rappeler.</p>
-        </div>
-        <div class="col">
-          <div class="col-label">VerdChain</div>
-          <h3>Le document parle de lui-m&#234;me</h3>
-          <p>La preuve est dans le document. En quelques secondes, vous avez une r&#233;ponse certaine &#8212; authentique ou falsifi&#233;. Aucune confiance requise, ni en VerdChain, ni en personne d&#8217;autre.</p>
-        </div>
+        <div class="col"><div class="col-label">V&#233;rification traditionnelle</div><h3>&#171;&#160;Appelez-nous, on confirmera&#160;&#187;</h3><p>D&#233;pend d&#8217;une autorit&#233; disponible, lent, co&#251;teux, point de d&#233;faillance unique.</p></div>
+        <div class="col"><div class="col-label">VerdChain</div><h3>Le document parle de lui-m&#234;me</h3><p>En quelques secondes, vous avez une r&#233;ponse certaine &#8212; authentique ou falsifi&#233;. Aucune confiance requise.</p></div>
       </div>
     </div>
   </div>
 
-  <!-- WAITLIST -->
   <div class="waitlist-section">
     <div class="waitlist-wrap">
       <div class="section-label">Acc&#232;s &#233;metteur</div>
       <h2>Pr&#234;t &#224; &#233;liminer la fraude documentaire&#160;?</h2>
-      <p class="section-sub">Rejoignez les organismes qui prot&#232;gent d&#233;j&#224; leurs certifications. Acc&#232;s gratuit pendant la p&#233;riode de lancement.</p>
+      <p class="section-sub">Rejoignez les organismes qui prot&#232;gent d&#233;j&#224; leurs certifications. Acc&#232;s gratuit pendant le lancement.</p>
       <div class="waitlist-form">
         <input type="email" id="wl-email" placeholder="votre@organisme.fr">
         <button onclick="wlSubmit()">Rejoindre</button>
@@ -303,47 +235,43 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
   </footer>
 </div>
 
-<!-- PAGE V&#201;RIFICATION -->
+<!-- VÉRIFICATION -->
 <div id="page-verify" class="page">
   <div class="portal">
     <div class="portal-wrap">
       <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px">&#8592; Retour</button>
       <div class="portal-title">V&#233;rifier un document</div>
-      <div class="portal-sub">D&#233;posez n&#8217;importe quel document pour v&#233;rifier instantan&#233;ment son authenticit&#233;. Aucun fichier n&#8217;est transmis &#8212; tout se passe sur votre appareil.</div>
-
+      <div class="portal-sub">D&#233;posez n&#8217;importe quel document pour v&#233;rifier instantan&#233;ment son authenticit&#233;. Aucun fichier n&#8217;est transmis.</div>
       <div class="tabs">
         <button class="tab on" onclick="switchVTab('file',this)">D&#233;poser un fichier</button>
         <button class="tab" onclick="switchVTab('hash',this)">Coller un hash</button>
       </div>
-
       <div id="v-input">
         <div id="v-tab-file">
           <div class="dropzone" id="v-dz" ondragover="vdov(event)" ondragleave="vdol()" ondrop="vddr(event)">
             <input type="file" onchange="vdfs(event)">
             <span class="dz-icon">&#128269;</span>
             <div class="dz-title">D&#233;poser le document ici</div>
-            <div class="dz-sub">ou cliquer pour parcourir &middot; tout format accept&#233;</div>
+            <div class="dz-sub">ou cliquer pour parcourir &middot; tout format</div>
           </div>
         </div>
         <div id="v-tab-hash" style="display:none">
-          <div style="display:flex;gap:0;border:1px solid var(--border)">
-            <input type="text" id="v-hash-input" placeholder="Hash SHA-256 (64 caract&#232;res hexad&#233;cimaux)..." style="flex:1;border:none;padding:13px 14px;font-family:var(--mono);font-size:12px;outline:none">
-            <button class="btn-primary" style="border-radius:0;padding:13px 24px;width:auto" onclick="vfh()">V&#233;rifier</button>
+          <div style="display:flex;border:1px solid var(--border)">
+            <input type="text" id="v-hash-input" placeholder="Hash SHA-256 (64 caract&#232;res)..." style="flex:1;border:none;padding:13px 14px;font-family:var(--mono);font-size:12px;outline:none">
+            <button class="btn-primary" style="padding:13px 24px;width:auto" onclick="vfh()">V&#233;rifier</button>
           </div>
         </div>
       </div>
-
       <div id="v-loading" style="display:none;text-align:center;padding:40px 0">
         <div class="spin"></div>
         <div style="margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--grey)">V&#233;rification en cours...</div>
       </div>
-
       <div id="v-result" style="display:none"></div>
     </div>
   </div>
 </div>
 
-<!-- PAGE &#201;METTEUR -->
+<!-- ÉMETTEUR -->
 <div id="page-issuer" class="page">
   <div class="portal">
     <div class="portal-wrap">
@@ -351,21 +279,13 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
 
       <div id="i-login">
         <div class="portal-title">&Eacute;mettre une certification</div>
-        <div class="portal-sub">Connectez-vous &#224; votre compte approuv&#233; pour ancrer des documents sur la blockchain.</div>
+        <div class="portal-sub">Connectez-vous &#224; votre compte approuv&#233;.</div>
         <div class="card">
           <div id="i-err" style="display:none" class="err"></div>
-          <div class="input-wrap">
-            <div class="input-label">Adresse e-mail</div>
-            <input type="email" id="i-email" placeholder="contact@votre-organisme.fr">
-          </div>
-          <div class="input-wrap">
-            <div class="input-label">Mot de passe</div>
-            <input type="password" id="i-pass" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;">
-          </div>
+          <div class="input-wrap"><div class="input-label">Adresse e-mail</div><input type="email" id="i-email" placeholder="contact@organisme.fr"></div>
+          <div class="input-wrap"><div class="input-label">Mot de passe</div><input type="password" id="i-pass"></div>
           <button class="btn-full" onclick="iLogin()">Se connecter</button>
-          <div style="margin-top:16px;text-align:center;font-size:14px;color:var(--grey)">
-            Pas de compte&#160;? <span onclick="showPage('register')" style="color:var(--gold);cursor:pointer">Demander l&#8217;acc&#232;s</span>
-          </div>
+          <div style="margin-top:16px;text-align:center;font-size:14px;color:var(--grey)">Pas de compte&#160;? <span onclick="showPage('register')" style="color:var(--gold);cursor:pointer">Demander l&#8217;acc&#232;s</span></div>
           <div style="margin-top:12px;text-align:center;font-size:13px;color:var(--grey);font-style:italic">D&#233;mo&#160;: formation@ifas-demo.fr / demo123</div>
         </div>
       </div>
@@ -378,15 +298,16 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
           </div>
           <button class="btn-again" onclick="iLogout()">D&#233;connexion</button>
         </div>
-
-        <div id="i-pending-msg" style="display:none" class="err">Votre compte est en attente de validation. Vous serez notifi&#233; une fois approuv&#233; par l&#8217;administration VerdChain.</div>
-
+        <div id="i-pending-msg" style="display:none" class="err">Votre compte est en attente de validation.</div>
         <div id="i-approved-content" style="display:none">
           <div class="tabs">
             <button class="tab on" onclick="switchITab('upload',this)">Nouveau document</button>
+            <button class="tab" onclick="switchITab('csv',this)">Import CSV</button>
             <button class="tab" onclick="switchITab('history',this)">Historique</button>
+            <button class="tab" onclick="switchITab('audit',this)">Journal</button>
           </div>
 
+          <!-- TAB: Upload -->
           <div id="i-tab-upload">
             <div id="i-upload-err" style="display:none" class="err"></div>
             <div id="i-upload-result" style="display:none"></div>
@@ -398,26 +319,44 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
                 <div class="dz-sub" id="i-dz-sub">ou cliquer pour parcourir &middot; PDF &middot; image &middot; tout format</div>
               </div>
               <div class="card">
-                <div class="input-wrap">
-                  <div class="input-label">Nom complet du titulaire *</div>
-                  <input type="text" id="i-candidate" placeholder="Pr&#233;nom Nom">
-                </div>
-                <div class="input-wrap">
-                  <div class="input-label">Type de certification *</div>
-                  <input type="text" id="i-degree" placeholder="ex&#160;: Dipl&#244;me, Certificat, Accr&#233;ditation">
-                </div>
-                <div class="input-wrap">
-                  <div class="input-label">Date de d&#233;livrance *</div>
-                  <input type="date" id="i-date">
-                </div>
+                <div class="input-wrap"><div class="input-label">Nom complet du titulaire *</div><input type="text" id="i-candidate" placeholder="Pr&#233;nom Nom"></div>
+                <div class="input-wrap"><div class="input-label">Type de certification *</div><input type="text" id="i-degree" placeholder="ex&#160;: Dipl&#244;me, Certificat, Accr&#233;ditation"></div>
+                <div class="input-wrap"><div class="input-label">Date de d&#233;livrance *</div><input type="date" id="i-date"></div>
                 <button class="btn-full" id="i-anchor-btn" onclick="iAnchor()" disabled>Ancrer sur la blockchain</button>
               </div>
             </div>
           </div>
 
+          <!-- TAB: CSV -->
+          <div id="i-tab-csv" style="display:none">
+            <div style="background:var(--light);border:1px solid var(--border);padding:16px 20px;margin-bottom:16px;font-size:14px;color:var(--grey);line-height:1.6">
+              <strong style="color:var(--ink)">Format CSV attendu</strong><br>
+              <span style="font-family:var(--mono);font-size:12px">nom_complet, type_certification, date (YYYY-MM-DD)</span><br>
+              <span style="font-family:var(--mono);font-size:11px">Jean Dupont, BTS Commerce, 2024-06-15</span><br>
+              S&#233;parateur virgule ou point-virgule. Premi&#232;re ligne (ent&#234;te) ignor&#233;e automatiquement.
+            </div>
+            <div class="dropzone" id="csv-dz" ondragover="csvDov(event)" ondragleave="csvDol()" ondrop="csvDdr(event)">
+              <input type="file" accept=".csv,.txt" onchange="csvFileInput(event)">
+              <span class="dz-icon">&#128203;</span>
+              <div class="dz-title">D&#233;poser le fichier CSV ici</div>
+              <div class="dz-sub">ou coller le contenu dans le champ ci-dessous</div>
+            </div>
+            <textarea id="csv-paste" rows="5" placeholder="Ou coller le contenu CSV ici..."></textarea>
+            <button class="btn-full" style="margin-bottom:16px" onclick="csvParse()">Analyser</button>
+            <div id="csv-preview"></div>
+          </div>
+
+          <!-- TAB: Historique -->
           <div id="i-tab-history" style="display:none">
             <div class="card" style="padding:0">
               <div id="i-history-list"><div style="padding:20px;text-align:center;color:var(--grey);font-size:14px">Chargement...</div></div>
+            </div>
+          </div>
+
+          <!-- TAB: Journal -->
+          <div id="i-tab-audit" style="display:none">
+            <div class="card" style="padding:0">
+              <div id="i-audit-list"><div style="padding:20px;text-align:center;color:var(--grey);font-size:14px">Chargement...</div></div>
             </div>
           </div>
         </div>
@@ -426,45 +365,24 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
   </div>
 </div>
 
-<!-- PAGE INSCRIPTION -->
+<!-- INSCRIPTION -->
 <div id="page-register" class="page">
   <div class="portal">
     <div class="portal-wrap">
       <button class="btn-again" onclick="showPage('issuer')" style="margin-bottom:24px">&#8592; Retour</button>
       <div class="portal-title">Demander l&#8217;acc&#232;s</div>
-      <div class="portal-sub">D&#233;crivez votre organisme. Nous examinerons et approuverons votre compte dans les 48 heures.</div>
+      <div class="portal-sub">D&#233;crivez votre organisme. Validation sous 48 heures.</div>
       <div class="card">
         <div id="r-err" style="display:none" class="err"></div>
         <div id="r-ok" style="display:none" class="ok"></div>
         <div id="r-form">
-          <div class="input-wrap">
-            <div class="input-label">Votre nom *</div>
-            <input type="text" id="r-name" placeholder="Pr&#233;nom Nom">
-          </div>
-          <div class="input-wrap">
-            <div class="input-label">Nom de l&#8217;organisme *</div>
-            <input type="text" id="r-org" placeholder="ex&#160;: &#201;cole Sup&#233;rieure de Commerce, CPAM 75...">
-          </div>
-          <div class="input-wrap">
-            <div class="input-label">Secteur / R&#233;gion *</div>
-            <input type="text" id="r-country" placeholder="ex&#160;: Formation, Sant&#233;, BTP &middot; Ile-de-France">
-          </div>
-          <div class="input-wrap">
-            <div class="input-label">Site web</div>
-            <input type="text" id="r-website" placeholder="https://...">
-          </div>
-          <div class="input-wrap">
-            <div class="input-label">Adresse e-mail *</div>
-            <input type="email" id="r-email" placeholder="contact@votre-organisme.fr">
-          </div>
-          <div class="input-wrap">
-            <div class="input-label">Mot de passe *</div>
-            <input type="password" id="r-pass" placeholder="Choisissez un mot de passe s&#233;curis&#233;">
-          </div>
-          <div class="input-wrap">
-            <div class="input-label">Code d&#8217;invitation</div>
-            <input type="text" id="r-invite" placeholder="Si vous en avez un">
-          </div>
+          <div class="input-wrap"><div class="input-label">Votre nom *</div><input type="text" id="r-name" placeholder="Pr&#233;nom Nom"></div>
+          <div class="input-wrap"><div class="input-label">Nom de l&#8217;organisme *</div><input type="text" id="r-org" placeholder="ex&#160;: &#201;cole Sup&#233;rieure..."></div>
+          <div class="input-wrap"><div class="input-label">Secteur / R&#233;gion *</div><input type="text" id="r-country" placeholder="ex&#160;: Formation, Sant&#233; &middot; Ile-de-France"></div>
+          <div class="input-wrap"><div class="input-label">Site web</div><input type="text" id="r-website" placeholder="https://..."></div>
+          <div class="input-wrap"><div class="input-label">Adresse e-mail *</div><input type="email" id="r-email" placeholder="contact@organisme.fr"></div>
+          <div class="input-wrap"><div class="input-label">Mot de passe *</div><input type="password" id="r-pass"></div>
+          <div class="input-wrap"><div class="input-label">Code d&#8217;invitation</div><input type="text" id="r-invite" placeholder="Si vous en avez un"></div>
           <button class="btn-full" onclick="rSubmit()">Soumettre la demande</button>
         </div>
       </div>
@@ -472,29 +390,21 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
   </div>
 </div>
 
-<!-- PAGE ADMIN (accessible uniquement via /#admin) -->
+<!-- ADMIN -->
 <div id="page-admin" class="page">
   <div class="portal">
     <div class="portal-wrap">
       <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px">&#8592; Retour</button>
-
       <div id="a-login">
         <div class="portal-title">Administration VerdChain</div>
         <div class="portal-sub">Acc&#232;s restreint.</div>
         <div class="card">
           <div id="a-err" style="display:none" class="err"></div>
-          <div class="input-wrap">
-            <div class="input-label">E-mail</div>
-            <input type="email" id="a-email" placeholder="admin@verdchain.com">
-          </div>
-          <div class="input-wrap">
-            <div class="input-label">Mot de passe</div>
-            <input type="password" id="a-pass">
-          </div>
+          <div class="input-wrap"><div class="input-label">E-mail</div><input type="email" id="a-email"></div>
+          <div class="input-wrap"><div class="input-label">Mot de passe</div><input type="password" id="a-pass"></div>
           <button class="btn-full" onclick="aLogin()">Acc&#233;der</button>
         </div>
       </div>
-
       <div id="a-dash" style="display:none">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
           <div class="portal-title">Approbations en attente</div>
@@ -504,47 +414,48 @@ footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:
           </div>
         </div>
         <div id="a-invite-result" style="display:none;margin-bottom:16px" class="ok"></div>
-        <div class="card" style="padding:0">
-          <div id="a-list"><div style="padding:20px;text-align:center;color:var(--grey)">Chargement...</div></div>
-        </div>
+        <div class="card" style="padding:0"><div id="a-list"><div style="padding:20px;text-align:center;color:var(--grey)">Chargement...</div></div></div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-const API = "https://verdchain-platform.onrender.com";
+const API = "https://verdchain-api.onrender.com";
 let iToken = localStorage.getItem("vc_itoken") || "";
 let aToken = localStorage.getItem("vc_atoken") || "";
 let iFile  = null;
+let iOrgName = "";
+let lastAnchor = null;
+let histCreds  = [];
+let csvRows    = [];
 
 function showPage(id) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById("page-" + id).classList.add("active");
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
   if (id === "issuer" && iToken) iShowDash();
   if (id === "admin"  && aToken) aShowDash();
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const p = new URLSearchParams(window.location.search);
-  const h = p.get("hash") || window.location.pathname.replace("/verdchain/","").replace("/","").trim();
-  const hx = h.replace(/^0x/,"");
+  const p  = new URLSearchParams(window.location.search);
+  const h  = p.get("hash") || "";
+  const hx = h.replace(/^0x/, "");
   if (hx && hx.length === 64) { showPage("verify"); vVerify(hx); }
   if (window.location.hash === "#admin") showPage("admin");
 });
 
-// WAITLIST
 function wlSubmit() {
-  const email = document.getElementById("wl-email").value.trim();
-  if (!email || !email.includes("@")) return;
+  const e = document.getElementById("wl-email").value.trim();
+  if (!e || !e.includes("@")) return;
   document.getElementById("wl-ok").style.display = "block";
   document.querySelector(".waitlist-form").style.display = "none";
 }
 
-// V&#201;RIFICATION
+// ===== VÉRIFICATION =====
 function switchVTab(t, btn) {
-  document.querySelectorAll(".tabs .tab").forEach(b => b.classList.remove("on"));
+  btn.closest(".tabs").querySelectorAll(".tab").forEach(b => b.classList.remove("on"));
   btn.classList.add("on");
   document.getElementById("v-tab-file").style.display = t === "file" ? "block" : "none";
   document.getElementById("v-tab-hash").style.display = t === "hash" ? "block" : "none";
@@ -556,9 +467,9 @@ function vdfs(e){const f=e.target.files[0];if(f)vHash(f)}
 function vfh(){const h=document.getElementById("v-hash-input").value.trim().replace(/^0x/,"");if(h.length===64)vVerify(h)}
 
 async function vHash(file) {
-  document.getElementById("v-input").style.display   = "none";
-  document.getElementById("v-loading").style.display  = "block";
-  document.getElementById("v-result").style.display   = "none";
+  document.getElementById("v-input").style.display = "none";
+  document.getElementById("v-loading").style.display = "block";
+  document.getElementById("v-result").style.display = "none";
   const buf = await file.arrayBuffer();
   const dig = await crypto.subtle.digest("SHA-256", buf);
   const hex = Array.from(new Uint8Array(dig)).map(b=>b.toString(16).padStart(2,"0")).join("");
@@ -566,47 +477,38 @@ async function vHash(file) {
 }
 
 async function vVerify(hex) {
-  document.getElementById("v-input").style.display   = "none";
-  document.getElementById("v-loading").style.display  = "block";
-  document.getElementById("v-result").style.display   = "none";
+  document.getElementById("v-input").style.display = "none";
+  document.getElementById("v-loading").style.display = "block";
+  document.getElementById("v-result").style.display = "none";
   try {
     const res  = await fetch(`${API}/api/credentials/verify/${hex}`);
     const data = await res.json();
     vShow(data, hex);
-  } catch(e) {
-    vShow(null, hex);
-  }
+  } catch { vShow(null, hex); }
 }
 
 function vShow(data, hex) {
   document.getElementById("v-loading").style.display = "none";
   document.getElementById("v-result").style.display  = "block";
-  const el = document.getElementById("v-result");
-  const ok = data?.status === "verified";
-
+  const el  = document.getElementById("v-result");
+  const ok  = data?.status === "verified";
+  const rev = data?.status === "revoked";
   const rows = ok ? [
-    data.credential?.candidate_name ? ["Titulaire",             data.credential.candidate_name]  : null,
-    data.credential?.degree_type    ? ["Type de certification", data.credential.degree_type]     : null,
-    data.credential?.issued_date    ? ["Date de d&#233;livrance",  data.credential.issued_date]     : null,
-    data.issuer?.name               ? ["Organisme &#233;metteur",  data.issuer.name]                : null,
-    data.credential?.anchored_at    ? ["Ancr&#233; le",            new Date(data.credential.anchored_at).toLocaleString("fr-FR")] : null,
+    data.credential?.candidate_name ? ["Titulaire",            data.credential.candidate_name] : null,
+    data.credential?.degree_type    ? ["Type",                 data.credential.degree_type]    : null,
+    data.credential?.issued_date    ? ["Date de d&#233;livrance", data.credential.issued_date]  : null,
+    data.issuer?.name               ? ["Organisme &#233;metteur", data.issuer.name]             : null,
+    data.credential?.anchored_at    ? ["Ancr&#233; le",           new Date(data.credential.anchored_at).toLocaleString("fr-FR")] : null,
   ].filter(Boolean) : [];
-
   el.innerHTML = `
     <div class="result-box ${ok?"ok":"fail"}">
       <div class="result-icon">${ok?"&#10003;":"&#10007;"}</div>
       <div>
-        <div class="result-title">${ok?"Document authentique":"Document non v&#233;rifi&#233;"}</div>
-        <div class="result-desc">${ok
-          ? "Ce document est authentique et correspond &#224; son enregistrement d&#8217;origine. Garanti."
-          : "Aucun enregistrement trouv&#233;. Ce document n&#8217;a pas &#233;t&#233; ancr&#233; via VerdChain ou a &#233;t&#233; modifi&#233; depuis son &#233;mission."}</div>
+        <div class="result-title">${ok?"Document authentique":rev?"Document révoqué":"Document non v&#233;rifi&#233;"}</div>
+        <div class="result-desc">${ok?"Ce document est authentique et correspond à son enregistrement d’origine. Garanti.":rev?"Ce document a été révoqué par l’émetteur. Il n’est plus valide.":"Aucun enregistrement trouvé. Ce document n’a pas été ancré via VerdChain ou a été modifié depuis son émission."}</div>
       </div>
     </div>
-    ${ok && rows.length ? `
-    <div class="record">
-      <div class="record-head">Enregistrement v&#233;rifi&#233;</div>
-      ${rows.map(r=>`<div class="record-row"><div class="rk">${r[0]}</div><div class="rv hi">${r[1]}</div></div>`).join("")}
-    </div>` : ""}
+    ${ok&&rows.length?`<div class="record"><div class="record-head">Enregistrement v&#233;rifi&#233;</div>${rows.map(r=>`<div class="record-row"><div class="rk">${r[0]}</div><div class="rv hi">${r[1]}</div></div>`).join("")}</div>`:""}
     <div class="hash-display">0x${hex}</div>
     <button class="btn-again" onclick="vReset()">&#8592; V&#233;rifier un autre document</button>
   `;
@@ -614,16 +516,16 @@ function vShow(data, hex) {
 
 function vReset() {
   document.getElementById("v-input").style.display   = "block";
-  document.getElementById("v-loading").style.display  = "none";
-  document.getElementById("v-result").style.display   = "none";
+  document.getElementById("v-loading").style.display = "none";
+  document.getElementById("v-result").style.display  = "none";
 }
 
-// AUTH &#201;METTEUR
+// ===== AUTH ÉMETTEUR =====
 async function iLogin() {
   const email = document.getElementById("i-email").value;
   const pass  = document.getElementById("i-pass").value;
   try {
-    const res  = await fetch(`${API}/api/auth/login`, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({email,password:pass}) });
+    const res  = await fetch(`${API}/api/auth/login`, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email,password:pass})});
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Connexion &#233;chou&#233;e");
     iToken = data.token;
@@ -638,30 +540,29 @@ async function iLogin() {
 function iShowDash(issuer) {
   document.getElementById("i-login").style.display = "none";
   document.getElementById("i-dash").style.display  = "block";
-  if (issuer?.status === "pending" || issuer?.status === "rejected") {
-    document.getElementById("i-pending-msg").style.display    = "block";
-    document.getElementById("i-approved-content").style.display = "none";
-  } else {
-    document.getElementById("i-pending-msg").style.display    = "none";
-    document.getElementById("i-approved-content").style.display = "block";
-  }
-  if (issuer?.org_name) document.getElementById("i-org-name").textContent = issuer.org_name;
+  const pending = issuer?.status === "pending" || issuer?.status === "rejected";
+  document.getElementById("i-pending-msg").style.display    = pending ? "block" : "none";
+  document.getElementById("i-approved-content").style.display = pending ? "none"  : "block";
+  if (issuer?.org_name) { document.getElementById("i-org-name").textContent = issuer.org_name; iOrgName = issuer.org_name; }
 }
 
 function iLogout() {
-  iToken = ""; localStorage.removeItem("vc_itoken");
+  iToken = ""; localStorage.removeItem("vc_itoken"); lastAnchor = null;
   document.getElementById("i-login").style.display = "block";
   document.getElementById("i-dash").style.display  = "none";
 }
 
 function switchITab(t, btn) {
-  document.querySelectorAll("#i-dash .tab").forEach(b => b.classList.remove("on"));
+  btn.closest(".tabs").querySelectorAll(".tab").forEach(b => b.classList.remove("on"));
   btn.classList.add("on");
-  document.getElementById("i-tab-upload").style.display  = t==="upload"  ? "block" : "none";
-  document.getElementById("i-tab-history").style.display = t==="history" ? "block" : "none";
+  ["upload","csv","history","audit"].forEach(id => {
+    document.getElementById(`i-tab-${id}`).style.display = t === id ? "block" : "none";
+  });
   if (t === "history") iLoadHistory();
+  if (t === "audit")   iLoadAudit();
 }
 
+// ===== SINGLE UPLOAD =====
 function idov(e){e.preventDefault();document.getElementById("i-dz").classList.add("over")}
 function idol(){document.getElementById("i-dz").classList.remove("over")}
 function iddr(e){e.preventDefault();idol();const f=e.dataTransfer.files[0];if(f)iSetFile(f)}
@@ -671,7 +572,7 @@ function iSetFile(f) {
   iFile = f;
   document.getElementById("i-dz-icon").textContent  = "&#128196;";
   document.getElementById("i-dz-title").textContent = f.name;
-  document.getElementById("i-dz-sub").textContent   = `${(f.size/1024).toFixed(1)} Ko`;
+  document.getElementById("i-dz-sub").textContent   = (f.size/1024).toFixed(1)+" Ko";
   document.getElementById("i-anchor-btn").disabled  = false;
 }
 
@@ -686,31 +587,29 @@ async function iAnchor() {
   document.getElementById("i-anchor-btn").disabled    = true;
   document.getElementById("i-anchor-btn").textContent = "Ancrage en cours...";
   document.getElementById("i-upload-err").style.display = "none";
-
   try {
     const fd = new FormData();
     fd.append("file", iFile);
     fd.append("candidate_name", candidate);
     fd.append("degree_type", degree);
     fd.append("issued_date", date);
-
-    const res  = await fetch(`${API}/api/credentials/anchor`, { method:"POST", headers:{Authorization:`Bearer ${iToken}`}, body:fd });
+    const res  = await fetch(`${API}/api/credentials/anchor`, {method:"POST",headers:{Authorization:`Bearer ${iToken}`},body:fd});
     const data = await res.json();
-    if (!res.ok) throw new Error(data.message || data.error);
-
+    if (!res.ok) throw new Error(data.error || data.message);
+    lastAnchor = {candidate_name:data.credential?.candidate_name,degree_type:data.credential?.degree_type,issued_date:data.credential?.issued_date,hash:data.hash,verifyUrl:data.verifyUrl};
     document.getElementById("i-upload-form").style.display   = "none";
     document.getElementById("i-upload-result").style.display = "block";
     document.getElementById("i-upload-result").innerHTML = `
       <div class="result-box ok" style="margin-bottom:14px">
         <div class="result-icon">&#10003;</div>
-        <div>
-          <div class="result-title">Document ancr&#233;</div>
-          <div class="result-desc">${data.credential?.candidate_name} &#8212; ${data.credential?.degree_type}</div>
-        </div>
+        <div><div class="result-title">Document ancr&#233;</div><div class="result-desc">${data.credential?.candidate_name} &#8212; ${data.credential?.degree_type}</div></div>
       </div>
       <div class="hash-display" style="margin-bottom:14px">${data.hash}</div>
-      ${data.verifyUrl ? `<div style="font-size:13px;color:var(--grey);margin-bottom:14px">URL de v&#233;rification&#160;: <a href="${data.verifyUrl}" style="color:var(--gold)">${data.verifyUrl}</a></div>` : ""}
-      <button class="btn-again" onclick="iReset()">Ancrer un autre document</button>
+      ${data.verifyUrl?`<div style="font-size:13px;color:var(--grey);margin-bottom:14px">V&#233;rification&#160;: <a href="${data.verifyUrl}" style="color:var(--gold)">${data.verifyUrl}</a></div>`:""}
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
+        <button class="btn-primary" style="padding:10px 20px;font-size:11px" onclick="iDownloadLastPDF()">T&#233;l&#233;charger le certificat PDF</button>
+        <button class="btn-again" onclick="iReset()">Ancrer un autre document</button>
+      </div>
     `;
   } catch(e) {
     const el = document.getElementById("i-upload-err");
@@ -724,9 +623,7 @@ function iReset() {
   iFile = null;
   document.getElementById("i-upload-form").style.display   = "block";
   document.getElementById("i-upload-result").style.display = "none";
-  document.getElementById("i-candidate").value = "";
-  document.getElementById("i-degree").value    = "";
-  document.getElementById("i-date").value      = "";
+  ["i-candidate","i-degree","i-date"].forEach(id => document.getElementById(id).value = "");
   document.getElementById("i-dz-icon").textContent  = "&#128196;";
   document.getElementById("i-dz-title").textContent = "D&#233;poser le document ici";
   document.getElementById("i-dz-sub").textContent   = "ou cliquer pour parcourir &#183; PDF &#183; image &#183; tout format";
@@ -734,118 +631,287 @@ function iReset() {
   document.getElementById("i-anchor-btn").textContent = "Ancrer sur la blockchain";
 }
 
+// ===== HISTORIQUE =====
 async function iLoadHistory() {
   const el = document.getElementById("i-history-list");
   el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey)"><div class="spin"></div></div>`;
   try {
-    const res  = await fetch(`${API}/api/credentials/history`, { headers:{Authorization:`Bearer ${iToken}`} });
+    const res  = await fetch(`${API}/api/credentials/history`, {headers:{Authorization:`Bearer ${iToken}`}});
     const data = await res.json();
-    if (!data.credentials?.length) {
-      el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey);font-size:14px">Aucun document ancr&#233; pour l&#8217;instant.</div>`;
-      return;
-    }
-    el.innerHTML = data.credentials.map(c => `
-      <div class="cred-item">
-        <div>
+    histCreds  = data.credentials || [];
+    if (!histCreds.length) { el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey);font-size:14px">Aucun document ancr&#233; pour l&#8217;instant.</div>`; return; }
+    el.innerHTML = histCreds.map((c, i) => {
+      const isRev = c.status === "revoked";
+      const vUrl  = c.verifyUrl || `https://ben4862.github.io/verdchain/?hash=${c.hash}`;
+      return `<div class="cred-item" style="${isRev?"opacity:.6":""}">
+        <div style="flex:1">
           <div class="cred-name">${c.candidate_name}</div>
           <div class="cred-meta">${c.degree_type} &middot; ${c.issued_date}</div>
+          ${isRev?`<div style="font-family:var(--mono);font-size:10px;color:var(--red);margin-top:3px">R&#233;voqu&#233; le ${new Date(c.revokedAt).toLocaleDateString("fr-FR")}</div>`:""}
         </div>
-        <span class="cred-tag">Ancr&#233;</span>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+          <span class="cred-tag${isRev?" revoked":""}">${isRev?"R&#233;voqu&#233;":"Ancr&#233;"}</span>
+          ${!isRev?`<button class="btn-pdf" onclick="iDownloadPDF(${i})">PDF</button><button class="btn-rev" onclick="iRevoke('${c.hash}','${c.candidate_name.replace(/'/g,"\\'")}')">R&#233;voquer</button>`:""}
+        </div>
+      </div>`;
+    }).join("");
+  } catch { el.innerHTML = `<div style="padding:20px;color:var(--red)">Erreur lors du chargement.</div>`; }
+}
+
+async function iRevoke(hash, name) {
+  if (!confirm(`R&#233;voquer le certificat de ${name} ? Cette action est irr&#233;versible.`)) return;
+  const reason = prompt("Motif de r&#233;vocation (optionnel) :") || "";
+  const res = await fetch(`${API}/api/credentials/${hash}/revoke`, {
+    method: "PUT", headers: {Authorization:`Bearer ${iToken}`,"Content-Type":"application/json"}, body: JSON.stringify({reason})
+  });
+  if (res.ok) iLoadHistory();
+  else { const d = await res.json(); alert("Erreur : " + (d.error || "R&#233;vocation &#233;chou&#233;e")); }
+}
+
+// ===== AUDIT =====
+async function iLoadAudit() {
+  const el = document.getElementById("i-audit-list");
+  el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey)"><div class="spin"></div></div>`;
+  try {
+    const res  = await fetch(`${API}/api/audit/log`, {headers:{Authorization:`Bearer ${iToken}`}});
+    const data = await res.json();
+    if (!data.log?.length) { el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey);font-size:14px">Aucune action enregistr&#233;e.</div>`; return; }
+    const labels = {anchor:"Ancrage",revoke:"R&#233;vocation",login:"Connexion"};
+    el.innerHTML = data.log.map(e => `
+      <div class="audit-item">
+        <div class="audit-time">${new Date(e.timestamp).toLocaleString("fr-FR")}</div>
+        <div class="audit-badge ${e.action}">${labels[e.action]||e.action}</div>
+        <div class="audit-detail">${e.action==="anchor"?e.details.candidate||"":e.action==="revoke"?`<span style="font-family:var(--mono);font-size:10px">${(e.details.hash||"").slice(0,20)}...</span>`:e.details.email||""}</div>
       </div>
     `).join("");
   } catch { el.innerHTML = `<div style="padding:20px;color:var(--red)">Erreur lors du chargement.</div>`; }
 }
 
-// INSCRIPTION
-async function rSubmit() {
-  const body = {
-    email:       document.getElementById("r-email").value,
-    password:    document.getElementById("r-pass").value,
-    name:        document.getElementById("r-name").value,
-    role:        "university",
-    org_name:    document.getElementById("r-org").value,
-    country:     document.getElementById("r-country").value,
-    website:     document.getElementById("r-website").value,
-    invite_code: document.getElementById("r-invite").value,
-  };
-  try {
-    const res  = await fetch(`${API}/api/auth/register`, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body) });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || data.error);
-    document.getElementById("r-form").style.display = "none";
-    document.getElementById("r-ok").textContent = "Demande re&#231;ue. Nous examinerons votre dossier sous 48 heures.";
-    document.getElementById("r-ok").style.display = "block";
-  } catch(e) {
-    const el = document.getElementById("r-err");
-    el.textContent = e.message; el.style.display = "block";
+// ===== CSV BULK =====
+function csvDov(e){e.preventDefault();document.getElementById("csv-dz").classList.add("over")}
+function csvDol(){document.getElementById("csv-dz").classList.remove("over")}
+function csvDdr(e){e.preventDefault();csvDol();const f=e.dataTransfer.files[0];if(f)csvReadFile(f)}
+function csvFileInput(e){const f=e.target.files[0];if(f)csvReadFile(f)}
+function csvReadFile(f){const r=new FileReader();r.onload=ev=>{document.getElementById("csv-paste").value=ev.target.result;csvParse();};r.readAsText(f,"UTF-8");}
+
+function csvParse() {
+  const text = document.getElementById("csv-paste").value.trim();
+  if (!text) return;
+  const sep = text.includes(";") ? ";" : ",";
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  const firstLower = lines[0].toLowerCase();
+  const hasHeader = firstLower.includes("nom") || firstLower.includes("name") || firstLower.includes("candidat") || firstLower.includes("type");
+  const dataLines = hasHeader ? lines.slice(1) : lines;
+  csvRows = dataLines.map(line => {
+    const p = line.split(sep).map(s => s.trim().replace(/^["']|["']$/g, ""));
+    return {candidate_name:p[0]||"", degree_type:p[1]||"", issued_date:p[2]||""};
+  }).filter(r => r.candidate_name && r.degree_type && r.issued_date);
+  renderCSVPreview();
+}
+
+function renderCSVPreview() {
+  const el = document.getElementById("csv-preview");
+  if (!csvRows.length) { el.innerHTML = `<div class="err">Aucune ligne valide. Format attendu : nom, type, date (YYYY-MM-DD).</div>`; return; }
+  el.innerHTML = `
+    <div style="margin-bottom:10px;font-family:var(--mono);font-size:11px;color:var(--grey)">${csvRows.length} entr&#233;e(s) d&#233;tect&#233;e(s)</div>
+    <div style="border:1px solid var(--border);overflow:auto;max-height:260px;margin-bottom:14px">
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <thead><tr style="background:var(--light)">
+          <th style="padding:8px 12px;text-align:left;font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);border-bottom:1px solid var(--border)">Nom</th>
+          <th style="padding:8px 12px;text-align:left;font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);border-bottom:1px solid var(--border)">Certification</th>
+          <th style="padding:8px 12px;text-align:left;font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);border-bottom:1px solid var(--border)">Date</th>
+          <th style="padding:8px 12px;text-align:left;font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);border-bottom:1px solid var(--border)">Statut</th>
+        </tr></thead>
+        <tbody>${csvRows.map((r,i)=>`<tr style="border-bottom:1px solid #f0ede6"><td style="padding:8px 12px">${r.candidate_name}</td><td style="padding:8px 12px">${r.degree_type}</td><td style="padding:8px 12px">${r.issued_date}</td><td style="padding:8px 12px"><span id="csv-s-${i}" style="font-family:var(--mono);font-size:10px;color:var(--grey)">En attente</span></td></tr>`).join("")}</tbody>
+      </table>
+    </div>
+    <div id="csv-prog" style="display:none;margin-bottom:12px">
+      <div style="background:var(--border);height:3px"><div id="csv-prog-bar" style="background:var(--green);height:3px;width:0%;transition:width .3s"></div></div>
+      <div id="csv-prog-txt" style="font-family:var(--mono);font-size:11px;color:var(--grey);margin-top:6px">0 / ${csvRows.length}</div>
+    </div>
+    <div id="csv-actions">
+      <button class="btn-full" id="csv-btn" onclick="csvAnchorAll()">Ancrer les ${csvRows.length} documents</button>
+    </div>
+  `;
+}
+
+async function csvAnchorAll() {
+  const btn = document.getElementById("csv-btn");
+  btn.disabled = true; btn.textContent = "Ancrage en cours...";
+  document.getElementById("csv-prog").style.display = "block";
+  let done = 0, ok = 0;
+  const results = [];
+  for (let i = 0; i < csvRows.length; i++) {
+    const row = csvRows[i];
+    const sEl = document.getElementById(`csv-s-${i}`);
+    sEl.textContent = "⏳ Ancrage..."; sEl.style.color = "var(--gold)";
+    try {
+      const blob = new Blob([`${row.candidate_name}|${row.degree_type}|${row.issued_date}`], {type:"text/plain"});
+      const fd   = new FormData();
+      fd.append("file", blob, row.candidate_name.replace(/\s+/g,"-")+".txt");
+      fd.append("candidate_name", row.candidate_name);
+      fd.append("degree_type",    row.degree_type);
+      fd.append("issued_date",    row.issued_date);
+      const res  = await fetch(`${API}/api/credentials/anchor`, {method:"POST",headers:{Authorization:`Bearer ${iToken}`},body:fd});
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.message || "Erreur");
+      row.hash = data.hash; row.verifyUrl = data.verifyUrl;
+      sEl.textContent = "✓ Ancré"; sEl.style.color = "var(--green)";
+      results.push({...row, ok:true}); ok++;
+    } catch(e) {
+      sEl.textContent = "✗ "+e.message.slice(0,22); sEl.style.color = "var(--red)";
+      results.push({...row, ok:false});
+    }
+    done++;
+    document.getElementById("csv-prog-bar").style.width = (done/csvRows.length*100)+"%";
+    document.getElementById("csv-prog-txt").textContent = `${done} / ${csvRows.length}`;
+  }
+  btn.textContent = `Terminé — ${ok} / ${csvRows.length} ancré(s)`;
+  const successRows = results.filter(r => r.ok);
+  if (successRows.length) {
+    const dlBtn = document.createElement("button");
+    dlBtn.className = "btn-again";
+    dlBtn.style.cssText = "margin-top:12px;width:100%";
+    dlBtn.textContent = `Télécharger les ${successRows.length} certificat(s) PDF`;
+    dlBtn.onclick = () => csvDownloadAll(successRows);
+    document.getElementById("csv-actions").appendChild(dlBtn);
   }
 }
 
-// ADMIN
+async function csvDownloadAll(rows) {
+  await loadPDFLibs();
+  for (const row of rows) {
+    await generatePDF({candidate_name:row.candidate_name,degree_type:row.degree_type,issued_date:row.issued_date,hash:row.hash}, iOrgName, row.verifyUrl||`https://ben4862.github.io/verdchain/?hash=${row.hash}`);
+    await new Promise(r => setTimeout(r, 400));
+  }
+}
+
+// ===== PDF =====
+let _pdfLibs = false;
+function loadScript(src) {
+  return new Promise((res, rej) => {
+    if (document.querySelector(`script[src="${src}"]`)) { res(); return; }
+    const s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
+  });
+}
+async function loadPDFLibs() {
+  if (_pdfLibs) return;
+  await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js");
+  await loadScript("https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js");
+  _pdfLibs = true;
+}
+
+async function iDownloadLastPDF() {
+  if (!lastAnchor) return;
+  await loadPDFLibs();
+  await generatePDF(lastAnchor, iOrgName, lastAnchor.verifyUrl||`https://ben4862.github.io/verdchain/?hash=${lastAnchor.hash}`);
+}
+
+async function iDownloadPDF(idx) {
+  const c = histCreds[idx]; if (!c) return;
+  await loadPDFLibs();
+  await generatePDF(c, iOrgName, c.verifyUrl||`https://ben4862.github.io/verdchain/?hash=${c.hash}`);
+}
+
+async function generatePDF(cred, issuerName, verifyUrl) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({orientation:"portrait",unit:"mm",format:"a4"});
+  const qrDataUrl = await QRCode.toDataURL(verifyUrl, {width:200,margin:2,color:{dark:"#1a1a18",light:"#ffffff"}});
+  // Header
+  doc.setFillColor(26,26,24); doc.rect(0,0,210,32,"F");
+  doc.setTextColor(247,244,239); doc.setFontSize(20); doc.setFont("helvetica","bold");
+  doc.text("VerdChain",20,16);
+  doc.setFontSize(8); doc.setFont("helvetica","normal");
+  doc.text("Certification vérifiable",20,24);
+  // Gold line
+  doc.setFillColor(154,124,46); doc.rect(0,32,210,.8,"F");
+  // Title
+  doc.setTextColor(26,26,24); doc.setFontSize(10); doc.setFont("helvetica","normal");
+  doc.text("CERTIFICAT DE FORMATION",105,50,{align:"center",charSpace:2});
+  // Divider
+  doc.setDrawColor(154,124,46); doc.setLineWidth(.3); doc.line(30,55,180,55);
+  // Fields
+  const fields = [
+    ["Titulaire",           cred.candidate_name||"—"],
+    ["Type de certification",cred.degree_type||"—"],
+    ["Date de délivrance",cred.issued_date||"—"],
+    ["Organisme émetteur",issuerName||"—"],
+  ];
+  let y = 68;
+  fields.forEach(([label,value]) => {
+    doc.setFontSize(7.5); doc.setTextColor(136,132,128); doc.setFont("helvetica","normal");
+    doc.text(label.toUpperCase(),30,y); y+=6;
+    doc.setFontSize(13); doc.setTextColor(26,26,24); doc.setFont("helvetica","bold");
+    doc.text(value,30,y); y+=14;
+  });
+  // Divider
+  doc.setDrawColor(221,217,208); doc.setLineWidth(.3); doc.line(30,y+2,180,y+2);
+  // QR
+  const qy = y+12;
+  doc.addImage(qrDataUrl,"PNG",75,qy,60,60);
+  doc.setFontSize(7.5); doc.setTextColor(136,132,128); doc.setFont("helvetica","normal");
+  doc.text("SCANNER POUR VÉRIFIER L'AUTHENTICITÉ",105,qy+65,{align:"center"});
+  // Hash
+  if (cred.hash) { doc.setFontSize(6); doc.setTextColor(200,200,200); doc.text(`Hash : ${cred.hash}`,20,270); }
+  // Footer
+  doc.setFillColor(26,26,24); doc.rect(0,278,210,19,"F");
+  doc.setTextColor(247,244,239); doc.setFontSize(7);
+  doc.text("Ce certificat est ancré sur la blockchain Polygon. Toute modification invalide ce document.",105,284,{align:"center"});
+  doc.text("vérifiez sur ben4862.github.io/verdchain",105,290,{align:"center"});
+  doc.save(`certificat-${(cred.candidate_name||"").replace(/\s+/g,"-").toLowerCase()}.pdf`);
+}
+
+// ===== INSCRIPTION =====
+async function rSubmit() {
+  const body = {email:document.getElementById("r-email").value,password:document.getElementById("r-pass").value,org_name:document.getElementById("r-org").value,country:document.getElementById("r-country").value,website:document.getElementById("r-website").value,invite_code:document.getElementById("r-invite").value};
+  try {
+    const res  = await fetch(`${API}/api/auth/register`, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || data.message);
+    document.getElementById("r-form").style.display = "none";
+    document.getElementById("r-ok").textContent = "Demande reçue. Nous examinerons votre dossier sous 48 heures.";
+    document.getElementById("r-ok").style.display = "block";
+  } catch(e) { const el=document.getElementById("r-err"); el.textContent=e.message; el.style.display="block"; }
+}
+
+// ===== ADMIN =====
 async function aLogin() {
   const email = document.getElementById("a-email").value;
   const pass  = document.getElementById("a-pass").value;
   try {
-    const res  = await fetch(`${API}/api/auth/login`, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({email,password:pass}) });
+    const res  = await fetch(`${API}/api/auth/login`, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email,password:pass})});
     const data = await res.json();
-    if (!res.ok || data.user?.role !== "admin") throw new Error("Acc&#232;s refus&#233;.");
-    aToken = data.token;
-    localStorage.setItem("vc_atoken", aToken);
+    if (!res.ok || data.user?.role !== "admin") throw new Error("Accès refusé.");
+    aToken = data.token; localStorage.setItem("vc_atoken", aToken);
     aShowDash();
-  } catch(e) {
-    const el = document.getElementById("a-err");
-    el.textContent = e.message; el.style.display = "block";
-  }
+  } catch(e) { const el=document.getElementById("a-err"); el.textContent=e.message; el.style.display="block"; }
 }
-
 function aShowDash() {
   document.getElementById("a-login").style.display = "none";
   document.getElementById("a-dash").style.display  = "block";
   aLoadPending();
 }
-
 async function aLoadPending() {
   const el = document.getElementById("a-list");
   el.innerHTML = `<div style="padding:20px;text-align:center"><div class="spin"></div></div>`;
   try {
-    const res  = await fetch(`${API}/api/admin/pending`, { headers:{Authorization:`Bearer ${aToken}`} });
+    const res  = await fetch(`${API}/api/admin/pending`, {headers:{Authorization:`Bearer ${aToken}`}});
     const data = await res.json();
-    if (!data.issuers?.length) {
-      el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey)">Aucune demande en attente.</div>`;
-      return;
-    }
-    el.innerHTML = data.issuers.map(i => `
-      <div class="pending-item">
-        <div class="pending-name">${i.org_name} &#8212; ${i.country}</div>
-        <div class="pending-email">${i.email}</div>
-        <button class="btn-approve" onclick="aApprove('${i.id}')">&#10003; Approuver</button>
-        <button class="btn-reject"  onclick="aReject('${i.id}')">&#10007; Refuser</button>
-      </div>
-    `).join("");
+    if (!data.issuers?.length) { el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--grey)">Aucune demande en attente.</div>`; return; }
+    el.innerHTML = data.issuers.map(i => `<div class="pending-item"><div class="pending-name">${i.org_name} &#8212; ${i.country}</div><div class="pending-email">${i.email}</div><button class="btn-approve" onclick="aApprove('${i.id}')">&#10003; Approuver</button><button class="btn-reject" onclick="aReject('${i.id}')">&#10007; Refuser</button></div>`).join("");
   } catch { el.innerHTML = `<div style="padding:20px;color:var(--red)">Erreur.</div>`; }
 }
-
-async function aApprove(id) {
-  await fetch(`${API}/api/admin/approve/${id}`, { method:"PUT", headers:{Authorization:`Bearer ${aToken}`} });
-  aLoadPending();
+async function aApprove(id){await fetch(`${API}/api/admin/approve/${id}`,{method:"PUT",headers:{Authorization:`Bearer ${aToken}`}});aLoadPending();}
+async function aReject(id){await fetch(`${API}/api/admin/reject/${id}`,{method:"PUT",headers:{Authorization:`Bearer ${aToken}`}});aLoadPending();}
+async function aGenInvite(){
+  const res=await fetch(`${API}/api/admin/invite`,{method:"POST",headers:{Authorization:`Bearer ${aToken}`}});
+  const data=await res.json();
+  const el=document.getElementById("a-invite-result");
+  el.textContent=`Code : ${data.code} · ${data.register_url}`;
+  el.style.display="block";
 }
-async function aReject(id) {
-  await fetch(`${API}/api/admin/reject/${id}`, { method:"PUT", headers:{Authorization:`Bearer ${aToken}`} });
-  aLoadPending();
-}
-async function aGenInvite() {
-  const res  = await fetch(`${API}/api/admin/invite`, { method:"POST", headers:{Authorization:`Bearer ${aToken}`} });
-  const data = await res.json();
-  const el   = document.getElementById("a-invite-result");
-  el.textContent = `Code&#160;: ${data.code} &#183; ${data.register_url}`;
-  el.style.display = "block";
-}
-function aLogout() {
-  aToken = ""; localStorage.removeItem("vc_atoken");
-  document.getElementById("a-login").style.display = "block";
-  document.getElementById("a-dash").style.display  = "none";
-}
+function aLogout(){aToken="";localStorage.removeItem("vc_atoken");document.getElementById("a-login").style.display="block";document.getElementById("a-dash").style.display="none";}
 </script>
-
 </body>
 </html>
