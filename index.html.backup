@@ -155,9 +155,8 @@ textarea:focus{border-color:var(--gold)}
 <nav>
   <a class="logo" href="#" onclick="showPage('marketing');return false">VerdChain</a>
   <div class="nav-right">
-    <button class="nav-link" onclick="showPage('verify')" data-lang-key="nav.verify">V&#233;rifier</button>
-    <button id="lang-toggle" class="nav-link" onclick="switchLanguage(currentLang==='fr'?'en':'fr')" style="border:1px solid var(--border);padding:4px 10px;font-size:10px;letter-spacing:.12em">EN</button>
-    <button class="nav-cta" onclick="showPage('issuer')" data-lang-key="nav.emit">&Eacute;mettre</button>
+    <button class="nav-link" onclick="showPage('verify')">V&#233;rifier</button>
+    <button class="nav-cta" onclick="showPage('issuer')">&Eacute;mettre</button>
   </div>
 </nav>
 
@@ -165,21 +164,21 @@ textarea:focus{border-color:var(--gold)}
 <div id="page-marketing" class="page active">
   <div class="hero">
     <div class="hero-wrap">
-      <div class="eyebrow" data-lang-key="hero.eyebrow">Certification documentaire v&#233;rifiable</div>
-      <h1 data-lang-key="hero.title">N&#8217;importe quel document.<br><em>Impossible &#224; falsifier.</em></h1>
-      <p class="hero-sub" data-lang-key="hero.sub">Les organismes &#233;metteurs ancrent chaque certification au moment de la d&#233;livrance. Les employeurs v&#233;rifient en quelques secondes &#8212; sans appel t&#233;l&#233;phonique, sans interm&#233;diaire, sans risque de fraude.</p>
+      <div class="eyebrow">Certification documentaire v&#233;rifiable</div>
+      <h1>N&#8217;importe quel document.<br><em>Impossible &#224; falsifier.</em></h1>
+      <p class="hero-sub">Les organismes &#233;metteurs ancrent chaque certification au moment de la d&#233;livrance. Les employeurs v&#233;rifient en quelques secondes &#8212; sans appel t&#233;l&#233;phonique, sans interm&#233;diaire, sans risque de fraude.</p>
       <div class="hero-ctas">
-        <button class="btn-primary" onclick="showPage('verify')" data-lang-key="hero.cta1">V&#233;rifier un document</button>
-        <button class="btn-secondary" onclick="showPage('issuer')" data-lang-key="hero.cta2">&Eacute;mettre des certifications</button>
+        <button class="btn-primary" onclick="showPage('verify')">V&#233;rifier un document</button>
+        <button class="btn-secondary" onclick="showPage('issuer')">&Eacute;mettre des certifications</button>
       </div>
     </div>
   </div>
 
   <div class="section">
     <div class="section-wrap">
-      <div class="section-label" data-lang-key="how.label">Comment &#231;a fonctionne</div>
-      <h2 data-lang-key="how.title">Sceller une fois.<br>V&#233;rifier pour toujours.</h2>
-      <p class="section-sub" data-lang-key="how.sub">Trois &#233;tapes. Quelques secondes. Une protection permanente.</p>
+      <div class="section-label">Comment &#231;a fonctionne</div>
+      <h2>Sceller une fois.<br>V&#233;rifier pour toujours.</h2>
+      <p class="section-sub">Trois &#233;tapes. Quelques secondes. Une protection permanente.</p>
       <div class="steps">
         <div class="step"><div class="step-n">01</div><div><h4>L&#8217;organisme &#233;met et scelle</h4><p>Au moment de la d&#233;livrance, l&#8217;&#233;metteur ancre une empreinte unique du document sur la blockchain. Le fichier ne quitte jamais votre syst&#232;me.</p></div></div>
         <div class="step"><div class="step-n">02</div><div><h4>Le titulaire partage</h4><p>Le titulaire pr&#233;sente son document lors d&#8217;une candidature. Il peut partager le fichier avec un lien ou QR de v&#233;rification int&#233;gr&#233;.</p></div></div>
@@ -206,9 +205,9 @@ textarea:focus{border-color:var(--gold)}
 
   <div class="section">
     <div class="section-wrap">
-      <div class="section-label" data-lang-key="why.label">Pourquoi VerdChain</div>
-      <h2 data-lang-key="why.title">Pas une base de donn&#233;es.<br>Une preuve math&#233;matique.</h2>
-      <p class="section-sub" data-lang-key="why.sub">Les syst&#232;mes de v&#233;rification traditionnels reposent sur une autorit&#233; joignable. VerdChain, non.</p>
+      <div class="section-label">Pourquoi VerdChain</div>
+      <h2>Pas une base de donn&#233;es.<br>Une preuve math&#233;matique.</h2>
+      <p class="section-sub">Les syst&#232;mes de v&#233;rification traditionnels reposent sur une autorit&#233; joignable. VerdChain, non.</p>
       <div class="two-col">
         <div class="col"><div class="col-label">V&#233;rification traditionnelle</div><h3>&#171;&#160;Appelez-nous, on confirmera&#160;&#187;</h3><p>D&#233;pend d&#8217;une autorit&#233; disponible, lent, co&#251;teux, point de d&#233;faillance unique.</p></div>
         <div class="col"><div class="col-label">VerdChain</div><h3>Le document parle de lui-m&#234;me</h3><p>En quelques secondes, vous avez une r&#233;ponse certaine &#8212; authentique ou falsifi&#233;. Aucune confiance requise.</p></div>
@@ -218,21 +217,21 @@ textarea:focus{border-color:var(--gold)}
 
   <div class="waitlist-section">
     <div class="waitlist-wrap">
-      <div class="section-label" data-lang-key="waitlist.label">Acc&#232;s &#233;metteur</div>
-      <h2 data-lang-key="waitlist.title">Pr&#234;t &#224; &#233;liminer la fraude documentaire&#160;?</h2>
-      <p class="section-sub" data-lang-key="waitlist.sub">Rejoignez les organismes qui prot&#232;gent d&#233;j&#224; leurs certifications. Acc&#232;s gratuit pendant le lancement.</p>
+      <div class="section-label">Acc&#232;s &#233;metteur</div>
+      <h2>Pr&#234;t &#224; &#233;liminer la fraude documentaire&#160;?</h2>
+      <p class="section-sub">Rejoignez les organismes qui prot&#232;gent d&#233;j&#224; leurs certifications. Acc&#232;s gratuit pendant le lancement.</p>
       <div class="waitlist-form">
-        <input type="email" id="wl-email" placeholder="votre@organisme.fr" data-lang-key="waitlist.placeholder">
-        <button onclick="wlSubmit()" data-lang-key="waitlist.cta">Rejoindre</button>
+        <input type="email" id="wl-email" placeholder="votre@organisme.fr">
+        <button onclick="wlSubmit()">Rejoindre</button>
       </div>
-      <div id="wl-ok" class="waitlist-ok" data-lang-key="waitlist.ok">Demande re&#231;ue &#8212; nous vous contacterons sous 48&#160;h.</div>
-      <div class="waitlist-note" data-lang-key="waitlist.note">Sans engagement &middot; R&#233;ponse sous 48&#160;h &middot; Donn&#233;es non partag&#233;es</div>
+      <div id="wl-ok" class="waitlist-ok">Demande re&#231;ue &#8212; nous vous contacterons sous 48&#160;h.</div>
+      <div class="waitlist-note">Sans engagement &middot; R&#233;ponse sous 48&#160;h &middot; Donn&#233;es non partag&#233;es</div>
     </div>
   </div>
 
   <footer>
-    <span data-lang-key="footer.tagline">VerdChain &middot; Certification v&#233;rifiable</span>
-    <span data-lang-key="footer.privacy">Z&#233;ro fichier upload&#233; &middot; Traitement local uniquement</span>
+    <span>VerdChain &middot; Certification v&#233;rifiable</span>
+    <span>Z&#233;ro fichier upload&#233; &middot; Traitement local uniquement</span>
   </footer>
 </div>
 
@@ -240,26 +239,26 @@ textarea:focus{border-color:var(--gold)}
 <div id="page-verify" class="page">
   <div class="portal">
     <div class="portal-wrap">
-      <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px" data-lang-key="verify.back">&#8592; Retour</button>
-      <div class="portal-title" data-lang-key="verify.title">V&#233;rifier un document</div>
-      <div class="portal-sub" data-lang-key="verify.sub">D&#233;posez n&#8217;importe quel document pour v&#233;rifier instantan&#233;ment son authenticit&#233;. Aucun fichier n&#8217;est transmis.</div>
+      <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px">&#8592; Retour</button>
+      <div class="portal-title">V&#233;rifier un document</div>
+      <div class="portal-sub">D&#233;posez n&#8217;importe quel document pour v&#233;rifier instantan&#233;ment son authenticit&#233;. Aucun fichier n&#8217;est transmis.</div>
       <div class="tabs">
-        <button class="tab on" onclick="switchVTab('file',this)" data-lang-key="verify.tab1">D&#233;poser un fichier</button>
-        <button class="tab" onclick="switchVTab('hash',this)" data-lang-key="verify.tab2">Coller un hash</button>
+        <button class="tab on" onclick="switchVTab('file',this)">D&#233;poser un fichier</button>
+        <button class="tab" onclick="switchVTab('hash',this)">Coller un hash</button>
       </div>
       <div id="v-input">
         <div id="v-tab-file">
           <div class="dropzone" id="v-dz" ondragover="vdov(event)" ondragleave="vdol()" ondrop="vddr(event)">
             <input type="file" onchange="vdfs(event)">
             <span class="dz-icon">&#128269;</span>
-            <div class="dz-title" data-lang-key="verify.dz.title">D&#233;poser le document ici</div>
-            <div class="dz-sub" data-lang-key="verify.dz.sub">ou cliquer pour parcourir &middot; tout format</div>
+            <div class="dz-title">D&#233;poser le document ici</div>
+            <div class="dz-sub">ou cliquer pour parcourir &middot; tout format</div>
           </div>
         </div>
         <div id="v-tab-hash" style="display:none">
           <div style="display:flex;border:1px solid var(--border)">
             <input type="text" id="v-hash-input" placeholder="Hash SHA-256 (64 caract&#232;res)..." style="flex:1;border:none;padding:13px 14px;font-family:var(--mono);font-size:12px;outline:none">
-            <button class="btn-primary" style="padding:13px 24px;width:auto" onclick="vfh()" data-lang-key="verify.hash.cta">V&#233;rifier</button>
+            <button class="btn-primary" style="padding:13px 24px;width:auto" onclick="vfh()">V&#233;rifier</button>
           </div>
         </div>
       </div>
@@ -276,23 +275,23 @@ textarea:focus{border-color:var(--gold)}
 <div id="page-issuer" class="page">
   <div class="portal">
     <div class="portal-wrap">
-      <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px" data-lang-key="issuer.back">&#8592; Retour</button>
+      <button class="btn-again" onclick="showPage('marketing')" style="margin-bottom:24px">&#8592; Retour</button>
 
       <div id="i-login">
-        <div class="portal-title" data-lang-key="issuer.login.title">&Eacute;mettre une certification</div>
-        <div class="portal-sub" data-lang-key="issuer.login.sub">Connectez-vous &#224; votre compte approuv&#233;.</div>
+        <div class="portal-title">&Eacute;mettre une certification</div>
+        <div class="portal-sub">Connectez-vous &#224; votre compte approuv&#233;.</div>
         <div class="card">
           <div id="i-err" style="display:none" class="err"></div>
           <div class="input-wrap"><div class="input-label">Adresse e-mail</div><input type="email" id="i-email" placeholder="contact@organisme.fr"></div>
           <div class="input-wrap"><div class="input-label">Mot de passe</div><input type="password" id="i-pass"></div>
-          <button class="btn-full" onclick="iLogin()" data-lang-key="issuer.login.cta">Se connecter</button>
+          <button class="btn-full" onclick="iLogin()">Se connecter</button>
           <div style="margin-top:16px;text-align:center;font-size:14px;color:var(--grey)">Pas de compte&#160;? <span onclick="showPage('register')" style="color:var(--gold);cursor:pointer">Demander l&#8217;acc&#232;s</span></div>
-          <div style="margin-top:16px"><button class="btn-secondary" style="width:100%;padding:12px" onclick="iDemoLogin(event)" data-lang-key="issuer.login.demo">Voir une d&#233;mo</button></div>
+          <div style="margin-top:16px"><button class="btn-secondary" style="width:100%;padding:12px" onclick="iDemoLogin(event)">Voir une d&#233;mo</button></div>
         </div>
       </div>
 
       <div id="i-dash" style="display:none">
-        <div id="i-demo-banner" style="display:none;background:var(--gold);color:var(--paper);padding:8px 16px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;text-align:center;margin-bottom:20px" data-lang-key="issuer.demo.banner">Mode d&#233;mo &#8212; aucune donn&#233;e r&#233;elle</div>
+        <div id="i-demo-banner" style="display:none;background:var(--gold);color:var(--paper);padding:8px 16px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;text-align:center;margin-bottom:20px">Mode d&#233;mo &#8212; aucune donn&#233;e r&#233;elle</div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
           <div>
             <div class="portal-title" id="i-org-name">Tableau de bord</div>
@@ -423,114 +422,6 @@ textarea:focus{border-color:var(--gold)}
 </div>
 
 <script>
-// ===== I18N =====
-const translations = {
-  fr: {
-    "nav.verify": "Vérifier",
-    "nav.emit": "Émettre",
-    "nav.lang": "EN",
-    "hero.eyebrow": "Certification documentaire vérifiable",
-    "hero.title": "N&#8217;importe quel document.<br><em>Impossible à falsifier.</em>",
-    "hero.sub": "Les organismes émetteurs ancrent chaque certification au moment de la délivrance. Les employeurs vérifient en quelques secondes — sans appel téléphonique, sans intermédiaire, sans risque de fraude.",
-    "hero.cta1": "Vérifier un document",
-    "hero.cta2": "Émettre des certifications",
-    "how.label": "Comment ça fonctionne",
-    "how.title": "Sceller une fois.<br>Vérifier pour toujours.",
-    "how.sub": "Trois étapes. Quelques secondes. Une protection permanente.",
-    "why.label": "Pourquoi VerdChain",
-    "why.title": "Pas une base de données.<br>Une preuve mathématique.",
-    "why.sub": "Les systèmes de vérification traditionnels reposent sur une autorité joignable. VerdChain, non.",
-    "waitlist.label": "Accès émetteur",
-    "waitlist.title": "Prêt à éliminer la fraude documentaire ?",
-    "waitlist.sub": "Rejoignez les organismes qui protègent déjà leurs certifications. Accès gratuit pendant le lancement.",
-    "waitlist.placeholder": "votre@organisme.fr",
-    "waitlist.cta": "Rejoindre",
-    "waitlist.ok": "Demande reçue — nous vous contacterons sous 48 h.",
-    "waitlist.note": "Sans engagement · Réponse sous 48 h · Données non partagées",
-    "footer.tagline": "VerdChain · Certification vérifiable",
-    "footer.privacy": "Zéro fichier uploadé · Traitement local uniquement",
-    "verify.back": "← Retour",
-    "verify.title": "Vérifier un document",
-    "verify.sub": "Déposez n'importe quel document pour vérifier instantanément son authenticité. Aucun fichier n'est transmis.",
-    "verify.tab1": "Déposer un fichier",
-    "verify.tab2": "Coller un hash",
-    "verify.dz.title": "Déposer le document ici",
-    "verify.dz.sub": "ou cliquer pour parcourir · tout format",
-    "verify.hash.cta": "Vérifier",
-    "verify.loading": "Vérification en cours...",
-    "issuer.back": "← Retour",
-    "issuer.login.title": "Émettre une certification",
-    "issuer.login.sub": "Connectez-vous à votre compte approuvé.",
-    "issuer.login.cta": "Se connecter",
-    "issuer.login.demo": "Voir une démo",
-    "issuer.demo.banner": "Mode démo — aucune donnée réelle",
-  },
-  en: {
-    "nav.verify": "Verify",
-    "nav.emit": "Issue",
-    "nav.lang": "FR",
-    "hero.eyebrow": "Verifiable document certification",
-    "hero.title": "Any document.<br><em>Impossible to fake.</em>",
-    "hero.sub": "Issuing organizations anchor each certification at issuance. Employers verify in seconds — no phone call, no intermediary, no fraud risk.",
-    "hero.cta1": "Verify a document",
-    "hero.cta2": "Issue certifications",
-    "how.label": "How it works",
-    "how.title": "Seal once.<br>Verify forever.",
-    "how.sub": "Three steps. A few seconds. Permanent protection.",
-    "why.label": "Why VerdChain",
-    "why.title": "Not a database.<br>A mathematical proof.",
-    "why.sub": "Traditional verification systems rely on a reachable authority. VerdChain doesn't.",
-    "waitlist.label": "Issuer access",
-    "waitlist.title": "Ready to eliminate document fraud?",
-    "waitlist.sub": "Join the organizations already protecting their certifications. Free access during launch.",
-    "waitlist.placeholder": "your@organization.com",
-    "waitlist.cta": "Join",
-    "waitlist.ok": "Request received — we'll contact you within 48h.",
-    "waitlist.note": "No commitment · Response within 48h · Data not shared",
-    "footer.tagline": "VerdChain · Verifiable certification",
-    "footer.privacy": "Zero uploaded files · Local processing only",
-    "verify.back": "← Back",
-    "verify.title": "Verify a document",
-    "verify.sub": "Drop any document to instantly verify its authenticity. No file is transmitted.",
-    "verify.tab1": "Drop a file",
-    "verify.tab2": "Paste a hash",
-    "verify.dz.title": "Drop the document here",
-    "verify.dz.sub": "or click to browse · any format",
-    "verify.hash.cta": "Verify",
-    "verify.loading": "Verification in progress...",
-    "issuer.back": "← Back",
-    "issuer.login.title": "Issue a certification",
-    "issuer.login.sub": "Log in to your approved account.",
-    "issuer.login.cta": "Log in",
-    "issuer.login.demo": "See a demo",
-    "issuer.demo.banner": "Demo mode — no real data",
-  }
-};
-
-let currentLang = localStorage.getItem("verdchain_lang") || "fr";
-
-function switchLanguage(lang) {
-  if (!translations[lang]) return;
-  currentLang = lang;
-  localStorage.setItem("verdchain_lang", lang);
-  document.documentElement.lang = lang;
-  document.querySelectorAll("[data-lang-key]").forEach(el => {
-    const key = el.getAttribute("data-lang-key");
-    const text = translations[lang][key];
-    if (text === undefined) return;
-    if ((el.tagName === "INPUT") && (el.type === "email" || el.type === "text")) {
-      el.placeholder = text;
-    } else {
-      el.innerHTML = text;
-    }
-  });
-  const langBtn = document.getElementById("lang-toggle");
-  if (langBtn) langBtn.textContent = translations[lang]["nav.lang"];
-}
-
-document.addEventListener("DOMContentLoaded", () => { switchLanguage(currentLang); });
-// ===== END I18N =====
-
 const API = "https://verdchain-api.onrender.com";
 let iToken = localStorage.getItem("vc_itoken") || "";
 let aToken = localStorage.getItem("vc_atoken") || "";
