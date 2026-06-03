@@ -24,6 +24,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--paper);bord
 .nav-link:hover{color:var(--ink)}
 .nav-cta{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:8px 18px;background:var(--ink);color:var(--paper);cursor:pointer;border:none}
 .nav-cta:hover{background:#333}
+.lang-switcher{display:flex;align-items:center;gap:2px;border:1px solid var(--border);padding:2px}
+.lang-btn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:4px 8px;background:none;border:none;color:var(--grey);cursor:pointer;line-height:1}
+.lang-btn.active{background:var(--ink);color:var(--paper)}
+.lang-btn:hover:not(.active){color:var(--ink)}
 .page{display:none}.page.active{display:block}
 .hero{min-height:100vh;display:flex;align-items:center;padding:120px 40px 80px;border-bottom:1px solid var(--border)}
 .hero-wrap{max-width:780px;margin:0 auto;width:100%}
@@ -156,7 +160,7 @@ textarea:focus{border-color:var(--gold)}
   <a class="logo" href="#" onclick="showPage('marketing');return false">VerdChain</a>
   <div class="nav-right">
     <button class="nav-link" onclick="showPage('verify')" data-lang-key="nav.verify">V&#233;rifier</button>
-    <button id="lang-toggle" class="nav-link" onclick="switchLanguage(currentLang==='fr'?'en':'fr')" style="border:1px solid var(--border);padding:4px 10px;font-size:10px;letter-spacing:.12em">EN</button>
+    <div class="lang-switcher"><button class="lang-btn" data-lang-code="fr" onclick="switchLanguage('fr')">FR</button><button class="lang-btn" data-lang-code="en" onclick="switchLanguage('en')">EN</button><button class="lang-btn" data-lang-code="es" onclick="switchLanguage('es')">ES</button><button class="lang-btn" data-lang-code="de" onclick="switchLanguage('de')">DE</button></div>
     <button class="nav-cta" onclick="showPage('issuer')" data-lang-key="nav.emit">&Eacute;mettre</button>
   </div>
 </nav>
@@ -191,15 +195,15 @@ textarea:focus{border-color:var(--gold)}
 
   <div class="section" style="background:var(--light)">
     <div class="section-wrap">
-      <div class="section-label">&#192; qui &#231;a s&#8217;adresse</div>
-      <h2>Deux acteurs.<br>Une seule v&#233;rit&#233;.</h2>
+      <div class="section-label" data-lang-key="who.label">&#192; qui &#231;a s&#8217;adresse</div>
+      <h2 data-lang-key="who.title">Deux acteurs.<br>Une seule v&#233;rit&#233;.</h2>
       <div class="two-col">
-        <div class="col"><div class="col-label">&Eacute;metteurs</div><h3>Organismes certifiants, &#233;coles, institutions</h3><p>Toute organisation qui d&#233;livre des dipl&#244;mes ou certifications. &Eacute;mettez en masse ou un par un &#8212; vos documents sont prot&#233;g&#233;s pour toujours.</p></div>
-        <div class="col"><div class="col-label">V&#233;rificateurs</div><h3>Employeurs, recruteurs, partenaires</h3><p>DRH, cabinets de recrutement, donneurs d&#8217;ordre. V&#233;rifiez n&#8217;importe quel document en quelques secondes &#8212; sans appel, sans interm&#233;diaire.</p></div>
+        <div class="col"><div class="col-label" data-lang-key="who.issuers.label">&Eacute;metteurs</div><h3 data-lang-key="who.issuers.title">Organismes certifiants, &#233;coles, institutions</h3><p data-lang-key="who.issuers.desc">Toute organisation qui d&#233;livre des dipl&#244;mes ou certifications. &Eacute;mettez en masse ou un par un &#8212; vos documents sont prot&#233;g&#233;s pour toujours.</p></div>
+        <div class="col"><div class="col-label" data-lang-key="who.verifiers.label">V&#233;rificateurs</div><h3 data-lang-key="who.verifiers.title">Employeurs, recruteurs, partenaires</h3><p data-lang-key="who.verifiers.desc">DRH, cabinets de recrutement, donneurs d&#8217;ordre. V&#233;rifiez n&#8217;importe quel document en quelques secondes &#8212; sans appel, sans interm&#233;diaire.</p></div>
       </div>
       <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap">
-        <button class="btn-primary" onclick="showPage('issuer')">&Eacute;mettre des certifications</button>
-        <button class="btn-secondary" onclick="showPage('verify')">V&#233;rifier un document</button>
+        <button class="btn-primary" onclick="showPage('issuer')" data-lang-key="hero.cta2">&Eacute;mettre des certifications</button>
+        <button class="btn-secondary" onclick="showPage('verify')" data-lang-key="hero.cta1">V&#233;rifier un document</button>
       </div>
     </div>
   </div>
@@ -210,8 +214,8 @@ textarea:focus{border-color:var(--gold)}
       <h2 data-lang-key="why.title">Pas une base de donn&#233;es.<br>Une preuve math&#233;matique.</h2>
       <p class="section-sub" data-lang-key="why.sub">Les syst&#232;mes de v&#233;rification traditionnels reposent sur une autorit&#233; joignable. VerdChain, non.</p>
       <div class="two-col">
-        <div class="col"><div class="col-label">V&#233;rification traditionnelle</div><h3>&#171;&#160;Appelez-nous, on confirmera&#160;&#187;</h3><p>D&#233;pend d&#8217;une autorit&#233; disponible, lent, co&#251;teux, point de d&#233;faillance unique.</p></div>
-        <div class="col"><div class="col-label">VerdChain</div><h3>Le document parle de lui-m&#234;me</h3><p>En quelques secondes, vous avez une r&#233;ponse certaine &#8212; authentique ou falsifi&#233;. Aucune confiance requise.</p></div>
+        <div class="col"><div class="col-label" data-lang-key="trad.label">V&#233;rification traditionnelle</div><h3 data-lang-key="trad.title">&#171;&#160;Appelez-nous, on confirmera&#160;&#187;</h3><p data-lang-key="trad.desc">D&#233;pend d&#8217;une autorit&#233; disponible, lent, co&#251;teux, point de d&#233;faillance unique.</p></div>
+        <div class="col"><div class="col-label" data-lang-key="vc.label">VerdChain</div><h3 data-lang-key="vc.title">Le document parle de lui-m&#234;me</h3><p data-lang-key="vc.desc">En quelques secondes, vous avez une r&#233;ponse certaine &#8212; authentique ou falsifi&#233;. Aucune confiance requise.</p></div>
       </div>
     </div>
   </div>
@@ -265,7 +269,7 @@ textarea:focus{border-color:var(--gold)}
       </div>
       <div id="v-loading" style="display:none;text-align:center;padding:40px 0">
         <div class="spin"></div>
-        <div style="margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--grey)">V&#233;rification en cours...</div>
+        <div style="margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--grey)" data-lang-key="verify.loading">V&#233;rification en cours...</div>
       </div>
       <div id="v-result" style="display:none"></div>
     </div>
@@ -303,10 +307,10 @@ textarea:focus{border-color:var(--gold)}
         <div id="i-pending-msg" style="display:none" class="err">Votre compte est en attente de validation.</div>
         <div id="i-approved-content" style="display:none">
           <div class="tabs">
-            <button class="tab on" onclick="switchITab('upload',this)">Nouveau document</button>
-            <button class="tab" onclick="switchITab('csv',this)">Import CSV</button>
-            <button class="tab" onclick="switchITab('history',this)">Historique</button>
-            <button class="tab" onclick="switchITab('audit',this)">Journal</button>
+            <button class="tab on" onclick="switchITab('upload',this)" data-lang-key="dash.tab.upload">Nouveau document</button>
+            <button class="tab" onclick="switchITab('csv',this)" data-lang-key="dash.tab.csv">Import CSV</button>
+            <button class="tab" onclick="switchITab('history',this)" data-lang-key="dash.tab.history">Historique</button>
+            <button class="tab" onclick="switchITab('audit',this)" data-lang-key="dash.tab.audit">Journal</button>
           </div>
 
           <!-- TAB: Upload -->
@@ -321,10 +325,10 @@ textarea:focus{border-color:var(--gold)}
                 <div class="dz-sub" id="i-dz-sub">ou cliquer pour parcourir &middot; PDF &middot; image &middot; tout format</div>
               </div>
               <div class="card">
-                <div class="input-wrap"><div class="input-label">Nom complet du titulaire *</div><input type="text" id="i-candidate" placeholder="Pr&#233;nom Nom"></div>
-                <div class="input-wrap"><div class="input-label">Type de certification *</div><input type="text" id="i-degree" placeholder="ex&#160;: Dipl&#244;me, Certificat, Accr&#233;ditation"></div>
-                <div class="input-wrap"><div class="input-label">Date de d&#233;livrance *</div><input type="date" id="i-date"></div>
-                <button class="btn-full" id="i-anchor-btn" onclick="iAnchor()" disabled>Ancrer sur la blockchain</button>
+                <div class="input-wrap"><div class="input-label" data-lang-key="form.candidate">Nom complet du titulaire *</div><input type="text" id="i-candidate" placeholder="Pr&#233;nom Nom"></div>
+                <div class="input-wrap"><div class="input-label" data-lang-key="form.degree">Type de certification *</div><input type="text" id="i-degree" placeholder="ex&#160;: Dipl&#244;me, Certificat, Accr&#233;ditation"></div>
+                <div class="input-wrap"><div class="input-label" data-lang-key="form.date">Date de d&#233;livrance *</div><input type="date" id="i-date"></div>
+                <button class="btn-full" id="i-anchor-btn" onclick="iAnchor()" disabled data-lang-key="form.anchor">Ancrer sur la blockchain</button>
               </div>
             </div>
           </div>
@@ -372,8 +376,8 @@ textarea:focus{border-color:var(--gold)}
   <div class="portal">
     <div class="portal-wrap">
       <button class="btn-again" onclick="showPage('issuer')" style="margin-bottom:24px">&#8592; Retour</button>
-      <div class="portal-title">Demander l&#8217;acc&#232;s</div>
-      <div class="portal-sub">D&#233;crivez votre organisme. Validation sous 48 heures.</div>
+      <div class="portal-title" data-lang-key="register.title">Demander l&#8217;acc&#232;s</div>
+      <div class="portal-sub" data-lang-key="register.sub">D&#233;crivez votre organisme. Validation sous 48 heures.</div>
       <div class="card">
         <div id="r-err" style="display:none" class="err"></div>
         <div id="r-ok" style="display:none" class="ok"></div>
@@ -424,6 +428,10 @@ textarea:focus{border-color:var(--gold)}
 
 <script>
 // ===== I18N =====
+function t(key) {
+  return (translations[currentLang] && translations[currentLang][key]) ||
+         (translations["en"] && translations["en"][key]) || key;
+}
 const translations = {
   fr: {
     "nav.verify": "Vérifier",
@@ -464,6 +472,43 @@ const translations = {
     "issuer.login.cta": "Se connecter",
     "issuer.login.demo": "Voir une démo",
     "issuer.demo.banner": "Mode démo — aucune donnée réelle",
+    "who.label": "À qui ça s’adresse",
+    "who.title": "Deux acteurs.<br>Une seule vérité.",
+    "who.issuers.label": "Émetteurs",
+    "who.issuers.title": "Organismes certifiants, écoles, institutions",
+    "who.issuers.desc": "Toute organisation qui délivre des diplômes ou certifications. Émettez en masse ou un par un — vos documents sont protégés pour toujours.",
+    "who.verifiers.label": "Vérificateurs",
+    "who.verifiers.title": "Employeurs, recruteurs, partenaires",
+    "who.verifiers.desc": "DRH, cabinets de recrutement, donneurs d’ordre. Vérifiez n’importe quel document en quelques secondes — sans appel, sans intermédiaire.",
+    "trad.label": "Vérification traditionnelle",
+    "trad.title": "« Appelez-nous, on confirmera »",
+    "trad.desc": "Dépend d’une autorité disponible, lent, coûteux, point de défaillance unique.",
+    "vc.label": "VerdChain",
+    "vc.title": "Le document parle de lui-même",
+    "vc.desc": "En quelques secondes, vous avez une réponse certaine — authentique ou falsifié. Aucune confiance requise.",
+    "dash.tab.upload": "Nouveau document",
+    "dash.tab.csv": "Import CSV",
+    "dash.tab.history": "Historique",
+    "dash.tab.audit": "Journal",
+    "form.candidate": "Nom complet du titulaire *",
+    "form.degree": "Type de certification *",
+    "form.date": "Date de délivrance *",
+    "form.anchor": "Ancrer sur la blockchain",
+    "register.title": "Demander l’accès",
+    "register.sub": "Décrivez votre organisme. Validation sous 48 heures.",
+    "result.holder": "Titulaire",
+    "result.type": "Type",
+    "result.issued": "Date de délivrance",
+    "result.issuer": "Organisme émetteur",
+    "result.anchored": "Ancré le",
+    "result.ok.title": "Document authentique",
+    "result.ok.desc": "Ce document est authentique et correspond à son enregistrement d’origine. Garanti.",
+    "result.rev.title": "Document révoqué",
+    "result.rev.desc": "Ce document a été révoqué par l’émetteur. Il n’est plus valide.",
+    "result.fail.title": "Document non vérifié",
+    "result.fail.desc": "Aucun enregistrement trouvé. Ce document n’a pas été ancré via VerdChain ou a été modifié depuis son émission.",
+    "result.record": "Enregistrement vérifié",
+    "verify.again": "← Vérifier un autre document",
   },
   en: {
     "nav.verify": "Verify",
@@ -504,6 +549,195 @@ const translations = {
     "issuer.login.cta": "Log in",
     "issuer.login.demo": "See a demo",
     "issuer.demo.banner": "Demo mode — no real data",
+    "who.label": "Who it\'s for",
+    "who.title": "Two actors.<br>One single truth.",
+    "who.issuers.label": "Issuers",
+    "who.issuers.title": "Certifying bodies, schools, institutions",
+    "who.issuers.desc": "Any organization that issues diplomas or certifications. Issue in bulk or one by one — your documents are protected forever.",
+    "who.verifiers.label": "Verifiers",
+    "who.verifiers.title": "Employers, recruiters, partners",
+    "who.verifiers.desc": "HR departments, recruitment firms, clients. Verify any document in seconds — no call, no intermediary.",
+    "trad.label": "Traditional verification",
+    "trad.title": "\"Call us, we\'ll confirm\"",
+    "trad.desc": "Depends on a reachable authority, slow, costly, single point of failure.",
+    "vc.label": "VerdChain",
+    "vc.title": "The document speaks for itself",
+    "vc.desc": "In seconds, you get a definitive answer — authentic or forged. No trust required.",
+    "dash.tab.upload": "New document",
+    "dash.tab.csv": "CSV Import",
+    "dash.tab.history": "History",
+    "dash.tab.audit": "Audit log",
+    "form.candidate": "Certificate holder\'s full name *",
+    "form.degree": "Certification type *",
+    "form.date": "Issue date *",
+    "form.anchor": "Anchor on blockchain",
+    "register.title": "Request access",
+    "register.sub": "Describe your organization. Approval within 48 hours.",
+    "result.holder": "Holder",
+    "result.type": "Type",
+    "result.issued": "Issue date",
+    "result.issuer": "Issuing organization",
+    "result.anchored": "Anchored on",
+    "result.ok.title": "Authentic document",
+    "result.ok.desc": "This document is authentic and matches its original record. Guaranteed.",
+    "result.rev.title": "Revoked document",
+    "result.rev.desc": "This document has been revoked by the issuer. It is no longer valid.",
+    "result.fail.title": "Unverified document",
+    "result.fail.desc": "No record found. This document was not anchored via VerdChain or has been altered since issuance.",
+    "result.record": "Verified record",
+    "verify.again": "← Verify another document",
+  },
+  es: {
+    "nav.verify": "Verificar",
+    "nav.emit": "Emitir",
+    "hero.eyebrow": "Certificación documental verificable",
+    "hero.title": "Cualquier documento.<br><em>Imposible de falsificar.</em>",
+    "hero.sub": "Las organizaciones emisoras anclan cada certificación en el momento de la emisión. Los empleadores verifican en segundos — sin llamadas, sin intermediarios, sin riesgo de fraude.",
+    "hero.cta1": "Verificar un documento",
+    "hero.cta2": "Emitir certificaciones",
+    "how.label": "Cómo funciona",
+    "how.title": "Sellar una vez.<br>Verificar para siempre.",
+    "how.sub": "Tres pasos. Pocos segundos. Protección permanente.",
+    "why.label": "Por qué VerdChain",
+    "why.title": "No una base de datos.<br>Una prueba matemática.",
+    "why.sub": "Los sistemas de verificación tradicionales dependen de una autoridad accesible. VerdChain, no.",
+    "waitlist.label": "Acceso emisor",
+    "waitlist.title": "¿Listo para eliminar el fraude documental?",
+    "waitlist.sub": "Únase a las organizaciones que ya protegen sus certificaciones. Acceso gratuito durante el lanzamiento.",
+    "waitlist.placeholder": "su@organizacion.com",
+    "waitlist.cta": "Unirse",
+    "waitlist.ok": "Solicitud recibida — le contactaremos en 48 h.",
+    "waitlist.note": "Sin compromiso · Respuesta en 48 h · Datos no compartidos",
+    "footer.tagline": "VerdChain · Certificación verificable",
+    "footer.privacy": "Sin archivos subidos · Procesamiento local únicamente",
+    "verify.back": "← Volver",
+    "verify.title": "Verificar un documento",
+    "verify.sub": "Deposite cualquier documento para verificar instantáneamente su autenticidad. Ningún archivo es transmitido.",
+    "verify.tab1": "Depositar un archivo",
+    "verify.tab2": "Pegar un hash",
+    "verify.dz.title": "Depositar el documento aquí",
+    "verify.dz.sub": "o hacer clic para navegar · cualquier formato",
+    "verify.hash.cta": "Verificar",
+    "verify.loading": "Verificación en curso...",
+    "verify.again": "← Verificar otro documento",
+    "issuer.back": "← Volver",
+    "issuer.login.title": "Emitir una certificación",
+    "issuer.login.sub": "Inicie sesión en su cuenta aprobada.",
+    "issuer.login.cta": "Iniciar sesión",
+    "issuer.login.demo": "Ver una demo",
+    "issuer.demo.banner": "Modo demo — sin datos reales",
+    "who.label": "Para quién es",
+    "who.title": "Dos actores.<br>Una sola verdad.",
+    "who.issuers.label": "Emisores",
+    "who.issuers.title": "Organismos certificadores, escuelas, instituciones",
+    "who.issuers.desc": "Cualquier organización que emite diplomas o certificaciones. Emita de forma masiva o uno a uno — sus documentos están protegidos para siempre.",
+    "who.verifiers.label": "Verificadores",
+    "who.verifiers.title": "Empleadores, reclutadores, socios",
+    "who.verifiers.desc": "RR.HH., agencias de reclutamiento, clientes. Verifique cualquier documento en segundos — sin llamadas, sin intermediarios.",
+    "trad.label": "Verificación tradicional",
+    "trad.title": "«Llámenos, confirmaremos»",
+    "trad.desc": "Depende de una autoridad disponible, lento, costoso, punto único de fallo.",
+    "vc.label": "VerdChain",
+    "vc.title": "El documento habla por sí mismo",
+    "vc.desc": "En segundos, obtiene una respuesta segura — auténtico o falsificado. Sin confianza requerida.",
+    "dash.tab.upload": "Nuevo documento",
+    "dash.tab.csv": "Importar CSV",
+    "dash.tab.history": "Historial",
+    "dash.tab.audit": "Registro",
+    "form.candidate": "Nombre completo del titular *",
+    "form.degree": "Tipo de certificación *",
+    "form.date": "Fecha de emisión *",
+    "form.anchor": "Anclar en blockchain",
+    "register.title": "Solicitar acceso",
+    "register.sub": "Describa su organización. Aprobación en 48 horas.",
+    "result.holder": "Titular",
+    "result.type": "Tipo",
+    "result.issued": "Fecha de emisión",
+    "result.issuer": "Organismo emisor",
+    "result.anchored": "Anclado el",
+    "result.ok.title": "Documento auténtico",
+    "result.ok.desc": "Este documento es auténtico y coincide con su registro original. Garantizado.",
+    "result.rev.title": "Documento revocado",
+    "result.rev.desc": "Este documento ha sido revocado por el emisor. Ya no es válido.",
+    "result.fail.title": "Documento no verificado",
+    "result.fail.desc": "No se encontró ningún registro. Este documento no fue anclado a través de VerdChain o ha sido alterado desde su emisión.",
+    "result.record": "Registro verificado",
+  },
+  de: {
+    "nav.verify": "Prüfen",
+    "nav.emit": "Ausstellen",
+    "hero.eyebrow": "Überprüfbare Dokumentenzertifizierung",
+    "hero.title": "Jedes Dokument.<br><em>Unmöglich zu fälschen.</em>",
+    "hero.sub": "Ausstellende Organisationen verankern jede Zertifizierung zum Zeitpunkt der Ausstellung. Arbeitgeber prüfen in Sekunden — kein Telefonanruf, kein Vermittler, kein Betrugsrisiko.",
+    "hero.cta1": "Dokument prüfen",
+    "hero.cta2": "Zertifikate ausstellen",
+    "how.label": "So funktioniert es",
+    "how.title": "Einmal versiegeln.<br>Für immer prüfen.",
+    "how.sub": "Drei Schritte. Wenige Sekunden. Dauerhafter Schutz.",
+    "why.label": "Warum VerdChain",
+    "why.title": "Keine Datenbank.<br>Ein mathematischer Beweis.",
+    "why.sub": "Herkömmliche Prüfsysteme sind auf eine erreichbare Autorität angewiesen. VerdChain nicht.",
+    "waitlist.label": "Aussteller-Zugang",
+    "waitlist.title": "Bereit, Dokumentenbetrug zu eliminieren?",
+    "waitlist.sub": "Schließen Sie sich Organisationen an, die ihre Zertifikate bereits schützen. Kostenloser Zugang beim Launch.",
+    "waitlist.placeholder": "ihre@organisation.de",
+    "waitlist.cta": "Beitreten",
+    "waitlist.ok": "Anfrage erhalten — wir melden uns innerhalb von 48 Std.",
+    "waitlist.note": "Keine Verpflichtung · Antwort in 48 Std. · Daten werden nicht geteilt",
+    "footer.tagline": "VerdChain · Überprüfbare Zertifizierung",
+    "footer.privacy": "Keine hochgeladenen Dateien · Nur lokale Verarbeitung",
+    "verify.back": "← Zurück",
+    "verify.title": "Dokument prüfen",
+    "verify.sub": "Laden Sie ein beliebiges Dokument hoch, um seine Echtheit sofort zu prüfen. Es wird keine Datei übertragen.",
+    "verify.tab1": "Datei hochladen",
+    "verify.tab2": "Hash einfügen",
+    "verify.dz.title": "Dokument hier ablegen",
+    "verify.dz.sub": "oder klicken, um zu durchsuchen · jedes Format",
+    "verify.hash.cta": "Prüfen",
+    "verify.loading": "Prüfung läuft...",
+    "verify.again": "← Weiteres Dokument prüfen",
+    "issuer.back": "← Zurück",
+    "issuer.login.title": "Zertifikat ausstellen",
+    "issuer.login.sub": "Melden Sie sich bei Ihrem genehmigten Konto an.",
+    "issuer.login.cta": "Anmelden",
+    "issuer.login.demo": "Demo ansehen",
+    "issuer.demo.banner": "Demo-Modus — keine echten Daten",
+    "who.label": "Für wen",
+    "who.title": "Zwei Akteure.<br>Eine einzige Wahrheit.",
+    "who.issuers.label": "Aussteller",
+    "who.issuers.title": "Zertifizierungsstellen, Schulen, Institutionen",
+    "who.issuers.desc": "Jede Organisation, die Diplome oder Zertifikate ausstellt. Stellen Sie einzeln oder in Masse aus — Ihre Dokumente sind dauerhaft geschützt.",
+    "who.verifiers.label": "Prüfer",
+    "who.verifiers.title": "Arbeitgeber, Recruiter, Partner",
+    "who.verifiers.desc": "HR-Abteilungen, Personalvermittler, Auftraggeber. Prüfen Sie jedes Dokument in Sekunden — ohne Anruf, ohne Vermittler.",
+    "trad.label": "Herkömmliche Prüfung",
+    "trad.title": "„Rufen Sie uns an, wir bestätigen“",
+    "trad.desc": "Abhängig von einer erreichbaren Autorität, langsam, teuer, einzelner Fehlerpunkt.",
+    "vc.label": "VerdChain",
+    "vc.title": "Das Dokument spricht für sich",
+    "vc.desc": "In Sekunden erhalten Sie eine sichere Antwort — echt oder gefälscht. Kein Vertrauen erforderlich.",
+    "dash.tab.upload": "Neues Dokument",
+    "dash.tab.csv": "CSV-Import",
+    "dash.tab.history": "Verlauf",
+    "dash.tab.audit": "Protokoll",
+    "form.candidate": "Vollständiger Name des Inhabers *",
+    "form.degree": "Zertifizierungsart *",
+    "form.date": "Ausstellungsdatum *",
+    "form.anchor": "Auf Blockchain verankern",
+    "register.title": "Zugang beantragen",
+    "register.sub": "Beschreiben Sie Ihre Organisation. Genehmigung innerhalb von 48 Stunden.",
+    "result.holder": "Inhaber",
+    "result.type": "Typ",
+    "result.issued": "Ausstellungsdatum",
+    "result.issuer": "Ausstellende Organisation",
+    "result.anchored": "Verankert am",
+    "result.ok.title": "Echtes Dokument",
+    "result.ok.desc": "Dieses Dokument ist authentisch und stimmt mit seinem Originaleintrag überein. Garantiert.",
+    "result.rev.title": "Widerrufenes Dokument",
+    "result.rev.desc": "Dieses Dokument wurde vom Aussteller widerrufen. Es ist nicht mehr gültig.",
+    "result.fail.title": "Nicht verifiziertes Dokument",
+    "result.fail.desc": "Kein Eintrag gefunden. Dieses Dokument wurde nicht über VerdChain verankert oder seit der Ausstellung verändert.",
+    "result.record": "Verifizierter Eintrag",
   }
 };
 
@@ -524,8 +758,9 @@ function switchLanguage(lang) {
       el.innerHTML = text;
     }
   });
-  const langBtn = document.getElementById("lang-toggle");
-  if (langBtn) langBtn.textContent = translations[lang]["nav.lang"];
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.getAttribute("data-lang-code") === lang);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => { switchLanguage(currentLang); });
@@ -604,24 +839,25 @@ function vShow(data, hex) {
   const el  = document.getElementById("v-result");
   const ok  = data?.status === "verified";
   const rev = data?.status === "revoked";
+  const locale = currentLang === "de" ? "de-DE" : currentLang === "es" ? "es-ES" : currentLang === "en" ? "en-GB" : "fr-FR";
   const rows = ok ? [
-    data.credential?.candidate_name ? ["Titulaire",            data.credential.candidate_name] : null,
-    data.credential?.degree_type    ? ["Type",                 data.credential.degree_type]    : null,
-    data.credential?.issued_date    ? ["Date de d&#233;livrance", data.credential.issued_date]  : null,
-    data.issuer?.name               ? ["Organisme &#233;metteur", data.issuer.name]             : null,
-    data.credential?.anchored_at    ? ["Ancr&#233; le",           new Date(data.credential.anchored_at).toLocaleString("fr-FR")] : null,
+    data.credential?.candidate_name ? [t("result.holder"),   data.credential.candidate_name] : null,
+    data.credential?.degree_type    ? [t("result.type"),     data.credential.degree_type]    : null,
+    data.credential?.issued_date    ? [t("result.issued"),   data.credential.issued_date]    : null,
+    data.issuer?.name               ? [t("result.issuer"),   data.issuer.name]               : null,
+    data.credential?.anchored_at    ? [t("result.anchored"), new Date(data.credential.anchored_at).toLocaleString(locale)] : null,
   ].filter(Boolean) : [];
   el.innerHTML = `
     <div class="result-box ${ok?"ok":"fail"}">
       <div class="result-icon">${ok?"&#10003;":"&#10007;"}</div>
       <div>
-        <div class="result-title">${ok?"Document authentique":rev?"Document révoqué":"Document non v&#233;rifi&#233;"}</div>
-        <div class="result-desc">${ok?"Ce document est authentique et correspond à son enregistrement d'origine. Garanti.":rev?"Ce document a été révoqué par l'émetteur. Il n'est plus valide.":"Aucun enregistrement trouvé. Ce document n'a pas été ancré via VerdChain ou a été modifié depuis son émission."}</div>
+        <div class="result-title">${ok?t("result.ok.title"):rev?t("result.rev.title"):t("result.fail.title")}</div>
+        <div class="result-desc">${ok?t("result.ok.desc"):rev?t("result.rev.desc"):t("result.fail.desc")}</div>
       </div>
     </div>
-    ${ok&&rows.length?`<div class="record"><div class="record-head">Enregistrement v&#233;rifi&#233;</div>${rows.map(r=>`<div class="record-row"><div class="rk">${r[0]}</div><div class="rv hi">${r[1]}</div></div>`).join("")}</div>`:""}
+    ${ok&&rows.length?`<div class="record"><div class="record-head">${t("result.record")}</div>${rows.map(r=>`<div class="record-row"><div class="rk">${r[0]}</div><div class="rv hi">${r[1]}</div></div>`).join("")}</div>`:""}
     <div class="hash-display">0x${hex}</div>
-    <button class="btn-again" onclick="vReset()">&#8592; V&#233;rifier un autre document</button>
+    <button class="btn-again" onclick="vReset()">${t("verify.again")}</button>
   `;
 }
 
