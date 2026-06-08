@@ -143,6 +143,50 @@ input:focus{border-color:var(--gold)}
 footer{padding:28px 40px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--border);border-top:1px solid var(--border);flex-wrap:wrap;gap:8px}
 textarea{font-family:var(--mono);font-size:12px;padding:12px;border:1px solid var(--border);outline:none;resize:vertical;width:100%;background:var(--white)}
 textarea:focus{border-color:var(--gold)}
+/* ── Infographics ───────────────────────────────────────────── */
+.hero-flow{display:flex;align-items:stretch;margin-top:52px;border:1px solid var(--border);background:var(--white);overflow:hidden}
+.hf-node{padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:7px;flex:1;text-align:center;border-right:1px solid var(--border)}
+.hf-node:last-child{border-right:none}
+.hf-icon{font-size:26px;line-height:1}
+.hf-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);line-height:1.3}
+.hf-arrow{color:var(--border);font-size:20px;display:flex;align-items:center;padding:0 2px;flex-shrink:0;align-self:center}
+.hf-ok .hf-icon svg{color:var(--green)}
+.hf-ok .hf-label{color:var(--green)}
+.hf-highlight{background:var(--light)}
+.flow-grid{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr;gap:0;margin:36px 0;align-items:center}
+.flow-card{border:1px solid var(--border);padding:28px 22px;background:var(--white)}
+.flow-card-n{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.12em;margin-bottom:14px;display:block}
+.flow-card-icon{margin-bottom:14px;display:block}
+.flow-card h4{font-size:17px;font-weight:500;margin-bottom:6px}
+.flow-card p{font-size:13px;color:var(--grey);line-height:1.55}
+.flow-arr{display:flex;align-items:center;justify-content:center}
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:48px 0 0}
+.stat-box{background:var(--paper);padding:28px 16px;text-align:center}
+.stat-n{font-size:38px;font-family:var(--mono);font-weight:300;color:var(--ink);display:block;line-height:1;margin-bottom:7px}
+.stat-l{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--grey)}
+.privacy-diagram{border:1px solid var(--border);background:var(--white);margin:36px 0;overflow:hidden}
+.pd-row{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;align-items:center}
+.pd-box{padding:24px 16px;text-align:center}
+.pd-title{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-bottom:10px}
+.pd-icon{font-size:30px;display:block;margin-bottom:8px}
+.pd-label{font-size:14px;color:var(--ink);font-weight:500}
+.pd-sub{font-family:var(--mono);font-size:10px;color:var(--grey);margin-top:4px}
+.pd-sep{display:flex;align-items:center;justify-content:center}
+.pd-blocked-wrap{position:relative;display:flex;align-items:center;justify-content:center}
+.pd-blocked-line{position:absolute;width:36px;height:2px;background:var(--red);transform:rotate(-45deg)}
+.pd-note{padding:14px 20px;border-top:1px solid var(--border);background:var(--light);font-family:var(--mono);font-size:11px;color:var(--grey);display:flex;align-items:center;gap:8px}
+.pd-note strong{color:var(--green);font-style:normal}
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin:36px 0}
+.cmp-col{padding:28px}
+.cmp-col.bad{background:#fdf9f9}
+.cmp-col.good{background:#f9fdf9}
+.cmp-header{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.cmp-col.bad .cmp-header{color:var(--red)}
+.cmp-col.good .cmp-header{color:var(--green)}
+.cmp-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:13px;font-size:14px;line-height:1.5}
+.cmp-item:last-child{margin-bottom:0}
+.cmp-icon{flex-shrink:0;font-size:15px}
+/* ── end infographics ───────────────────────────────────────── */
 @media(max-width:640px){
   nav{padding:0 16px}
   .hero,.section,.waitlist-section,.portal{padding-left:16px;padding-right:16px}
@@ -151,6 +195,15 @@ textarea:focus{border-color:var(--gold)}
   footer{padding:20px 16px;flex-direction:column}
   .waitlist-form{flex-direction:column}
   .waitlist-form button{width:100%}
+  .hero-flow{flex-wrap:wrap}
+  .hf-node{flex:1 1 40%;border-bottom:1px solid var(--border)}
+  .hf-arrow{display:none}
+  .flow-grid{grid-template-columns:1fr}
+  .flow-arr{display:none}
+  .stats-strip{grid-template-columns:1fr 1fr}
+  .pd-row{grid-template-columns:1fr}
+  .pd-sep{display:none}
+  .cmp-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -176,6 +229,40 @@ textarea:focus{border-color:var(--gold)}
         <button class="btn-primary" onclick="showPage('verify')" data-lang-key="hero.cta1">V&#233;rifier un document</button>
         <button class="btn-secondary" onclick="showPage('issuer')" data-lang-key="hero.cta2">&Eacute;mettre des certifications</button>
       </div>
+
+      <!-- Hero flow infographic -->
+      <div class="hero-flow">
+        <div class="hf-node">
+          <span class="hf-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </span>
+          <span class="hf-label" data-lang-key="flow.doc">Document original</span>
+        </div>
+        <div class="hf-node hf-highlight">
+          <span class="hf-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+          <span class="hf-label" data-lang-key="flow.hash">Empreinte SHA-256</span>
+        </div>
+        <div class="hf-node">
+          <span class="hf-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </span>
+          <span class="hf-label" data-lang-key="flow.chain">Ancrée sur blockchain</span>
+        </div>
+        <div class="hf-node">
+          <span class="hf-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </span>
+          <span class="hf-label" data-lang-key="flow.share">Partagé par le titulaire</span>
+        </div>
+        <div class="hf-node hf-ok">
+          <span class="hf-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span class="hf-label" data-lang-key="flow.verify">Vérifié en 3 secondes</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -184,12 +271,79 @@ textarea:focus{border-color:var(--gold)}
       <div class="section-label" data-lang-key="how.label">Comment &#231;a fonctionne</div>
       <h2 data-lang-key="how.title">Sceller une fois.<br>V&#233;rifier pour toujours.</h2>
       <p class="section-sub" data-lang-key="how.sub">Trois &#233;tapes. Quelques secondes. Une protection permanente.</p>
-      <div class="steps">
-        <div class="step"><div class="step-n">01</div><div><h4 data-lang-key="how.step1.title">L&#8217;organisme &#233;met et scelle</h4><p data-lang-key="how.step1.desc">Au moment de la d&#233;livrance, l&#8217;&#233;metteur ancre une empreinte unique du document sur la blockchain. Le fichier ne quitte jamais votre syst&#232;me.</p></div></div>
-        <div class="step"><div class="step-n">02</div><div><h4 data-lang-key="how.step2.title">Le titulaire partage</h4><p data-lang-key="how.step2.desc">Le titulaire pr&#233;sente son document lors d&#8217;une candidature. Il peut partager le fichier avec un lien ou QR de v&#233;rification int&#233;gr&#233;.</p></div></div>
-        <div class="step"><div class="step-n">03</div><div><h4 data-lang-key="how.step3.title">L&#8217;employeur v&#233;rifie</h4><p data-lang-key="how.step3.desc">Le recruteur d&#233;pose le document. En quelques secondes, vous savez si le document est authentique. Garanti.</p></div></div>
+      <!-- Visual process flow grid -->
+      <div class="flow-grid">
+        <div class="flow-card">
+          <span class="flow-card-n">01</span>
+          <span class="flow-card-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="16 17 12 21 8 17"/><line x1="12" y1="12" x2="12" y2="21"/></svg>
+          </span>
+          <h4 data-lang-key="how.step1.title">L&#8217;organisme &#233;met et scelle</h4>
+          <p data-lang-key="how.step1.desc">Au moment de la d&#233;livrance, l&#8217;&#233;metteur ancre une empreinte unique du document sur la blockchain. Le fichier ne quitte jamais votre syst&#232;me.</p>
+        </div>
+        <div class="flow-arr">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--border)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="flow-card">
+          <span class="flow-card-n">02</span>
+          <span class="flow-card-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </span>
+          <h4 data-lang-key="how.step2.title">Le titulaire partage</h4>
+          <p data-lang-key="how.step2.desc">Le titulaire pr&#233;sente son document lors d&#8217;une candidature. Il peut partager le fichier avec un lien ou QR de v&#233;rification int&#233;gr&#233;.</p>
+        </div>
+        <div class="flow-arr">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--border)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="flow-card" style="border-color:var(--green);background:#f9fdf9">
+          <span class="flow-card-n" style="color:var(--green)">03</span>
+          <span class="flow-card-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </span>
+          <h4 data-lang-key="how.step3.title">L&#8217;employeur v&#233;rifie</h4>
+          <p data-lang-key="how.step3.desc">Le recruteur d&#233;pose le document. En quelques secondes, vous savez si le document est authentique. Garanti.</p>
+        </div>
       </div>
-      <div class="note" data-lang-key="how.note"><strong>Vos documents restent chez vous.</strong> VerdChain ne re&#231;oit jamais le fichier &#8212; uniquement son empreinte math&#233;matique. Z&#233;ro stockage, z&#233;ro risque de fuite.</div>
+
+      <!-- Privacy diagram -->
+      <div class="privacy-diagram">
+        <div class="pd-row">
+          <div class="pd-box">
+            <div class="pd-title" data-lang-key="pd.doc">Votre document</div>
+            <span class="pd-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </span>
+            <div class="pd-label" data-lang-key="pd.doc.label">Reste chez vous</div>
+            <div class="pd-sub" data-lang-key="pd.doc.sub">PDF, image, etc.</div>
+          </div>
+          <div class="pd-sep">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--border)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="pd-box" style="background:var(--light)">
+            <div class="pd-title" data-lang-key="pd.hash">Empreinte SHA-256</div>
+            <span class="pd-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <div class="pd-label" data-lang-key="pd.hash.label">Calcul&#233;e localement</div>
+            <div class="pd-sub">a3f8b2c…9d1e</div>
+          </div>
+          <div class="pd-sep">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--border)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="pd-box">
+            <div class="pd-title" data-lang-key="pd.chain">Blockchain</div>
+            <span class="pd-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </span>
+            <div class="pd-label" data-lang-key="pd.chain.label">Re&#231;oit l&#8217;empreinte</div>
+            <div class="pd-sub" data-lang-key="pd.chain.sub">Jamais le fichier</div>
+          </div>
+        </div>
+        <div class="pd-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span data-lang-key="how.note"><strong>Vos documents restent chez vous.</strong> VerdChain ne re&#231;oit jamais le fichier &#8212; uniquement son empreinte math&#233;matique. Z&#233;ro stockage, z&#233;ro risque de fuite.</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -198,9 +352,44 @@ textarea:focus{border-color:var(--gold)}
       <div class="section-label" data-lang-key="who.label">&#192; qui &#231;a s&#8217;adresse</div>
       <h2 data-lang-key="who.title">Deux acteurs.<br>Une seule v&#233;rit&#233;.</h2>
       <div class="two-col">
-        <div class="col"><div class="col-label" data-lang-key="who.issuers.label">&Eacute;metteurs</div><h3 data-lang-key="who.issuers.title">Organismes certifiants, &#233;coles, institutions</h3><p data-lang-key="who.issuers.desc">Toute organisation qui d&#233;livre des dipl&#244;mes ou certifications. &Eacute;mettez en masse ou un par un &#8212; vos documents sont prot&#233;g&#233;s pour toujours.</p></div>
-        <div class="col"><div class="col-label" data-lang-key="who.verifiers.label">V&#233;rificateurs</div><h3 data-lang-key="who.verifiers.title">Employeurs, recruteurs, partenaires</h3><p data-lang-key="who.verifiers.desc">DRH, cabinets de recrutement, donneurs d&#8217;ordre. V&#233;rifiez n&#8217;importe quel document en quelques secondes &#8212; sans appel, sans interm&#233;diaire.</p></div>
+        <div class="col">
+          <div class="col-label" data-lang-key="who.issuers.label">&Eacute;metteurs</div>
+          <div style="margin-bottom:14px">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3 data-lang-key="who.issuers.title">Organismes certifiants, &#233;coles, institutions</h3>
+          <p data-lang-key="who.issuers.desc">Toute organisation qui d&#233;livre des dipl&#244;mes ou certifications. &Eacute;mettez en masse ou un par un &#8212; vos documents sont prot&#233;g&#233;s pour toujours.</p>
+        </div>
+        <div class="col">
+          <div class="col-label" data-lang-key="who.verifiers.label">V&#233;rificateurs</div>
+          <div style="margin-bottom:14px">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+          <h3 data-lang-key="who.verifiers.title">Employeurs, recruteurs, partenaires</h3>
+          <p data-lang-key="who.verifiers.desc">DRH, cabinets de recrutement, donneurs d&#8217;ordre. V&#233;rifiez n&#8217;importe quel document en quelques secondes &#8212; sans appel, sans interm&#233;diaire.</p>
+        </div>
       </div>
+
+      <!-- Stats strip -->
+      <div class="stats-strip">
+        <div class="stat-box">
+          <span class="stat-n">3 s</span>
+          <span class="stat-l" data-lang-key="stat.verify">V&#233;rification</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-n">0</span>
+          <span class="stat-l" data-lang-key="stat.calls">Appel t&#233;l&#233;phonique</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-n">100%</span>
+          <span class="stat-l" data-lang-key="stat.proof">Preuve cryptographique</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-n">&#8734;</span>
+          <span class="stat-l" data-lang-key="stat.docs">Documents prot&#233;g&#233;s</span>
+        </div>
+      </div>
+
       <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap">
         <button class="btn-primary" onclick="showPage('issuer')" data-lang-key="hero.cta2">&Eacute;mettre des certifications</button>
         <button class="btn-secondary" onclick="showPage('verify')" data-lang-key="hero.cta1">V&#233;rifier un document</button>
@@ -213,9 +402,59 @@ textarea:focus{border-color:var(--gold)}
       <div class="section-label" data-lang-key="why.label">Pourquoi VerdChain</div>
       <h2 data-lang-key="why.title">Pas une base de donn&#233;es.<br>Une preuve math&#233;matique.</h2>
       <p class="section-sub" data-lang-key="why.sub">Les syst&#232;mes de v&#233;rification traditionnels reposent sur une autorit&#233; joignable. VerdChain, non.</p>
-      <div class="two-col">
-        <div class="col"><div class="col-label" data-lang-key="trad.label">V&#233;rification traditionnelle</div><h3 data-lang-key="trad.title">&#171;&#160;Appelez-nous, on confirmera&#160;&#187;</h3><p data-lang-key="trad.desc">D&#233;pend d&#8217;une autorit&#233; disponible, lent, co&#251;teux, point de d&#233;faillance unique.</p></div>
-        <div class="col"><div class="col-label" data-lang-key="vc.label">VerdChain</div><h3 data-lang-key="vc.title">Le document parle de lui-m&#234;me</h3><p data-lang-key="vc.desc">En quelques secondes, vous avez une r&#233;ponse certaine &#8212; authentique ou falsifi&#233;. Aucune confiance requise.</p></div>
+      <div class="cmp-grid">
+        <div class="cmp-col bad">
+          <div class="cmp-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <span data-lang-key="trad.label">V&#233;rification traditionnelle</span>
+          </div>
+          <div class="cmp-item">
+            <span class="cmp-icon">📞</span>
+            <span data-lang-key="cmp.trad1">Appel t&#233;l&#233;phonique obligatoire &#8212; si l&#8217;&#233;metteur r&#233;pond</span>
+          </div>
+          <div class="cmp-item">
+            <span class="cmp-icon">⏳</span>
+            <span data-lang-key="cmp.trad2">D&#233;lais de plusieurs jours selon la disponibilit&#233;</span>
+          </div>
+          <div class="cmp-item">
+            <span class="cmp-icon">💸</span>
+            <span data-lang-key="cmp.trad3">Co&#251;teux en temps et en ressources humaines</span>
+          </div>
+          <div class="cmp-item">
+            <span class="cmp-icon">🔗</span>
+            <span data-lang-key="cmp.trad4">Point de d&#233;faillance unique : si l&#8217;organisme ferme, la preuve disparait</span>
+          </div>
+          <div class="cmp-item">
+            <span class="cmp-icon">🎭</span>
+            <span data-lang-key="cmp.trad5">Facile &#224; falsifier : papier, email, PDF modifi&#233;</span>
+          </div>
+        </div>
+        <div class="cmp-col good">
+          <div class="cmp-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-lang-key="vc.label">VerdChain</span>
+          </div>
+          <div class="cmp-item">
+            <span class="cmp-icon">⚡</span>
+            <span data-lang-key="cmp.vc1">V&#233;rification instantan&#233;e en glissant le fichier &#8212; 3 secondes</span>
+          </div>
+          <div class="cmp-item">
+            <span class="cmp-icon">🌐</span>
+            <span data-lang-key="cmp.vc2">Disponible 24h/24, 7j/7, sans interm&#233;diaire</span>
+          </div>
+          <div class="cmp-item">
+            <span class="cmp-icon">✓</span>
+            <span data-lang-key="cmp.vc3">Gratuit pour les v&#233;rificateurs &#8212; z&#233;ro abonnement</span>
+          </div>
+          <div class="cmp-item">
+            <span class="cmp-icon">⛓️</span>
+            <span data-lang-key="cmp.vc4">Preuve permanente sur blockchain : valide m&#234;me si l&#8217;&#233;metteur ferme</span>
+          </div>
+          <div class="cmp-item">
+            <span class="cmp-icon">🔐</span>
+            <span data-lang-key="cmp.vc5">Impossible &#224; falsifier &#8212; garanti par math&#233;matiques cryptographiques</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -464,6 +703,33 @@ const translations = {
     "waitlist.note": "Sans engagement · Réponse sous 48 h · Données non partagées",
     "footer.tagline": "VerdChain · Certification vérifiable",
     "footer.privacy": "Zéro fichier uploadé · Traitement local uniquement",
+    "flow.doc": "Document original",
+    "flow.hash": "Empreinte SHA-256",
+    "flow.chain": "Ancrée sur blockchain",
+    "flow.share": "Partagé par le titulaire",
+    "flow.verify": "Vérifié en 3 secondes",
+    "stat.verify": "Vérification",
+    "stat.calls": "Appel téléphonique",
+    "stat.proof": "Preuve cryptographique",
+    "stat.docs": "Documents protégés",
+    "pd.doc": "Votre document",
+    "pd.doc.label": "Reste chez vous",
+    "pd.doc.sub": "PDF, image, etc.",
+    "pd.hash": "Empreinte SHA-256",
+    "pd.hash.label": "Calculée localement",
+    "pd.chain": "Blockchain",
+    "pd.chain.label": "Reçoit l'empreinte",
+    "pd.chain.sub": "Jamais le fichier",
+    "cmp.trad1": "Appel téléphonique obligatoire — si l'émetteur répond",
+    "cmp.trad2": "Délais de plusieurs jours selon la disponibilité",
+    "cmp.trad3": "Coûteux en temps et en ressources humaines",
+    "cmp.trad4": "Point de défaillance unique : si l'organisme ferme, la preuve disparait",
+    "cmp.trad5": "Facile à falsifier : papier, email, PDF modifié",
+    "cmp.vc1": "Vérification instantanée en glissant le fichier — 3 secondes",
+    "cmp.vc2": "Disponible 24h/24, 7j/7, sans intermédiaire",
+    "cmp.vc3": "Gratuit pour les vérificateurs — zéro abonnement",
+    "cmp.vc4": "Preuve permanente sur blockchain : valide même si l'émetteur ferme",
+    "cmp.vc5": "Impossible à falsifier — garanti par mathématiques cryptographiques",
     "verify.back": "← Retour",
     "verify.title": "Vérifier un document",
     "verify.sub": "Déposez n'importe quel document pour vérifier instantanément son authenticité. Aucun fichier n'est transmis.",
@@ -548,6 +814,33 @@ const translations = {
     "waitlist.note": "No commitment · Response within 48h · Data not shared",
     "footer.tagline": "VerdChain · Verifiable certification",
     "footer.privacy": "Zero uploaded files · Local processing only",
+    "flow.doc": "Original document",
+    "flow.hash": "SHA-256 fingerprint",
+    "flow.chain": "Anchored on blockchain",
+    "flow.share": "Shared by holder",
+    "flow.verify": "Verified in 3 seconds",
+    "stat.verify": "Verification",
+    "stat.calls": "Phone call required",
+    "stat.proof": "Cryptographic proof",
+    "stat.docs": "Documents protected",
+    "pd.doc": "Your document",
+    "pd.doc.label": "Stays with you",
+    "pd.doc.sub": "PDF, image, etc.",
+    "pd.hash": "SHA-256 fingerprint",
+    "pd.hash.label": "Computed locally",
+    "pd.chain": "Blockchain",
+    "pd.chain.label": "Receives the fingerprint",
+    "pd.chain.sub": "Never the file",
+    "cmp.trad1": "Phone call required — if the issuer picks up",
+    "cmp.trad2": "Delays of several days depending on availability",
+    "cmp.trad3": "Expensive in time and human resources",
+    "cmp.trad4": "Single point of failure: if the org closes, the proof disappears",
+    "cmp.trad5": "Easy to forge: paper, email, modified PDF",
+    "cmp.vc1": "Instant verification by dropping the file — 3 seconds",
+    "cmp.vc2": "Available 24/7, no intermediary required",
+    "cmp.vc3": "Free for verifiers — zero subscription",
+    "cmp.vc4": "Permanent blockchain proof: valid even if issuer closes",
+    "cmp.vc5": "Impossible to forge — guaranteed by cryptographic mathematics",
     "verify.back": "← Back",
     "verify.title": "Verify a document",
     "verify.sub": "Drop any document to instantly verify its authenticity. No file is transmitted.",
